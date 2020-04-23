@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="450147a8c1a84f92815902a0c6cbfff1" Name="Diagram1" DisplayType="true" ZoomLevel="112" >
+        <EntityTypeShape EntityType="edmNeumannMozi.Felhasznalo" Width="2.25" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="edmNeumannMozi.Foglalas" Width="2.125" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="edmNeumannMozi.Ules_foglalas" Width="2" PointX="5.75" PointY="0.5" />
+        <EntityTypeShape EntityType="edmNeumannMozi.Ules" Width="1.5" PointX="9.25" PointY="0.5" />
+        <EntityTypeShape EntityType="edmNeumannMozi.Terem" Width="2.125" PointX="12.625" PointY="0.5" />
+        <EntityTypeShape EntityType="edmNeumannMozi.Film" Width="1.875" PointX="12.75" PointY="4" />
+        <EntityTypeShape EntityType="edmNeumannMozi.Vetites" Width="2.25" PointX="6" PointY="4" />
+        <AssociationConnector Association="edmNeumannMozi.UlesUles_foglalas" />
+        <AssociationConnector Association="edmNeumannMozi.TeremVetites" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="edmNeumannMozi.FilmVetites" />
+        <AssociationConnector Association="edmNeumannMozi.TeremUles" />
+        <AssociationConnector Association="edmNeumannMozi.VetitesUles_foglalas" />
+        <AssociationConnector Association="edmNeumannMozi.FelhasznaloFoglalas" />
+        <AssociationConnector Association="edmNeumannMozi.FoglalasUles_foglalas" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

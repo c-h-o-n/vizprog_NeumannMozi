@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="edmNeumannMozi.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="edmNeumannMoziStoreContainer">
+    <EntitySet Name="FelhasznaloSet" EntityType="edmNeumannMozi.Store.FelhasznaloSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FoglalasSet" EntityType="edmNeumannMozi.Store.FoglalasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ules_foglalasSet" EntityType="edmNeumannMozi.Store.Ules_foglalasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UlesSet" EntityType="edmNeumannMozi.Store.UlesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TeremSet" EntityType="edmNeumannMozi.Store.TeremSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FilmSet" EntityType="edmNeumannMozi.Store.FilmSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VetitesSet" EntityType="edmNeumannMozi.Store.VetitesSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UlesUles_foglalas" Association="edmNeumannMozi.Store.UlesUles_foglalas">
+      <End Role="Ules" EntitySet="UlesSet" />
+      <End Role="Ules_foglalas" EntitySet="Ules_foglalasSet" />
+    </AssociationSet>
+    <AssociationSet Name="TeremVetites" Association="edmNeumannMozi.Store.TeremVetites">
+      <End Role="Terem" EntitySet="TeremSet" />
+      <End Role="Vetites" EntitySet="VetitesSet" />
+    </AssociationSet>
+    <AssociationSet Name="FilmVetites" Association="edmNeumannMozi.Store.FilmVetites">
+      <End Role="Film" EntitySet="FilmSet" />
+      <End Role="Vetites" EntitySet="VetitesSet" />
+    </AssociationSet>
+    <AssociationSet Name="TeremUles" Association="edmNeumannMozi.Store.TeremUles">
+      <End Role="Terem" EntitySet="TeremSet" />
+      <End Role="Ules" EntitySet="UlesSet" />
+    </AssociationSet>
+    <AssociationSet Name="VetitesUles_foglalas" Association="edmNeumannMozi.Store.VetitesUles_foglalas">
+      <End Role="Vetites" EntitySet="VetitesSet" />
+      <End Role="Ules_foglalas" EntitySet="Ules_foglalasSet" />
+    </AssociationSet>
+    <AssociationSet Name="FelhasznaloFoglalas" Association="edmNeumannMozi.Store.FelhasznaloFoglalas">
+      <End Role="Felhasznalo" EntitySet="FelhasznaloSet" />
+      <End Role="Foglalas" EntitySet="FoglalasSet" />
+    </AssociationSet>
+    <AssociationSet Name="FoglalasUles_foglalas" Association="edmNeumannMozi.Store.FoglalasUles_foglalas">
+      <End Role="Foglalas" EntitySet="FoglalasSet" />
+      <End Role="Ules_foglalas" EntitySet="Ules_foglalasSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FelhasznaloSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nev" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Jelszo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FoglalasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Foglalt" Type="bit" Nullable="false" />
+    <Property Name="FizetveVan" Type="bit" Nullable="false" />
+    <Property Name="Aktiv" Type="bit" Nullable="false" />
+    <Property Name="Datum" Type="datetime" Nullable="false" />
+    <Property Name="FelhasznaloId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Ules_foglalasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kategoria" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UlesId" Type="int" Nullable="false" />
+    <Property Name="VetitesId" Type="int" Nullable="false" />
+    <Property Name="FoglalasId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UlesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sor" Type="int" Nullable="false" />
+    <Property Name="Szam" Type="int" Nullable="false" />
+    <Property Name="TeremId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeremSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nev" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UlesekSzama" Type="int" Nullable="false" />
+    <Property Name="TakaritaniKell" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FilmSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cím" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rendező" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Szereplok" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Leiras" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hossz" Type="int" Nullable="false" />
+    <Property Name="Korhatar" Type="int" Nullable="false" />
+    <Property Name="ElozetesLink" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImdbLink" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PoszterLink" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kategoria" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VetitesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kezdete" Type="datetime" Nullable="false" />
+    <Property Name="TeremId" Type="int" Nullable="false" />
+    <Property Name="FilmId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UlesUles_foglalas">
+    <End Role="Ules" Type="edmNeumannMozi.Store.UlesSet" Multiplicity="1" />
+    <End Role="Ules_foglalas" Type="edmNeumannMozi.Store.Ules_foglalasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ules">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ules_foglalas">
+        <PropertyRef Name="UlesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeremVetites">
+    <End Role="Terem" Type="edmNeumannMozi.Store.TeremSet" Multiplicity="1" />
+    <End Role="Vetites" Type="edmNeumannMozi.Store.VetitesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vetites">
+        <PropertyRef Name="TeremId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FilmVetites">
+    <End Role="Film" Type="edmNeumannMozi.Store.FilmSet" Multiplicity="1" />
+    <End Role="Vetites" Type="edmNeumannMozi.Store.VetitesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vetites">
+        <PropertyRef Name="FilmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeremUles">
+    <End Role="Terem" Type="edmNeumannMozi.Store.TeremSet" Multiplicity="1" />
+    <End Role="Ules" Type="edmNeumannMozi.Store.UlesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ules">
+        <PropertyRef Name="TeremId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VetitesUles_foglalas">
+    <End Role="Vetites" Type="edmNeumannMozi.Store.VetitesSet" Multiplicity="1" />
+    <End Role="Ules_foglalas" Type="edmNeumannMozi.Store.Ules_foglalasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vetites">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ules_foglalas">
+        <PropertyRef Name="VetitesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FelhasznaloFoglalas">
+    <End Role="Felhasznalo" Type="edmNeumannMozi.Store.FelhasznaloSet" Multiplicity="0..1" />
+    <End Role="Foglalas" Type="edmNeumannMozi.Store.FoglalasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Felhasznalo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Foglalas">
+        <PropertyRef Name="FelhasznaloId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FoglalasUles_foglalas">
+    <End Role="Foglalas" Type="edmNeumannMozi.Store.FoglalasSet" Multiplicity="1" />
+    <End Role="Ules_foglalas" Type="edmNeumannMozi.Store.Ules_foglalasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foglalas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ules_foglalas">
+        <PropertyRef Name="FoglalasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="edmNeumannMozi" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="edmNeumannMoziContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FelhasznaloSet" EntityType="edmNeumannMozi.Felhasznalo" />
+          <EntitySet Name="FoglalasSet" EntityType="edmNeumannMozi.Foglalas" />
+          <EntitySet Name="Ules_foglalasSet" EntityType="edmNeumannMozi.Ules_foglalas" />
+          <EntitySet Name="UlesSet" EntityType="edmNeumannMozi.Ules" />
+          <EntitySet Name="TeremSet" EntityType="edmNeumannMozi.Terem" />
+          <EntitySet Name="FilmSet" EntityType="edmNeumannMozi.Film" />
+          <EntitySet Name="VetitesSet" EntityType="edmNeumannMozi.Vetites" />
+          <AssociationSet Name="UlesUles_foglalas" Association="edmNeumannMozi.UlesUles_foglalas">
+            <End Role="Ules" EntitySet="UlesSet" />
+            <End Role="Ules_foglalas" EntitySet="Ules_foglalasSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeremVetites" Association="edmNeumannMozi.TeremVetites">
+            <End Role="Terem" EntitySet="TeremSet" />
+            <End Role="Vetites" EntitySet="VetitesSet" />
+          </AssociationSet>
+          <AssociationSet Name="FilmVetites" Association="edmNeumannMozi.FilmVetites">
+            <End Role="Film" EntitySet="FilmSet" />
+            <End Role="Vetites" EntitySet="VetitesSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeremUles" Association="edmNeumannMozi.TeremUles">
+            <End Role="Terem" EntitySet="TeremSet" />
+            <End Role="Ules" EntitySet="UlesSet" />
+          </AssociationSet>
+          <AssociationSet Name="VetitesUles_foglalas" Association="edmNeumannMozi.VetitesUles_foglalas">
+            <End Role="Vetites" EntitySet="VetitesSet" />
+            <End Role="Ules_foglalas" EntitySet="Ules_foglalasSet" />
+          </AssociationSet>
+          <AssociationSet Name="FelhasznaloFoglalas" Association="edmNeumannMozi.FelhasznaloFoglalas">
+            <End Role="Felhasznalo" EntitySet="FelhasznaloSet" />
+            <End Role="Foglalas" EntitySet="FoglalasSet" />
+          </AssociationSet>
+          <AssociationSet Name="FoglalasUles_foglalas" Association="edmNeumannMozi.FoglalasUles_foglalas">
+            <End Role="Foglalas" EntitySet="FoglalasSet" />
+            <End Role="Ules_foglalas" EntitySet="Ules_foglalasSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Felhasznalo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nev" Type="String" Nullable="false" />
+          <Property Name="Jelszo" Type="String" Nullable="false" />
+          <NavigationProperty Name="Foglalas" Relationship="edmNeumannMozi.FelhasznaloFoglalas" FromRole="Felhasznalo" ToRole="Foglalas" />
+        </EntityType>
+        <EntityType Name="Foglalas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Foglalt" Type="Boolean" Nullable="false" />
+          <Property Name="FizetveVan" Type="Boolean" Nullable="false" />
+          <Property Name="Aktiv" Type="Boolean" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Felhasznalo" Relationship="edmNeumannMozi.FelhasznaloFoglalas" FromRole="Foglalas" ToRole="Felhasznalo" />
+          <Property Name="FelhasznaloId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Ules_foglalas" Relationship="edmNeumannMozi.FoglalasUles_foglalas" FromRole="Foglalas" ToRole="Ules_foglalas" />
+        </EntityType>
+        <EntityType Name="Ules_foglalas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategoria" Type="String" Nullable="false" />
+          <NavigationProperty Name="Ules" Relationship="edmNeumannMozi.UlesUles_foglalas" FromRole="Ules_foglalas" ToRole="Ules" />
+          <Property Name="UlesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vetites" Relationship="edmNeumannMozi.VetitesUles_foglalas" FromRole="Ules_foglalas" ToRole="Vetites" />
+          <Property Name="VetitesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Foglalas" Relationship="edmNeumannMozi.FoglalasUles_foglalas" FromRole="Ules_foglalas" ToRole="Foglalas" />
+          <Property Name="FoglalasId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sor" Type="Int32" Nullable="false" />
+          <Property Name="Szam" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ules_foglalas" Relationship="edmNeumannMozi.UlesUles_foglalas" FromRole="Ules" ToRole="Ules_foglalas" />
+          <NavigationProperty Name="Terem" Relationship="edmNeumannMozi.TeremUles" FromRole="Ules" ToRole="Terem" />
+          <Property Name="TeremId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nev" Type="String" Nullable="false" />
+          <Property Name="UlesekSzama" Type="Int32" Nullable="false" />
+          <Property Name="TakaritaniKell" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Vetites" Relationship="edmNeumannMozi.TeremVetites" FromRole="Terem" ToRole="Vetites" />
+          <NavigationProperty Name="Ules" Relationship="edmNeumannMozi.TeremUles" FromRole="Terem" ToRole="Ules" />
+        </EntityType>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cím" Type="String" Nullable="false" />
+          <Property Name="Rendező" Type="String" Nullable="false" />
+          <Property Name="Szereplok" Type="String" Nullable="false" />
+          <Property Name="Leiras" Type="String" Nullable="false" />
+          <Property Name="Hossz" Type="Int32" Nullable="false" />
+          <Property Name="Korhatar" Type="Int32" Nullable="false" />
+          <Property Name="ElozetesLink" Type="String" Nullable="false" />
+          <Property Name="ImdbLink" Type="String" Nullable="false" />
+          <Property Name="PoszterLink" Type="String" Nullable="false" />
+          <Property Name="Kategoria" Type="String" Nullable="false" />
+          <NavigationProperty Name="Vetites" Relationship="edmNeumannMozi.FilmVetites" FromRole="Film" ToRole="Vetites" />
+        </EntityType>
+        <EntityType Name="Vetites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kezdete" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Terem" Relationship="edmNeumannMozi.TeremVetites" FromRole="Vetites" ToRole="Terem" />
+          <Property Name="TeremId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Film" Relationship="edmNeumannMozi.FilmVetites" FromRole="Vetites" ToRole="Film" />
+          <Property Name="FilmId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ules_foglalas" Relationship="edmNeumannMozi.VetitesUles_foglalas" FromRole="Vetites" ToRole="Ules_foglalas" />
+        </EntityType>
+        <Association Name="UlesUles_foglalas">
+          <End Type="edmNeumannMozi.Ules" Role="Ules" Multiplicity="1" />
+          <End Type="edmNeumannMozi.Ules_foglalas" Role="Ules_foglalas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ules_foglalas">
+              <PropertyRef Name="UlesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeremVetites">
+          <End Type="edmNeumannMozi.Terem" Role="Terem" Multiplicity="1" />
+          <End Type="edmNeumannMozi.Vetites" Role="Vetites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vetites">
+              <PropertyRef Name="TeremId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FilmVetites">
+          <End Type="edmNeumannMozi.Film" Role="Film" Multiplicity="1" />
+          <End Type="edmNeumannMozi.Vetites" Role="Vetites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vetites">
+              <PropertyRef Name="FilmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeremUles">
+          <End Type="edmNeumannMozi.Terem" Role="Terem" Multiplicity="1" />
+          <End Type="edmNeumannMozi.Ules" Role="Ules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ules">
+              <PropertyRef Name="TeremId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VetitesUles_foglalas">
+          <End Type="edmNeumannMozi.Vetites" Role="Vetites" Multiplicity="1" />
+          <End Type="edmNeumannMozi.Ules_foglalas" Role="Ules_foglalas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vetites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ules_foglalas">
+              <PropertyRef Name="VetitesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FelhasznaloFoglalas">
+          <End Type="edmNeumannMozi.Felhasznalo" Role="Felhasznalo" Multiplicity="0..1" />
+          <End Type="edmNeumannMozi.Foglalas" Role="Foglalas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Felhasznalo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Foglalas">
+              <PropertyRef Name="FelhasznaloId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FoglalasUles_foglalas">
+          <End Type="edmNeumannMozi.Foglalas" Role="Foglalas" Multiplicity="1" />
+          <End Type="edmNeumannMozi.Ules_foglalas" Role="Ules_foglalas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Foglalas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ules_foglalas">
+              <PropertyRef Name="FoglalasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="edmNeumannMoziStoreContainer" CdmEntityContainer="edmNeumannMoziContainer">
+    <EntitySetMapping Name="FelhasznaloSet">
+      <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Felhasznalo)">
+        <MappingFragment StoreEntitySet="FelhasznaloSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="Jelszo" ColumnName="Jelszo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoglalasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Foglalas)">
+        <MappingFragment StoreEntitySet="FoglalasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Foglalt" ColumnName="Foglalt" />
+          <ScalarProperty Name="FizetveVan" ColumnName="FizetveVan" />
+          <ScalarProperty Name="Aktiv" ColumnName="Aktiv" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="FelhasznaloId" ColumnName="FelhasznaloId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ules_foglalasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Ules_foglalas)">
+        <MappingFragment StoreEntitySet="Ules_foglalasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+          <ScalarProperty Name="UlesId" ColumnName="UlesId" />
+          <ScalarProperty Name="VetitesId" ColumnName="VetitesId" />
+          <ScalarProperty Name="FoglalasId" ColumnName="FoglalasId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UlesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Ules)">
+        <MappingFragment StoreEntitySet="UlesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sor" ColumnName="Sor" />
+          <ScalarProperty Name="Szam" ColumnName="Szam" />
+          <ScalarProperty Name="TeremId" ColumnName="TeremId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeremSet">
+      <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Terem)">
+        <MappingFragment StoreEntitySet="TeremSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="UlesekSzama" ColumnName="UlesekSzama" />
+          <ScalarProperty Name="TakaritaniKell" ColumnName="TakaritaniKell" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FilmSet">
+      <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Film)">
+        <MappingFragment StoreEntitySet="FilmSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cím" ColumnName="Cím" />
+          <ScalarProperty Name="Rendező" ColumnName="Rendező" />
+          <ScalarProperty Name="Szereplok" ColumnName="Szereplok" />
+          <ScalarProperty Name="Leiras" ColumnName="Leiras" />
+          <ScalarProperty Name="Hossz" ColumnName="Hossz" />
+          <ScalarProperty Name="Korhatar" ColumnName="Korhatar" />
+          <ScalarProperty Name="ElozetesLink" ColumnName="ElozetesLink" />
+          <ScalarProperty Name="ImdbLink" ColumnName="ImdbLink" />
+          <ScalarProperty Name="PoszterLink" ColumnName="PoszterLink" />
+          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VetitesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Vetites)">
+        <MappingFragment StoreEntitySet="VetitesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Kezdete" ColumnName="Kezdete" />
+          <ScalarProperty Name="TeremId" ColumnName="TeremId" />
+          <ScalarProperty Name="FilmId" ColumnName="FilmId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
