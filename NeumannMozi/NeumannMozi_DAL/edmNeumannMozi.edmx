@@ -49,6 +49,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nev" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Jelszo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Admin" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="FoglalasSet">
     <Key>
@@ -247,6 +248,7 @@
           <Property Name="Nev" Type="String" Nullable="false" />
           <Property Name="Jelszo" Type="String" Nullable="false" />
           <NavigationProperty Name="Foglalas" Relationship="edmNeumannMozi.FelhasznaloFoglalas" FromRole="Felhasznalo" ToRole="Foglalas" />
+          <Property Name="Admin" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Foglalas">
           <Key>
@@ -421,6 +423,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nev" ColumnName="Nev" />
           <ScalarProperty Name="Jelszo" ColumnName="Jelszo" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
