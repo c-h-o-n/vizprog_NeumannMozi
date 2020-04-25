@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,18 @@ namespace NeumannMozi_WPF {
     /// </summary>
     public partial class winLogin : Window {
         public winLogin() {
+            SetDataDirectory();
             InitializeComponent();
         }
+
+        #region Database
+        private void SetDataDirectory() {
+            var dir = Directory.GetParent(Directory.GetCurrentDirectory());
+            dir = Directory.GetParent(dir.ToString());
+            dir = Directory.GetParent(dir.ToString());
+            //
+            AppDomain.CurrentDomain.SetData("DataDirectory", dir.ToString());
+        }
+        #endregion
     }
 }
