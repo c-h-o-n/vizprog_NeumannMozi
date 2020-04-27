@@ -4,13 +4,52 @@
              xmlns:local="clr-namespace:NeumannMozi_WPF"
              StartupUri="winLogin.xaml">
     <Application.Resources>
-        <Style x:Key="QuickSandFont">
+        <!-- Add fonts to project -->
+        <Style x:Key="QuicksandRegular">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/content_src/fonts/Quicksand-Regular.ttf #Quicksand"/>
+        </Style>
+        <Style x:Key="QuicksandBold">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/content_src/fonts/Quicksand-Bold.ttf #Quicksand"/>
+        </Style>
+        <Style x:Key="Quicksand">
             <Setter Property="TextElement.FontFamily"
                     Value="/content_src/fonts/#Quicksand"/>
         </Style>
+
         <Style x:Key="RobotoFont">
             <Setter Property="TextElement.FontFamily"
                     Value="./content_src/fonts/#Roboto"/>
         </Style>
+
+        <!-- Disable blue button highlight -->
+        <Style TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="MediumAquamarine" />
+            <Setter Property="Foreground" Value="MediumBlue" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter" 
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="DeepPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
+
+
 </Application>

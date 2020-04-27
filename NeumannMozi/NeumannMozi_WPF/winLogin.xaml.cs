@@ -24,14 +24,74 @@ namespace NeumannMozi_WPF {
             InitializeComponent();
         }
 
-        #region Database
-        private void SetDataDirectory() {
-            var dir = Directory.GetParent(Directory.GetCurrentDirectory());
-            dir = Directory.GetParent(dir.ToString());
-            dir = Directory.GetParent(dir.ToString());
-            //
-            AppDomain.CurrentDomain.SetData("DataDirectory", dir.ToString());
+
+        #region Button events
+        
+        #region Click
+        private void btnExitApp_Click(object sender, RoutedEventArgs e) {
+            App.Current.Shutdown();
+        }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Minimized;
+        }
+        private void btnForgattenPassword_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Nem mukodom :(");
+        }
+        private void btnRegister_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e) {
+
         }
         #endregion
+
+        #region Hover
+        private void WindowButtons_MouseEnter(object sender, MouseEventArgs e) {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(191, 191, 191));
+            Button x = sender as Button;
+            x.Background = brush;
+        }
+        private void WindowButtons_MouseLeave(object sender, MouseEventArgs e) {
+            Button x = sender as Button;
+            x.Background = Brushes.Transparent;
+        }
+        #endregion
+
+        #endregion
+
+        #region Input events
+        private void Input_GotFocus(object sender, RoutedEventArgs e) {
+            if (sender is TextBox) {
+                TextBox tb = (TextBox)sender;
+                tb.Text = string.Empty;
+            } else if (sender is PasswordBox) {
+                PasswordBox pb = (PasswordBox)sender;
+                pb.Password = string.Empty;
+            }
+            
+        }
+        #endregion
+
+        #region Database
+        // Set DataDirectory path to Project Solution path (....\NeumannMozi\)
+        private void SetDataDirectory() {
+            var projectDir = Directory.GetParent(Directory.GetCurrentDirectory());
+            projectDir = Directory.GetParent(projectDir.ToString());
+            projectDir = Directory.GetParent(projectDir.ToString());
+            //
+            AppDomain.CurrentDomain.SetData("DataDirectory", projectDir.ToString());
+        }
+
+
+
+
+
+
+
+
+        #endregion
+
+
     }
 }
