@@ -86,9 +86,6 @@
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winRegistration.xaml.cs">
-      <DependentUpon>winRegistration.xaml</DependentUpon>
-    </Compile>
     <Page Include="ButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,10 +103,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="winMain.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="winRegistration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
