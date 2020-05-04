@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NeumannMozi_DAL;
+using NeumannMozi_DAL; //adatbazis
+using System.Security.Cryptography; //md5 titkositas
 
 namespace NeumannMozi_WPF {
     /// <summary>
@@ -40,21 +41,75 @@ namespace NeumannMozi_WPF {
         private void btnForgattenPassword_Click(object sender, RoutedEventArgs e) {
             MessageBox.Show("Nem mukodom :(");
         }
-        private void btnLogin_Click(object sender, RoutedEventArgs e) {
-            edmNeumannMoziContainer = new edmNeumannMoziContainer();
-            var u = (from x in edmNeumannMoziContainer.FelhasznaloSet
-                     where x.Nev == txtUsername.Text && x.Jelszo == txtPassword.Password select new { x.Id, x.Nev,x.Jelszo,x.Admin }).FirstOrDefault();
-            if (u != null) {
-                MessageBox.Show(string.Format("Sikeres bejelentkezés!\nFelhasználónév:{0}\nFelhasználó id: {1}\nAdminisztrátor: {2}",u.Nev,u.Id.ToString(),u.Admin.ToString()));
+
+
+        static string GetMd5Hash(MD5 md5Hash, string input) {
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++) {
+                sBuilder.Append(data[i].ToString("x2"));
             }
-            else {
-                MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!\nIde jöhet majd a kivételdobás.");
-            }
+            return sBuilder.ToString();
         }
+
         private void btnRegister_Click(object sender, RoutedEventArgs e) {
+            MD5 md5Hash = MD5.Create();
+            string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
+            if (txtUsername.Text == "" || txtPassword.Password == "") {
+                //adatok kitöltése kötelező alert
+                MessageBox.Show("Adatok kitöltése kötelező.");
+                return;
+            }
 
+            var uname = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text select new { x.Nev }).FirstOrDefault();
+            if (uname != null) {
+                //Létezik már a felhasználó exception
+                MessageBox.Show("Letezik mar felhasznalo ezzel a nevvel.");
+            } else {
+                var user = new Felhasznalo {
+                    Nev = txtUsername.Text,
+                    Jelszo = hashPw,
+                    Admin = false
+                };
+                edmNeumannMoziContainer.FelhasznaloSet.Add(user);
+                edmNeumannMoziContainer.SaveChanges();
+                MessageBox.Show("Sikeres regisztráció."); //sikeres
+            }
         }
 
+        private void btnLogin_Click(object sender, RoutedEventArgs e) {
+
+            if (txtUsername.Text == "" || txtPassword.Password == "") {
+                //adatok kitöltése kötelező alert
+                MessageBox.Show("Adatok kitöltése kötelező.");
+                return;
+            }
+
+            MD5 md5Hash = MD5.Create();
+            string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
+            edmNeumannMoziContainer = new edmNeumannMoziContainer();
+            var u = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text && x.Jelszo == hashPw select new { x.Id, x.Nev, x.Jelszo, x.Admin }).FirstOrDefault();
+
+            if (u != null && String.Equals(u.Nev, txtUsername.Text)) {
+                MessageBox.Show(string.Format("Sikeres bejelentkezés!\nFelhasználónév: {0}\nFelhasználó id: {1}\nAdminisztrátor: {2}", u.Nev, u.Id.ToString(), u.Admin.ToString()));
+                //Beléptetés
+            } else {
+                MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!\nIde jöhet majd a kivételdobás.");
+                //Kivételdobás hibás adat
+            }
+        }
+        #endregion
+
+        #region Hover
+        private void WindowButtons_MouseEnter(object sender, MouseEventArgs e) {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(191, 191, 191));
+            Button x = sender as Button;
+            x.Background = brush;
+        }
+        private void WindowButtons_MouseLeave(object sender, MouseEventArgs e) {
+            Button x = sender as Button;
+            x.Background = Brushes.Transparent;
+        }
         #endregion
 
         #endregion
@@ -68,7 +123,7 @@ namespace NeumannMozi_WPF {
                 PasswordBox pb = (PasswordBox)sender;
                 pb.Password = string.Empty;
             }
-            
+
         }
         #endregion
 
@@ -81,16 +136,6 @@ namespace NeumannMozi_WPF {
             //
             AppDomain.CurrentDomain.SetData("DataDirectory", projectDir.ToString());
         }
-
-
-
-
-
-
-
-
         #endregion
-
-
     }
 }
