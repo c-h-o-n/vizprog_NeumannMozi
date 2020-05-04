@@ -19,10 +19,13 @@ namespace NeumannMozi_WPF {
     public partial class winMain : Window {
         public winMain() {
             InitializeComponent();
+            // TODO: make this in a click event
+            uctShowTimes uctShowTimes = new uctShowTimes();
+            wpCurrentContent.Children.Add(uctShowTimes);
         }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e) {
-            WindowState = WindowState.Minimized;
+        #region Click
+        private void btnExit_Click(object sender, RoutedEventArgs e) {
+            App.Current.Shutdown();
         }
         private void btnSizeState_Click(object sender, RoutedEventArgs e) {
             if (this.WindowState == WindowState.Normal) {
@@ -31,18 +34,17 @@ namespace NeumannMozi_WPF {
                 this.WindowState = WindowState.Normal;
             }
         }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e) {
-            App.Current.Shutdown();
+        private void btnMinimize_Click(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Minimized;
         }
+        #endregion
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            base.OnMouseLeftButtonDown(e);
-
-            // Begin dragging the window
-            this.DragMove();
+        #region These fix bugs
+        // Dirty little code to fix the issue when in maximized state the window overlap the taskbar
+        private void Window_StateChanged(object sender, EventArgs e) {
+            WindowStyle = WindowStyle.SingleBorderWindow;
+            WindowStyle = WindowStyle.None;
         }
-
-
+        #endregion
     }
 }

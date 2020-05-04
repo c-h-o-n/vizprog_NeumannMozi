@@ -6,14 +6,19 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:NeumannMozi_WPF"
         mc:Ignorable="d"
-        Title="Neumann Mozi" Height="{Binding}" Width="{Binding}"
+        Title="Neumann Mozi" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True" Background="Transparent"
         WindowStyle="None"
-        WindowState="Maximized"
-        ResizeMode="CanResize">
+        WindowState="Normal"
+        ResizeMode="CanResize"
+        StateChanged="Window_StateChanged">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="35"/>
+    </WindowChrome.WindowChrome>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -21,19 +26,25 @@
         <Grid.Background>
             <SolidColorBrush Color="White"/>
         </Grid.Background>
+
+
         
-        <Border MouseLeftButtonDown="Border_MouseLeftButtonDown" Height="32" Width="{Binding}" Background="#E4E4E4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnMinimize_Click">
+        <Border Grid.Row="0" Height="35" Width="{Binding}" Background="#E4E4E4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize"  Margin="0, 4, 5, 0" Click="btnMinimize_Click">
                     <iconPacks:PackIconMaterial Kind="WindowMinimize" Width="15" Height="15"/>
                 </Button>
-
-                <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme ChangeWindowState}"  x:Name="btnSizeState" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnSizeState_Click"/>
-                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}"  x:Name="btnExit" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 10, 0" Click="btnExit_Click">
+                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource ChangeWindowState}" x:Name="btnSizeState" Margin="0, 4, 5, 0" Click="btnSizeState_Click"/>
+                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}"  x:Name="btnExit" Margin="0, 4, 10, 0" Click="btnExit_Click">
                     <iconPacks:PackIconMaterial Kind="WindowClose" Width="15" Height="15"/>
                 </Button>
             </StackPanel>
-            
         </Border>
+        <Border Grid.Row="1" Background="#bd1222"></Border>
+        
+        
+        <WrapPanel Name="wpCurrentContent" Grid.Row="2">
+
+        </WrapPanel>
     </Grid>
 </Window>
