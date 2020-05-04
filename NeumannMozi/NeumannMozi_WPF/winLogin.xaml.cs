@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NeumannMozi_DAL;
 
 namespace NeumannMozi_WPF {
     /// <summary>
@@ -40,9 +41,17 @@ namespace NeumannMozi_WPF {
         private void btnRegister_Click(object sender, RoutedEventArgs e) {
 
         }
-
+        private edmNeumannMoziContainer edmNeumannMoziContainer;
         private void btnLogin_Click(object sender, RoutedEventArgs e) {
-
+            edmNeumannMoziContainer = new edmNeumannMoziContainer();
+            var u = (from x in edmNeumannMoziContainer.FelhasznaloSet
+                     where x.Nev == txtUsername.Text && x.Jelszo == txtPassword.Password select new { x.Id, x.Nev,x.Jelszo,x.Admin }).FirstOrDefault();
+            if (u != null) {
+                MessageBox.Show(string.Format("Sikeres bejelentkezés!\nFelhasználónév:{0}\nFelhasználó id: {1}\nAdminisztrátor: {2}",u.Nev,u.Id.ToString(),u.Admin.ToString()));
+            }
+            else {
+                MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!\nIde jöhet majd a kivételdobás.");
+            }
         }
         #endregion
 
