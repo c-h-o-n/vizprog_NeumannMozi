@@ -24,10 +24,12 @@ namespace NeumannMozi_WPF {
             SetDataDirectory();
             InitializeComponent();
         }
-
+        #region CORE_VARIABLES
+        private edmNeumannMoziContainer edmNeumannMoziContainer;
+        #endregion
 
         #region Button events
-        
+
         #region Click
         private void btnExitApp_Click(object sender, RoutedEventArgs e) {
             App.Current.Shutdown();
@@ -38,10 +40,6 @@ namespace NeumannMozi_WPF {
         private void btnForgattenPassword_Click(object sender, RoutedEventArgs e) {
             MessageBox.Show("Nem mukodom :(");
         }
-        private void btnRegister_Click(object sender, RoutedEventArgs e) {
-
-        }
-        private edmNeumannMoziContainer edmNeumannMoziContainer;
         private void btnLogin_Click(object sender, RoutedEventArgs e) {
             edmNeumannMoziContainer = new edmNeumannMoziContainer();
             var u = (from x in edmNeumannMoziContainer.FelhasznaloSet
@@ -53,18 +51,10 @@ namespace NeumannMozi_WPF {
                 MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!\nIde jöhet majd a kivételdobás.");
             }
         }
-        #endregion
+        private void btnRegister_Click(object sender, RoutedEventArgs e) {
 
-        #region Hover
-        private void WindowButtons_MouseEnter(object sender, MouseEventArgs e) {
-            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(191, 191, 191));
-            Button x = sender as Button;
-            x.Background = brush;
         }
-        private void WindowButtons_MouseLeave(object sender, MouseEventArgs e) {
-            Button x = sender as Button;
-            x.Background = Brushes.Transparent;
-        }
+
         #endregion
 
         #endregion
