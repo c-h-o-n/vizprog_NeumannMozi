@@ -76,6 +76,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="winMain.xaml.cs">
+      <DependentUpon>winMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="winRegistration.xaml.cs">
+      <DependentUpon>winRegistration.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="winLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -88,6 +98,14 @@
       <DependentUpon>winLogin.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="winMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -110,6 +128,8 @@
     <Resource Include="content_src\fonts\Roboto-Bold.ttf" />
     <Resource Include="content_src\fonts\Roboto-Regular.ttf" />
     <Resource Include="content_src\fonts\Quicksand-VariableFont.ttf" />
+    <Resource Include="content_src\fonts\Quicksand-Bold.ttf" />
+    <Resource Include="content_src\fonts\Quicksand-Regular.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

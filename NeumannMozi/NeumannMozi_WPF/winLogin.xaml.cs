@@ -37,25 +37,14 @@ namespace NeumannMozi_WPF {
         private void btnForgattenPassword_Click(object sender, RoutedEventArgs e) {
             MessageBox.Show("Nem mukodom :(");
         }
+        private void btnLogin_Click(object sender, RoutedEventArgs e) {
+
+        }
         private void btnRegister_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e) {
 
-        }
-        #endregion
-
-        #region Hover
-        private void WindowButtons_MouseEnter(object sender, MouseEventArgs e) {
-            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(191, 191, 191));
-            Button x = sender as Button;
-            x.Background = brush;
-        }
-        private void WindowButtons_MouseLeave(object sender, MouseEventArgs e) {
-            Button x = sender as Button;
-            x.Background = Brushes.Transparent;
-        }
         #endregion
 
         #endregion
