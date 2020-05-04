@@ -55,12 +55,13 @@ namespace NeumannMozi_WPF {
         private void btnRegister_Click(object sender, RoutedEventArgs e) {
             MD5 md5Hash = MD5.Create();
             string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
-            if (txtUsername.Text == "" || txtPassword.Password == "") {
+            if (txtUsername.Text == "Felhasználónév" || txtPassword.Password == "Jelszó") {
                 //adatok kitöltése kötelező alert
                 MessageBox.Show("Adatok kitöltése kötelező.");
                 return;
             }
 
+            edmNeumannMoziContainer = new edmNeumannMoziContainer();
             var uname = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text select new { x.Nev }).FirstOrDefault();
             if (uname != null) {
                 //Létezik már a felhasználó exception
@@ -79,7 +80,7 @@ namespace NeumannMozi_WPF {
 
         private void btnLogin_Click(object sender, RoutedEventArgs e) {
 
-            if (txtUsername.Text == "" || txtPassword.Password == "") {
+            if (txtUsername.Text == "Felhasználónév" || txtPassword.Password == "Jelszó") {
                 //adatok kitöltése kötelező alert
                 MessageBox.Show("Adatok kitöltése kötelező.");
                 return;
@@ -99,29 +100,21 @@ namespace NeumannMozi_WPF {
             }
         }
         #endregion
-
-        #region Hover
-        private void WindowButtons_MouseEnter(object sender, MouseEventArgs e) {
-            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(191, 191, 191));
-            Button x = sender as Button;
-            x.Background = brush;
-        }
-        private void WindowButtons_MouseLeave(object sender, MouseEventArgs e) {
-            Button x = sender as Button;
-            x.Background = Brushes.Transparent;
-        }
-        #endregion
-
         #endregion
 
         #region Input events
         private void Input_GotFocus(object sender, RoutedEventArgs e) {
             if (sender is TextBox) {
                 TextBox tb = (TextBox)sender;
-                tb.Text = string.Empty;
+                if (tb.Text == "Felhasználónév") {
+                    tb.Text = string.Empty;
+                }
+                
             } else if (sender is PasswordBox) {
                 PasswordBox pb = (PasswordBox)sender;
-                pb.Password = string.Empty;
+                if (pb.Password == "Jelszó") {
+                    pb.Password = string.Empty;
+                }
             }
 
         }
