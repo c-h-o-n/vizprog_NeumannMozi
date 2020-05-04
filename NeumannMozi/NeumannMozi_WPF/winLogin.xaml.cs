@@ -24,6 +24,9 @@ namespace NeumannMozi_WPF {
         public winLogin() {
             SetDataDirectory();
             InitializeComponent();
+            
+            // Create edm(database) object
+            edmNeumannMoziContainer = new edmNeumannMoziContainer();
         }
         #region CORE_VARIABLES
         private edmNeumannMoziContainer edmNeumannMoziContainer;
@@ -61,7 +64,6 @@ namespace NeumannMozi_WPF {
                 return;
             }
 
-            edmNeumannMoziContainer = new edmNeumannMoziContainer();
             var uname = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text select new { x.Nev }).FirstOrDefault();
             if (uname != null) {
                 //Létezik már a felhasználó exception
@@ -88,7 +90,6 @@ namespace NeumannMozi_WPF {
 
             MD5 md5Hash = MD5.Create();
             string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
-            edmNeumannMoziContainer = new edmNeumannMoziContainer();
             var u = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text && x.Jelszo == hashPw select new { x.Id, x.Nev, x.Jelszo, x.Admin }).FirstOrDefault();
 
             if (u != null && String.Equals(u.Nev, txtUsername.Text)) {
