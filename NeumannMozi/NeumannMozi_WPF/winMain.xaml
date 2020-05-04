@@ -1,0 +1,39 @@
+﻿<Window x:Class="NeumannMozi_WPF.winMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:NeumannMozi_WPF"
+        mc:Ignorable="d"
+        Title="Neumann Mozi" Height="{Binding}" Width="{Binding}"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="CanResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <SolidColorBrush Color="White"/>
+        </Grid.Background>
+        
+        <Border MouseLeftButtonDown="Border_MouseLeftButtonDown" Height="32" Width="{Binding}" Background="#E4E4E4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnMinimize_Click">
+                    <iconPacks:PackIconMaterial Kind="WindowMinimize" Width="15" Height="15"/>
+                </Button>
+
+                <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme ChangeWindowState}"  x:Name="btnSizeState" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnSizeState_Click"/>
+                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}"  x:Name="btnExit" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 10, 0" Click="btnExit_Click">
+                    <iconPacks:PackIconMaterial Kind="WindowClose" Width="15" Height="15"/>
+                </Button>
+            </StackPanel>
+            
+        </Border>
+    </Grid>
+</Window>

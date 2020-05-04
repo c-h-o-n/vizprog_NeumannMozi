@@ -28,11 +28,11 @@
                 <!-- Window bar -->
                 <Border Background="#E4E4E4" CornerRadius="4, 4, 0, 0" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.RowSpan="1" Height="32" Width="318" Padding="0" Margin="0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button x:Name="btnMinimize" Background="Transparent" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnMinimize_Click" MouseEnter="WindowButtons_MouseEnter"  MouseLeave="WindowButtons_MouseLeave">
-                            <iconPacks:PackIconMaterial Kind="WindowMinimize" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#3d3d3d"/>
+                        <Button   Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnMinimize_Click">
+                            <iconPacks:PackIconMaterial Kind="WindowMinimize" Width="15" Height="15"/>
                         </Button>
-                        <Button x:Name="btnExit" Background="Transparent" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 10, 0" Click="btnExitApp_Click" MouseEnter="WindowButtons_MouseEnter" MouseLeave="WindowButtons_MouseLeave">
-                            <iconPacks:PackIconMaterial Kind="WindowClose" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#3d3d3d"/>
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}"  x:Name="btnExit" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 10, 0" Click="btnExitApp_Click">
+                            <iconPacks:PackIconMaterial Kind="WindowClose" Width="15" Height="15"/>
                         </Button>
                     </StackPanel>
                 </Border>
@@ -61,24 +61,24 @@
                 </Border>
 
                 <!-- Buttons -->
-                <Border Grid.Row="2"  Height="19" Width="116" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Button x:Name="btnForgattenPassword" Content="elfelejtett jelszo" Style="{StaticResource Quicksand}" FontWeight="Medium" FontSize="15" BorderThickness="0"  Background="Transparent" Foreground="#bd1222" Click="btnForgattenPassword_Click"/>
-                </Border>
+                <ContentControl Style="{StaticResource Quicksand}" Grid.Row="2"  Height="19" Width="116" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RedTextButtonTheme}" x:Name="btnForgattenPassword" Content="elfelejtett jelszó" Click="btnForgattenPassword_Click"/>
+                </ContentControl>
 
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Border BorderThickness="1" BorderBrush="#707070" Height="13" Width="13" Margin="0, 0, 4, 0">
-                        <Button x:Name="btnAutoLogin" Background="Transparent"/>
-                    </Border>
-                    <Label Content="automatikus belépés" Style="{StaticResource Quicksand}" FontWeight="Medium" FontSize="15" Foreground="#bd1222"/>
+                    <ToggleButton  Height="15" Width="15" x:Name="tbtnAutoLogin"  Content="{iconPacks:Material Kind=Check, Width=10, Height=10}"  Margin="0, 0, 4, 0" HorizontalContentAlignment="Center"/>
+                    <ContentControl Style="{StaticResource Quicksand}">
+                        <Button Content="automatikus belépés" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RedTextButtonTheme}"/>
+                    </ContentControl>
                 </StackPanel>
 
-                <Border Grid.Row="4" Height="37" Width="150" CornerRadius="20" Background="#bd1222" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Button x:Name="btnLogin" Content="Belépés" Style="{StaticResource Quicksand}" FontWeight="Bold" FontSize="20" BorderThickness="0" Background="Transparent" Foreground="White" Click="btnLogin_Click"/>
-                </Border>
+                <ContentControl Grid.Row="4" Height="37" Width="150"  Style="{StaticResource Quicksand}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button x:Name="btnLogin" Content="Belépés" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RoundedRedButtonTheme}" FontSize="20"  Click="btnLogin_Click"/>
+                </ContentControl>
 
-                <Border Grid.Row="5" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Button x:Name="btnRegister" Content="Regisztráció" Style="{StaticResource Quicksand}" FontWeight="Medium" FontSize="16" BorderThickness="0" Background="Transparent" Foreground="#bd1222" Click="btnRegister_Click"/>
-                </Border>
+                <ContentControl Style="{StaticResource Quicksand}" Grid.Row="5" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button x:Name="btnRegister" Content="Regisztráció" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RedTextButtonTheme}" Click="btnRegister_Click"/>
+                </ContentControl>
             </Grid>
         </Grid>
     </Grid>

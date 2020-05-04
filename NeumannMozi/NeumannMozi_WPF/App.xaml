@@ -1,6 +1,7 @@
 ﻿<Application x:Class="NeumannMozi_WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:NeumannMozi_WPF"
              StartupUri="winLogin.xaml">
     <Application.Resources>
@@ -22,33 +23,29 @@
             <Setter Property="TextElement.FontFamily"
                     Value="./content_src/fonts/#Roboto"/>
         </Style>
-
-        <!-- Disable blue button highlight -->
-        <Style TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Background" Value="MediumAquamarine" />
-            <Setter Property="Foreground" Value="MediumBlue" />
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter x:Name="MyContentPresenter" 
-                                          Content="{TemplateBinding Content}"
-                                          HorizontalAlignment="Center" 
-                                          VerticalAlignment="Center" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
+        <!-- Add button theme resources -->
+        <ResourceDictionary x:Key="ButtonTheme">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+        <!-- change -->
+        <Style x:Key="ChangeWindowState" TargetType="Button">
             <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="Green"/>
-                    <Setter Property="Foreground" Value="DeepPink"/>
-                </Trigger>
+                <DataTrigger 
+            Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+            Value="Maximized">
+                    <Setter Property="Content" Value="{iconPacks:Material Kind=WindowRestore, Height=15, Width=15}"/>
+                </DataTrigger>
+                <DataTrigger 
+            Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+            Value="Normal">
+                    <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMaximize, Height=15, Width=15}"/>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
+
     </Application.Resources>
 
 
