@@ -103,7 +103,7 @@ namespace NeumannMozi_WPF {
         #endregion
 
         #region Input events
-        private void Input_GotFocus(object sender, RoutedEventArgs e) {
+        private void LoginInput_GotFocus(object sender, RoutedEventArgs e) {
             if (sender is TextBox) {
                 TextBox tb = (TextBox)sender;
                 if (tb.Text == "Felhasználónév") {
@@ -116,7 +116,20 @@ namespace NeumannMozi_WPF {
                     pb.Password = string.Empty;
                 }
             }
+        }
+        private void LoginInput_LostFocus(object sender, RoutedEventArgs e) {
+            if (sender is TextBox) {
+                TextBox tb = (TextBox)sender;
+                if (tb.Text == string.Empty) {
+                    tb.Text = "Felhasználónév";
+                }
 
+            } else if (sender is PasswordBox) {
+                PasswordBox pb = (PasswordBox)sender;
+                if (pb.Password == string.Empty) {
+                    pb.Password = "Jelszó";
+                }
+            }
         }
         #endregion
 
@@ -130,5 +143,7 @@ namespace NeumannMozi_WPF {
             AppDomain.CurrentDomain.SetData("DataDirectory", projectDir.ToString());
         }
         #endregion
+
+
     }
 }

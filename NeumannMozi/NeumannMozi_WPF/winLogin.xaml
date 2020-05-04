@@ -54,10 +54,10 @@
                 </Grid.RowDefinitions>
                 <!-- Text -->
                 <Border Grid.Row="0" BorderThickness="2" BorderBrush="#707070"  Height="45" Width="258" VerticalAlignment="Top">
-                    <TextBox x:Name="txtUsername" Text="Felhasználónév" Style="{StaticResource Quicksand}" FontSize="20" BorderThickness="0" Background="Transparent" Foreground="#707070" VerticalContentAlignment="Center" GotFocus="Input_GotFocus"/>
+                    <TextBox x:Name="txtUsername" Text="Felhasználónév" Style="{StaticResource Quicksand}" FontSize="20" BorderThickness="0" Background="Transparent" Foreground="#707070" VerticalContentAlignment="Center" GotFocus="LoginInput_GotFocus" LostFocus="LoginInput_LostFocus"/>
                 </Border>
                 <Border Grid.Row="1" BorderThickness="2" BorderBrush="#707070"  Height="45" Width="258" VerticalAlignment="Top">
-                    <PasswordBox x:Name="txtPassword" Password="Jelszó" Style="{StaticResource Quicksand}" FontSize="20" Foreground="#707070" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" Height="45" Width="258" VerticalContentAlignment="Center" GotFocus="Input_GotFocus"/>
+                    <PasswordBox x:Name="txtPassword" Password="Jelszó" Style="{StaticResource Quicksand}" FontSize="20" Foreground="#707070" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" Height="45" Width="258" VerticalContentAlignment="Center" GotFocus="LoginInput_GotFocus" LostFocus="LoginInput_LostFocus"/>
                 </Border>
 
                 <!-- Buttons -->
