@@ -101,6 +101,7 @@ namespace NeumannMozi_WPF {
             }
         }
         #endregion
+
         #endregion
 
         #region Input events
