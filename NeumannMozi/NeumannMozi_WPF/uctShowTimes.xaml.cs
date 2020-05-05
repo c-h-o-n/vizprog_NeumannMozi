@@ -12,25 +12,41 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NeumannMozi_DAL; //adatbazis
 
 namespace NeumannMozi_WPF {
     /// <summary>
     /// Interaction logic for uctShowTimes.xaml
     /// </summary>
     public partial class uctShowTimes : UserControl {
+        private edmNeumannMoziContainer edmNeumannMoziContainer;
         public uctShowTimes() {
+            // Create edm(database) object
+            edmNeumannMoziContainer = new edmNeumannMoziContainer();
             InitializeComponent();
 
-
-            Image finalImage = new Image();
-            BitmapImage logo = new BitmapImage();
-            logo.BeginInit();
-            logo.UriSource = new Uri(@"C:\Users\Chon\Desktop\Spotify Album\19225849_1879843315601015_7390265863571418010_n.jpg");
-            logo.EndInit();
+            GetCurrentShowTimes();
 
 
-            myPicture.Source = logo;
+        }
 
+        // TODO: azokat a filmeket (ezek az adatok kellenek lent) amiknek van olyan vetítés kezdete dátumuk ami korábbi a mai dátumnál továbbá a vetítés kezdete dátumait 
+        private void GetCurrentShowTimes() {
+            var FilmQuery = new List<FilmData>();
+            int i = 0;
+            foreach (var x in edmNeumannMoziContainer.FilmSet) {
+                FilmQuery.Add(new FilmData() {
+                    Title = x.Cim,
+                    Director = x.Rendezo,
+                    Cast = x.Szereplok,
+                    Description = x.Leiras,
+                    Length = x.Hossz,
+                    AgeRating = x.Korhatar,
+                    PosterLink = x.PoszterLink,
+                    Category = x.Kategoria
+                });
+            }
+            ictrFilmCard.ItemsSource = FilmQuery;
         }
     }
 }

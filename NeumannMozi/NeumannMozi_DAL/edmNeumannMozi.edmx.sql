@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/23/2020 20:38:21
+-- Date Created: 05/05/2020 18:42:25
 -- Generated from EDMX file: C:\Users\Chon\Desktop\Neumann Mozi\Git Repo\NeumannMozi\NeumannMozi_DAL\edmNeumannMozi.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [C:\USERS\CHON\DOCUMENTS\DATABASE_NEUMANNMOZI.MDF];
+USE [C:\USERS\CHON\DESKTOP\GIT MOZI TEST\NEUMANNMOZI\DATABASE\DATABASE_NEUMANNMOZI.MDF];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -120,8 +120,8 @@ GO
 -- Creating table 'FilmSet'
 CREATE TABLE [dbo].[FilmSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Cím] nvarchar(max)  NOT NULL,
-    [Rendező] nvarchar(max)  NOT NULL,
+    [Cim] nvarchar(max)  NOT NULL,
+    [Rendezo] nvarchar(max)  NOT NULL,
     [Szereplok] nvarchar(max)  NOT NULL,
     [Leiras] nvarchar(max)  NOT NULL,
     [Hossz] int  NOT NULL,

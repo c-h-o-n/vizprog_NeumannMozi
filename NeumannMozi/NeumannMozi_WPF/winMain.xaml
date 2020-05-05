@@ -6,7 +6,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:NeumannMozi_WPF"
         mc:Ignorable="d"
-        Title="Neumann Mozi" Height="450" Width="800"
+        Title="Neumann Mozi" Height="450" Width="800" MinHeight="450" MinWidth="800"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         WindowState="Normal"
@@ -28,7 +28,7 @@
         </Grid.Background>
 
 
-        
+        <!-- Window Chrome -->
         <Border Grid.Row="0" Height="35" Width="{Binding}" Background="#E4E4E4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize"  Margin="0, 4, 5, 0" Click="btnMinimize_Click">
@@ -40,11 +40,14 @@
                 </Button>
             </StackPanel>
         </Border>
-        <Border Grid.Row="1" Background="#bd1222"></Border>
         
-        
-        <WrapPanel Name="wpCurrentContent" Grid.Row="2">
+        <!-- Nav menu -->
+        <Border Grid.Row="1" Background="#bd1222">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button x:Name="btnShowTimes" Content="Műsor" Height="40" Width="40" Click="btnShowTimes_Click"/>
+            </StackPanel>
+        </Border>
 
-        </WrapPanel>
+        <WrapPanel Name="wpCurrentContent" Grid.Row="2" />
     </Grid>
 </Window>

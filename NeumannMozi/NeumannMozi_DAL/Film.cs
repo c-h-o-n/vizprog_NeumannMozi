@@ -21,8 +21,8 @@ namespace NeumannMozi_DAL
         }
     
         public int Id { get; set; }
-        public string Cím { get; set; }
-        public string Rendező { get; set; }
+        public string Cim { get; set; }
+        public string Rendezo { get; set; }
         public string Szereplok { get; set; }
         public string Leiras { get; set; }
         public int Hossz { get; set; }

@@ -39,7 +39,9 @@
                     </StackPanel>
                 </Border>
             </Border>
-
+            
+            
+            <!-- Logo -->
             <Image Source="/content_src/pictures/logo.png" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="31, 42, 0, 0"/>
             <Label Content="neumann" Style="{StaticResource Quicksand}"  HorizontalAlignment="Left" Margin="125,52,0,0" VerticalAlignment="Top" FontSize="24" Height="30" Width="164" Padding="0" Foreground="#FF707070" />
             <Label Content="mozi" Style="{StaticResource Quicksand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="237,52,0,0" VerticalAlignment="Top" FontSize="24"  Height="30" Width="64" Padding="0" Foreground="#FF707070"/>
@@ -63,21 +65,22 @@
                 </Border>
 
                 <!-- Buttons -->
+                <!-- Forgatten password -->
                 <ContentControl Style="{StaticResource Quicksand}" Grid.Row="2"  Height="19" Width="116" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RedTextButtonTheme}" x:Name="btnForgattenPassword" Content="elfelejtett jelszó" Click="btnForgattenPassword_Click"/>
                 </ContentControl>
-
+                <!-- Automatic login TODO: need fix -->
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <ToggleButton  Height="15" Width="15" x:Name="tbtnAutoLogin"  Content="{iconPacks:Material Kind=Check, Width=10, Height=10}"  Margin="0, 0, 4, 0" HorizontalContentAlignment="Center"/>
+                    <ToggleButton  Height="15" Width="15" x:Name="tbtnAutoLogin"  Content="{iconPacks:Material Kind=None, Width=10, Height=10}"  Margin="0, 0, 4, 0" HorizontalContentAlignment="Center"/>
                     <ContentControl Style="{StaticResource Quicksand}">
                         <Button Content="automatikus belépés" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RedTextButtonTheme}"/>
                     </ContentControl>
                 </StackPanel>
-
+                <!-- Login button -->
                 <ContentControl Grid.Row="4" Height="37" Width="150"  Style="{StaticResource Quicksand}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Button x:Name="btnLogin" Content="Belépés" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RoundedRedButtonTheme}" FontSize="20"  Click="btnLogin_Click"/>
                 </ContentControl>
-
+                <!-- Registration button -->
                 <ContentControl Style="{StaticResource Quicksand}" Grid.Row="5" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Button x:Name="btnRegister" Content="Regisztráció" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RedTextButtonTheme}" Click="btnRegister_Click"/>
                 </ContentControl>

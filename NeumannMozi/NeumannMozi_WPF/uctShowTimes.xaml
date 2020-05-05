@@ -7,9 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
-    <Grid>
-        <WrapPanel>
 
-        </WrapPanel>
+
+    <Grid>
+        <!-- Current Show Times -->
+        <ItemsControl Name="ictrFilmCard" MinWidth="500">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="55">
+                        <StackPanel Orientation="Vertical" MinWidth="500" MaxWidth="1000">
+                            <Image Source="{Binding PosterLink}"/>
+                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap"  TextTrimming="WordEllipsis"/>
+                            <TextBlock Text="{Binding Director}" TextWrapping="Wrap"  TextTrimming="WordEllipsis"/>
+                            <TextBlock Text="{Binding Cast}" TextWrapping="Wrap"  TextTrimming="WordEllipsis"/>
+                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap"  TextTrimming="WordEllipsis"/>
+                            <TextBlock Text="{Binding AgeRating}" TextWrapping="Wrap"  TextTrimming="WordEllipsis"/>
+                            <TextBlock Text="{Binding Length}" TextWrapping="Wrap"  TextTrimming="WordEllipsis"/>
+                            <TextBlock Text="{Binding Category}" TextWrapping="Wrap"  TextTrimming="WordEllipsis"/>
+                            <Label Content="{Binding ScreeningDates}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

@@ -95,8 +95,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Cím" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Rendező" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cim" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rendezo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Szereplok" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Leiras" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Hossz" Type="int" Nullable="false" />
@@ -303,8 +303,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cím" Type="String" Nullable="false" />
-          <Property Name="Rendező" Type="String" Nullable="false" />
+          <Property Name="Cim" Type="String" Nullable="false" />
+          <Property Name="Rendezo" Type="String" Nullable="false" />
           <Property Name="Szereplok" Type="String" Nullable="false" />
           <Property Name="Leiras" Type="String" Nullable="false" />
           <Property Name="Hossz" Type="Int32" Nullable="false" />
@@ -474,8 +474,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(edmNeumannMozi.Film)">
         <MappingFragment StoreEntitySet="FilmSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Cím" ColumnName="Cím" />
-          <ScalarProperty Name="Rendező" ColumnName="Rendező" />
+          <ScalarProperty Name="Cim" ColumnName="Cim" />
+          <ScalarProperty Name="Rendezo" ColumnName="Rendezo" />
           <ScalarProperty Name="Szereplok" ColumnName="Szereplok" />
           <ScalarProperty Name="Leiras" ColumnName="Leiras" />
           <ScalarProperty Name="Hossz" ColumnName="Hossz" />

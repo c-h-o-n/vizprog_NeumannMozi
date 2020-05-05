@@ -18,12 +18,21 @@ namespace NeumannMozi_WPF {
     /// </summary>
     public partial class winMain : Window {
         public winMain() {
+
+            winLogin.SetDataDirectory();
             InitializeComponent();
-            // TODO: make this in a click event
-            uctShowTimes uctShowTimes = new uctShowTimes();
+
+            // Open showtimes on startup
+            uctShowTimes = new uctShowTimes();
             wpCurrentContent.Children.Add(uctShowTimes);
+            //
         }
+
+        #region CORE_VARIABLES
+        private uctShowTimes uctShowTimes;
+        #endregion
         #region Click
+        #region Window
         private void btnExit_Click(object sender, RoutedEventArgs e) {
             App.Current.Shutdown();
         }
@@ -39,6 +48,16 @@ namespace NeumannMozi_WPF {
         }
         #endregion
 
+        #region Nav menu
+        private void btnShowTimes_Click(object sender, RoutedEventArgs e) {
+            if (!wpCurrentContent.Children.Contains(uctShowTimes)) {
+                uctShowTimes = new uctShowTimes();
+                wpCurrentContent.Children.Add(uctShowTimes);
+            }
+        }
+        #endregion
+        #endregion
+
         #region These fix bugs
         // Dirty little code to fix the issue when in maximized state the window overlap the taskbar
         private void Window_StateChanged(object sender, EventArgs e) {
@@ -46,5 +65,7 @@ namespace NeumannMozi_WPF {
             WindowStyle = WindowStyle.None;
         }
         #endregion
+
+
     }
 }

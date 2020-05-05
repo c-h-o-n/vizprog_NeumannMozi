@@ -22,11 +22,12 @@ namespace NeumannMozi_WPF {
     /// </summary>
     public partial class winLogin : Window {
         public winLogin() {
+            // Create edm(database) object
+            edmNeumannMoziContainer = new edmNeumannMoziContainer();
+
             SetDataDirectory();
             InitializeComponent();
             
-            // Create edm(database) object
-            edmNeumannMoziContainer = new edmNeumannMoziContainer();
         }
         #region CORE_VARIABLES
         private edmNeumannMoziContainer edmNeumannMoziContainer;
@@ -137,7 +138,7 @@ namespace NeumannMozi_WPF {
 
         #region Database
         // Set DataDirectory path to Project Solution path (....\NeumannMozi\)
-        private void SetDataDirectory() {
+        public static void SetDataDirectory() {
             var projectDir = Directory.GetParent(Directory.GetCurrentDirectory());
             projectDir = Directory.GetParent(projectDir.ToString());
             projectDir = Directory.GetParent(projectDir.ToString());
