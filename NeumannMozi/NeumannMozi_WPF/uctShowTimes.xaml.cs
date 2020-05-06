@@ -32,21 +32,26 @@ namespace NeumannMozi_WPF {
 
         // TODO: azokat a filmeket (ezek az adatok kellenek lent) amiknek van olyan vetítés kezdete dátumuk ami korábbi a mai dátumnál továbbá a vetítés kezdete dátumait 
         private void GetCurrentShowTimes() {
-            var FilmQuery = new List<FilmData>();
-            int i = 0;
-            foreach (var x in edmNeumannMoziContainer.FilmSet) {
-                FilmQuery.Add(new FilmData() {
-                    Title = x.Cim,
-                    Director = x.Rendezo,
-                    Cast = x.Szereplok,
-                    Description = x.Leiras,
-                    Length = x.Hossz,
-                    AgeRating = x.Korhatar,
-                    PosterLink = x.PoszterLink,
-                    Category = x.Kategoria
-                });
-            }
-            ictrFilmCard.ItemsSource = FilmQuery;
+
+            var currentDateTime = DateTime.Now; //jelenlegi datumot lekeri
+
+            var query = (from x in edmNeumannMoziContainer.FilmSet
+                         join vetit in edmNeumannMoziContainer.VetitesSet on x.Id equals vetit.FilmId
+                         where vetit.Kezdete > currentDateTime
+                         select new {
+                             Title = x.Cim,
+                             Director = x.Rendezo,
+                             Cast = x.Szereplok,
+                             Description = x.Leiras,
+                             Length = x.Hossz,
+                             AgeRating = x.Korhatar,
+                             PosterLink = x.PoszterLink,
+                             Category = x.Kategoria,
+                             ScreeningDates = vetit.Kezdete,
+                             TeremId = vetit.TeremId //többit igy hozza lehet adni vetites tablabol ha kell
+                         }).ToList();
+
+            ictrFilmCard.ItemsSource = query;
         }
     }
 }
