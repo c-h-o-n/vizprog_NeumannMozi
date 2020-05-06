@@ -14,9 +14,9 @@
             <Setter Property="FontSize" Value="15"/>
         </Style>
         <Style TargetType="TextBox">
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="300"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style TargetType="StackPanel">
             <Setter Property="Margin" Value="0, 5, 0, 0"/>
@@ -77,7 +77,12 @@
                 <Label Content="Imdb:"/>
                 <TextBox Name="txtImdb"/>
             </StackPanel>
-            
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Poszter:"/>
+                <TextBox x:Name="txtPosterImagePath"/>
+                <Button x:Name="btnAddImage" Content=".." Margin="10, 0, 0, 0" Width="25" Height="25" Click="btnAddImage_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

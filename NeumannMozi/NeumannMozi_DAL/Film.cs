@@ -27,10 +27,10 @@ namespace NeumannMozi_DAL
         public string Leiras { get; set; }
         public int Hossz { get; set; }
         public int Korhatar { get; set; }
+        public string Kategoria { get; set; }
         public string ElozetesLink { get; set; }
         public string ImdbLink { get; set; }
-        public string PoszterLink { get; set; }
-        public string Kategoria { get; set; }
+        public byte[] Poszter { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vetites> Vetites { get; set; }

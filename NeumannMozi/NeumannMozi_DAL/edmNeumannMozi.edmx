@@ -101,10 +101,10 @@
     <Property Name="Leiras" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Hossz" Type="int" Nullable="false" />
     <Property Name="Korhatar" Type="int" Nullable="false" />
+    <Property Name="Kategoria" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ElozetesLink" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ImdbLink" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PoszterLink" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Kategoria" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Poszter" Type="varbinary(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="VetitesSet">
     <Key>
@@ -309,10 +309,10 @@
           <Property Name="Leiras" Type="String" Nullable="false" />
           <Property Name="Hossz" Type="Int32" Nullable="false" />
           <Property Name="Korhatar" Type="Int32" Nullable="false" />
+          <Property Name="Kategoria" Type="String" Nullable="false" />
           <Property Name="ElozetesLink" Type="String" Nullable="false" />
           <Property Name="ImdbLink" Type="String" Nullable="false" />
-          <Property Name="PoszterLink" Type="String" Nullable="false" />
-          <Property Name="Kategoria" Type="String" Nullable="false" />
+          <Property Name="Poszter" Type="Binary" Nullable="true" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Vetites" Relationship="edmNeumannMozi.FilmVetites" FromRole="Film" ToRole="Vetites" />
         </EntityType>
         <EntityType Name="Vetites">
@@ -480,10 +480,10 @@
           <ScalarProperty Name="Leiras" ColumnName="Leiras" />
           <ScalarProperty Name="Hossz" ColumnName="Hossz" />
           <ScalarProperty Name="Korhatar" ColumnName="Korhatar" />
+          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
           <ScalarProperty Name="ElozetesLink" ColumnName="ElozetesLink" />
           <ScalarProperty Name="ImdbLink" ColumnName="ImdbLink" />
-          <ScalarProperty Name="PoszterLink" ColumnName="PoszterLink" />
-          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+          <ScalarProperty Name="Poszter" ColumnName="Poszter" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

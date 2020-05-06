@@ -43,7 +43,7 @@ namespace NeumannMozi_WPF {
                              Description = x.Leiras,
                              Length = x.Hossz,
                              AgeRating = x.Korhatar,
-                             PosterLink = x.PoszterLink,
+                             PosterImage = x.Poszter,
                              Category = x.Kategoria,
                              ScreeningDates = vetit.Kezdete,
                              TeremId = vetit.TeremId //többit igy hozza lehet adni vetites tablabol ha kell
