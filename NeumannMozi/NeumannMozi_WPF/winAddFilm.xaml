@@ -1,0 +1,83 @@
+﻿<Window x:Class="NeumannMozi_WPF.winAddFilm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NeumannMozi_WPF"
+        mc:Ignorable="d"
+        Title="AddFilm" Height="450" Width="450"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="0, 5, 0, 0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Cím:"/>
+                <TextBox x:Name="txtTitle"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Rendező:"/>
+                <TextBox x:Name="txtDirector"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Stáblista:"/>
+                <TextBox x:Name="txtCast"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Leírás:"/>
+                <TextBox x:Name="txtDescription"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Korhatár:"/>
+                <ComboBox Name="cboAgeRating" Width="100">
+                    <ComboBoxItem Content="Korhatár Nélkül"/>
+                    <ComboBoxItem Content="6+"/>
+                    <ComboBoxItem Content="12+"/>
+                    <ComboBoxItem Content="16+"/>
+                    <ComboBoxItem Content="12+"/>
+                    <ComboBoxItem Content="16+"/>
+                    <ComboBoxItem Content="18+"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Hossz:"/>
+                <TextBox Name="txtLength"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Kategória:"/>
+                <TextBox Name="txtCategory"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Előzetes:"/>
+                <TextBox Name="txtTrailerLink"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Imdb:"/>
+                <TextBox Name="txtImdb"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

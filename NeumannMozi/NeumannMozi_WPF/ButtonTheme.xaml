@@ -3,13 +3,8 @@
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:local="clr-namespace:NeumannMozi_WPF">
     
-
-    <!-- Window Button Theme -->
-    <Style x:Key="WindowTheme" TargetType="{x:Type Button}">
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+    <!-- Generic Button Theme -->
+    <Style x:Key="GenericTheme" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -18,15 +13,21 @@
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
-
             </Setter.Value>
         </Setter>
 
+    </Style>
+    <!-- Window Button Theme -->
+    <Style x:Key="WindowTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource GenericTheme}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+        
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#BFBFBF"/>
-            </Trigger>
-            <Trigger Property="IsPressed" Value="True">
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -36,13 +37,11 @@
         <Setter Property="Content" Value="{iconPacks:Material Kind=WindowRestore, Height=15, Width=15}"/>
         <Style.Triggers>
             <DataTrigger 
-            Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
-            Value="Maximized">
+                Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
                 <Setter Property="Content" Value="{iconPacks:Material Kind=WindowRestore, Height=15, Width=15}"/>
             </DataTrigger>
             <DataTrigger 
-            Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
-            Value="Normal">
+                Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Normal">
                 <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMaximize, Height=15, Width=15}"/>
             </DataTrigger>
         </Style.Triggers>
@@ -73,24 +72,25 @@
     </Style>
     
     <!-- Red text Button Theme -->
-    <Style  x:Key="RedTextButtonTheme" TargetType="{x:Type Button}">
+    <Style  x:Key="RedTextButtonTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource GenericTheme}">
         <Setter Property="Foreground" Value="#bd1222"/>
-        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontWeight" Value="Bold"/>
         
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="#8c0d1a"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!-- Add button theme -->
+    <Style  x:Key="AddButtonTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource GenericTheme}">
+        <Setter Property="Foreground" Value="#B8B8B8"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#767676"/>
                 <Setter Property="Cursor" Value="Hand"/>
             </Trigger>
         </Style.Triggers>
