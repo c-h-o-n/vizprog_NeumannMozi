@@ -21,16 +21,9 @@ namespace NeumannMozi_WPF {
 
             winLogin.SetDataDirectory();
             InitializeComponent();
-            /*
             // Open showtimes on startup
             uctShowTimes = new uctShowTimes();
             wpCurrentContent.Children.Add(uctShowTimes);
-            //
-            */
-            // TODO: Delete me before push
-            uctAdmin uctAdmin= new uctAdmin();
-            wpCurrentContent.Children.Add(uctAdmin);
-            //
         }
 
         #region CORE_VARIABLES
