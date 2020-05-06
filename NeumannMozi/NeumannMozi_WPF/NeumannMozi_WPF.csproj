@@ -83,14 +83,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="winAddFilm.xaml.cs">
+      <DependentUpon>winAddFilm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FilmData.cs" />
+    <Compile Include="uctAdmin.xaml.cs">
+      <DependentUpon>uctAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="uctShowTimes.xaml.cs">
       <DependentUpon>uctShowTimes.xaml</DependentUpon>
     </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>
     </Compile>
+    <Page Include="winAddFilm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uctAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
