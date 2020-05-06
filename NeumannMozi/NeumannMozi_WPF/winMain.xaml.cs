@@ -19,47 +19,66 @@ namespace NeumannMozi_WPF {
     public partial class winMain : Window {
         public winMain() {
 
+
+            /*
+             * ADMIN LOGIN:
+             * winLogin.loginAdmin = true;
+             * ================================
+             * USER LOGIN:
+             * winLogin.loginAdmin = false;
+             */
+
             winLogin.SetDataDirectory();
             InitializeComponent();
             if (!winLogin.loginAdmin) {
                 // Open showtimes on startup
                 uctShowTimes = new uctShowTimes();
                 wpCurrentContent.Children.Add(uctShowTimes);
+            } else {
+                uctAdmin = new uctAdmin();
+                wpCurrentContent.Children.Add(uctAdmin);
             }
+
+
         }
 
 
         #region CORE_VARIABLES
         private uctShowTimes uctShowTimes;
+        private uctAdmin uctAdmin;
         #endregion
-        #region Click
-        #region Window
-        private void btnExit_Click(object sender, RoutedEventArgs e) {
-            App.Current.Shutdown();
-        }
-        private void btnSizeState_Click(object sender, RoutedEventArgs e) {
-            if (this.WindowState == WindowState.Normal) {
-                this.WindowState = WindowState.Maximized;
-            } else {
-                this.WindowState = WindowState.Normal;
+        #region BUTTON_CLICK_EVENTS
+
+            #region WINDOW
+            private void btnExit_Click(object sender, RoutedEventArgs e) {
+                App.Current.Shutdown();
             }
-        }
-        private void btnMinimize_Click(object sender, RoutedEventArgs e) {
-            WindowState = WindowState.Minimized;
-        }
+            private void btnSizeState_Click(object sender, RoutedEventArgs e) {
+                if (this.WindowState == WindowState.Normal) {
+                    this.WindowState = WindowState.Maximized;
+                } else {
+                    this.WindowState = WindowState.Normal;
+                }
+            }
+            private void btnMinimize_Click(object sender, RoutedEventArgs e) {
+                WindowState = WindowState.Minimized;
+            }
+            #endregion
+
+            #region NAV_MENU
+            private void btnShowTimes_Click(object sender, RoutedEventArgs e) {
+            // TODO: && !winLogin.loginAdmin protection should define in xaml
+            if (!wpCurrentContent.Children.Contains(uctShowTimes) && !winLogin.loginAdmin) {
+                    wpCurrentContent.Children.Clear();
+                    uctShowTimes = new uctShowTimes();
+                    wpCurrentContent.Children.Add(uctShowTimes);
+                }
+            }
+            #endregion
+
         #endregion
 
-        #region Nav menu
-        private void btnShowTimes_Click(object sender, RoutedEventArgs e) {
-            if (!wpCurrentContent.Children.Contains(uctShowTimes)) {
-                uctShowTimes = new uctShowTimes();
-                wpCurrentContent.Children.Add(uctShowTimes);
-            }
-        }
-        #endregion
-        #endregion
-
-        #region These fix bugs
+        #region BUG_FIXING
         // Dirty little code to fix the issue when in maximized state the window overlap the taskbar
         private void Window_StateChanged(object sender, EventArgs e) {
             WindowStyle = WindowStyle.SingleBorderWindow;

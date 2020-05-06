@@ -29,6 +29,7 @@ namespace NeumannMozi_WPF {
             InitializeComponent();
             
         }
+
         #region CORE_VARIABLES
         // Databse object
         private edmNeumannMoziContainer edmNeumannMoziContainer;
@@ -38,67 +39,75 @@ namespace NeumannMozi_WPF {
         #endregion
 
         #region BUTTON_CLICK_EVENTS
-        private void btnExitApp_Click(object sender, RoutedEventArgs e) {
-            App.Current.Shutdown();
-        }
-        private void btnMinimize_Click(object sender, RoutedEventArgs e) {
-            WindowState = WindowState.Minimized;
-        }
-        private void btnForgattenPassword_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("Nem mukodom :(");
-        }
 
-        private void btnRegister_Click(object sender, RoutedEventArgs e) {
-            MD5 md5Hash = MD5.Create();
-            string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
-            if (txtUsername.Text == "Felhasználónév" || txtPassword.Password == "Jelszó") {
-                //adatok kitöltése kötelező alert
-                MessageBox.Show("Adatok kitöltése kötelező.");
-                return;
+            #region WINDOW
+            private void btnExitApp_Click(object sender, RoutedEventArgs e) {
+                App.Current.Shutdown();
             }
-
-            var uname = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text select new { x.Nev }).FirstOrDefault();
-            if (uname != null) {
-                //Létezik már a felhasználó exception
-                MessageBox.Show("Letezik mar felhasznalo ezzel a nevvel.");
-            } else {
-                var user = new Felhasznalo {
-                    Nev = txtUsername.Text,
-                    Jelszo = hashPw,
-                    Admin = false
-                };
-                edmNeumannMoziContainer.FelhasznaloSet.Add(user);
-                edmNeumannMoziContainer.SaveChanges();
-                MessageBox.Show("Sikeres regisztráció."); //sikeres
+            private void btnMinimize_Click(object sender, RoutedEventArgs e) {
+                WindowState = WindowState.Minimized;
             }
-        }
+            #endregion
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e) {
-
-            if (txtUsername.Text == "Felhasználónév" || txtPassword.Password == "Jelszó") {
-                //adatok kitöltése kötelező alert
-                MessageBox.Show("Adatok kitöltése kötelező.");
-                return;
+            #region CONTENT
+            // Forgatten password
+            private void btnForgattenPassword_Click(object sender, RoutedEventArgs e) {
+                MessageBox.Show("Nem mukodom :(");
             }
+            // Login
+            private void btnLogin_Click(object sender, RoutedEventArgs e) {
 
-            MD5 md5Hash = MD5.Create();
-            string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
-            var u = (from x in edmNeumannMoziContainer.FelhasznaloSet 
-                     where x.Nev == txtUsername.Text && x.Jelszo == hashPw 
-                     select new { x.Id, x.Nev, x.Jelszo, x.Admin }
-                     ).FirstOrDefault();
+                if (txtUsername.Text == "Felhasználónév" || txtPassword.Password == "Jelszó") {
+                    //adatok kitöltése kötelező alert
+                    MessageBox.Show("Adatok kitöltése kötelező.");
+                    return;
+                }
 
-            if (u != null && String.Equals(u.Nev, txtUsername.Text)) {
-                loginUserName = u.Nev;
-                loginAdmin = u.Admin;
-                winMain winMain = new winMain();
-                winMain.Show();
-                this.Close();
-                //Beléptetés
-            } else {
-                MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!");               
+                MD5 md5Hash = MD5.Create();
+                string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
+                var u = (from x in edmNeumannMoziContainer.FelhasznaloSet 
+                         where x.Nev == txtUsername.Text && x.Jelszo == hashPw 
+                         select new { x.Id, x.Nev, x.Jelszo, x.Admin }
+                         ).FirstOrDefault();
+
+                if (u != null && String.Equals(u.Nev, txtUsername.Text)) {
+                    loginUserName = u.Nev;
+                    loginAdmin = u.Admin;
+                    winMain winMain = new winMain();
+                    winMain.Show();
+                    this.Close();
+                    //Beléptetés
+                } else {
+                    MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!");               
+                }
             }
-        }
+            // Register
+            private void btnRegister_Click(object sender, RoutedEventArgs e) {
+                MD5 md5Hash = MD5.Create();
+                string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
+                if (txtUsername.Text == "Felhasználónév" || txtPassword.Password == "Jelszó") {
+                    //adatok kitöltése kötelező alert
+                    MessageBox.Show("Adatok kitöltése kötelező.");
+                    return;
+                }
+
+                var uname = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text select new { x.Nev }).FirstOrDefault();
+                if (uname != null) {
+                    //Létezik már a felhasználó exception
+                    MessageBox.Show("Letezik mar felhasznalo ezzel a nevvel.");
+                } else {
+                    var user = new Felhasznalo {
+                        Nev = txtUsername.Text,
+                        Jelszo = hashPw,
+                        Admin = false
+                    };
+                    edmNeumannMoziContainer.FelhasznaloSet.Add(user);
+                    edmNeumannMoziContainer.SaveChanges();
+                    MessageBox.Show("Sikeres regisztráció."); //sikeres
+                }
+            }
+            #endregion
+
         #endregion
 
         #region INPUT_EVENTS
