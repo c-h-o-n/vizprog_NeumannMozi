@@ -21,10 +21,13 @@ namespace NeumannMozi_WPF {
 
             winLogin.SetDataDirectory();
             InitializeComponent();
-            // Open showtimes on startup
-            uctShowTimes = new uctShowTimes();
-            wpCurrentContent.Children.Add(uctShowTimes);
+            if (!winLogin.loginAdmin) {
+                // Open showtimes on startup
+                uctShowTimes = new uctShowTimes();
+                wpCurrentContent.Children.Add(uctShowTimes);
+            }
         }
+
 
         #region CORE_VARIABLES
         private uctShowTimes uctShowTimes;

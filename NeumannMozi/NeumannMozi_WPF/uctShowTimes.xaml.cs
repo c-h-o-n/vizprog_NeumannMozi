@@ -26,8 +26,6 @@ namespace NeumannMozi_WPF {
             InitializeComponent();
 
             GetCurrentShowTimes();
-
-
         }
 
         private void GetCurrentShowTimes() {

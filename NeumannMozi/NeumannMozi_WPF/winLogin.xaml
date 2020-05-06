@@ -78,7 +78,7 @@
                 </StackPanel>
                 <!-- Login button -->
                 <ContentControl Grid.Row="4" Height="37" Width="150"  Style="{StaticResource Quicksand}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Button x:Name="btnLogin" Content="Belépés" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RoundedRedButtonTheme}" FontSize="20"  Click="btnLogin_Click"/>
+                    <Button x:Name="btnLogin" Content="Belépés" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource RoundedRedButtonTheme}" FontSize="20"  Click="btnLogin_Click" IsDefault="True"/>
                 </ContentControl>
                 <!-- Registration button -->
                 <ContentControl Style="{StaticResource Quicksand}" Grid.Row="5" Height="25" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top">

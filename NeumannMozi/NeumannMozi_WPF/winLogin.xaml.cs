@@ -30,12 +30,14 @@ namespace NeumannMozi_WPF {
             
         }
         #region CORE_VARIABLES
+        // Databse object
         private edmNeumannMoziContainer edmNeumannMoziContainer;
+        // Login data
+        public static string loginUserName;
+        public static bool loginAdmin;
         #endregion
 
-        #region Button events
-
-        #region Click
+        #region BUTTON_CLICK_EVENTS
         private void btnExitApp_Click(object sender, RoutedEventArgs e) {
             App.Current.Shutdown();
         }
@@ -44,16 +46,6 @@ namespace NeumannMozi_WPF {
         }
         private void btnForgattenPassword_Click(object sender, RoutedEventArgs e) {
             MessageBox.Show("Nem mukodom :(");
-        }
-
-
-        static string GetMd5Hash(MD5 md5Hash, string input) {
-            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-            StringBuilder sBuilder = new StringBuilder();
-            for (int i = 0; i < data.Length; i++) {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
-            return sBuilder.ToString();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e) {
@@ -91,21 +83,25 @@ namespace NeumannMozi_WPF {
 
             MD5 md5Hash = MD5.Create();
             string hashPw = GetMd5Hash(md5Hash, txtPassword.Password);
-            var u = (from x in edmNeumannMoziContainer.FelhasznaloSet where x.Nev == txtUsername.Text && x.Jelszo == hashPw select new { x.Id, x.Nev, x.Jelszo, x.Admin }).FirstOrDefault();
+            var u = (from x in edmNeumannMoziContainer.FelhasznaloSet 
+                     where x.Nev == txtUsername.Text && x.Jelszo == hashPw 
+                     select new { x.Id, x.Nev, x.Jelszo, x.Admin }
+                     ).FirstOrDefault();
 
             if (u != null && String.Equals(u.Nev, txtUsername.Text)) {
-                MessageBox.Show(string.Format("Sikeres bejelentkezés!\nFelhasználónév: {0}\nFelhasználó id: {1}\nAdminisztrátor: {2}", u.Nev, u.Id.ToString(), u.Admin.ToString()));
+                loginUserName = u.Nev;
+                loginAdmin = u.Admin;
+                winMain winMain = new winMain();
+                winMain.Show();
+                this.Close();
                 //Beléptetés
             } else {
-                MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!\nIde jöhet majd a kivételdobás.");
-                //Kivételdobás hibás adat
+                MessageBox.Show("Sikertelen bejelentkezés!\nHibás adatok!");               
             }
         }
         #endregion
 
-        #endregion
-
-        #region Input events
+        #region INPUT_EVENTS
         private void LoginInput_GotFocus(object sender, RoutedEventArgs e) {
             if (sender is TextBox) {
                 TextBox tb = (TextBox)sender;
@@ -136,7 +132,7 @@ namespace NeumannMozi_WPF {
         }
         #endregion
 
-        #region Database
+        #region DATABASE
         // Set DataDirectory path to Project Solution path (....\NeumannMozi\)
         public static void SetDataDirectory() {
             var projectDir = Directory.GetParent(Directory.GetCurrentDirectory());
@@ -148,5 +144,14 @@ namespace NeumannMozi_WPF {
         #endregion
 
 
+        // Password encryption(md5hash)
+        private static string GetMd5Hash(MD5 md5Hash, string input) {
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++) {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
+        }
     }
 }
