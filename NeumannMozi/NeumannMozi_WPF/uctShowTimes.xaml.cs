@@ -30,7 +30,6 @@ namespace NeumannMozi_WPF {
 
         }
 
-        // TODO: azokat a filmeket (ezek az adatok kellenek lent) amiknek van olyan vetítés kezdete dátumuk ami korábbi a mai dátumnál továbbá a vetítés kezdete dátumait 
         private void GetCurrentShowTimes() {
 
             var currentDateTime = DateTime.Now; //jelenlegi datumot lekeri
@@ -38,6 +37,7 @@ namespace NeumannMozi_WPF {
             var query = (from x in edmNeumannMoziContainer.FilmSet
                          join vetit in edmNeumannMoziContainer.VetitesSet on x.Id equals vetit.FilmId
                          where vetit.Kezdete > currentDateTime
+                         orderby vetit.Kezdete
                          select new {
                              Title = x.Cim,
                              Director = x.Rendezo,
