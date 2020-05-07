@@ -17,9 +17,6 @@ using NeumannMozi_DAL; //adatbazis
 using System.Security.Cryptography; //md5 titkositas
 
 namespace NeumannMozi_WPF {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class winLogin : Window {
         public winLogin() {
             // Create edm(database) object

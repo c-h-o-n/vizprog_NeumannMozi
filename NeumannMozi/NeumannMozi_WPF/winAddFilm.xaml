@@ -47,14 +47,12 @@
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Korhatár:"/>
-                <ComboBox Name="cboAgeRating" Width="100">
-                    <ComboBoxItem Content="Korhatár Nélkül"/>
-                    <ComboBoxItem Content="6+"/>
-                    <ComboBoxItem Content="12+"/>
-                    <ComboBoxItem Content="16+"/>
-                    <ComboBoxItem Content="12+"/>
-                    <ComboBoxItem Content="16+"/>
-                    <ComboBoxItem Content="18+"/>
+                <ComboBox Name="cboAgeRating" Width="100" SelectedIndex="0">
+                    <ComboBoxItem Content="0"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="12"/>
+                    <ComboBoxItem Content="16"/>
+                    <ComboBoxItem Content="18"/>
                 </ComboBox>
             </StackPanel>
 
@@ -82,6 +80,9 @@
                 <Label Content="Poszter:"/>
                 <TextBox x:Name="txtPosterImagePath"/>
                 <Button x:Name="btnAddImage" Content=".." Margin="10, 0, 0, 0" Width="25" Height="25" Click="btnAddImage_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnSend" Content="Film hozzáadása" Margin="10, 0, 0, 0" Width="200" Height="25" Click="btnSend_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
