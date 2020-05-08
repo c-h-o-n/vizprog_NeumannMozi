@@ -24,7 +24,7 @@ namespace NeumannMozi_WPF {
         private void btnAddImage_Click(object sender, RoutedEventArgs e) {
             // Get image from file dialog
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "(.jpg)|*.jpg|(.png)|*png";
+            dialog.Filter = " Képek |*.jpg;*.png|Minden|*.*";
             Nullable<bool> result = dialog.ShowDialog();
             if (result == true) {
                 //var img = File.ReadAllBytes(dialog.FileName);

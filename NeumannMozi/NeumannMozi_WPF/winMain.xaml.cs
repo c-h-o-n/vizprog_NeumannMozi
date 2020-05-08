@@ -27,7 +27,6 @@ namespace NeumannMozi_WPF {
              * USER LOGIN:
              * winLogin.loginAdmin = false;
              */
-
             winLogin.SetDataDirectory();
             InitializeComponent();
             if (!winLogin.loginAdmin) {
@@ -38,8 +37,6 @@ namespace NeumannMozi_WPF {
                 uctAdmin = new uctAdmin();
                 wpCurrentContent.Children.Add(uctAdmin);
             }
-
-
         }
 
 

@@ -23,8 +23,13 @@ namespace NeumannMozi_WPF {
         }
 
         private void btnAddMovie_Click(object sender, RoutedEventArgs e) {
+            btnAddMovie.IsEnabled = false;
             winAddFilm winAddFilm = new winAddFilm();
             winAddFilm.Show();
+            bool isclosed = false;
+            
         }
+
+
     }
 }

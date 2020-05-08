@@ -37,19 +37,25 @@ namespace NeumannMozi_WPF {
                          where vetit.Kezdete > currentDateTime
                          orderby vetit.Kezdete
                          select new {
+                             id = x.Id,
+                             PosterImage = x.Poszter,
                              Title = x.Cim,
                              Director = x.Rendezo,
                              Cast = x.Szereplok,
-                             Description = x.Leiras,
-                             Length = x.Hossz,
+                             Description = x.Leiras.Substring(0, 300) + "...", //TODO: temporary
                              AgeRating = x.Korhatar,
-                             PosterLink = x.Poszter,
+                             Length = x.Hossz,
                              Category = x.Kategoria,
                              ScreeningDates = vetit.Kezdete,
                              TeremId = vetit.TeremId //többit igy hozza lehet adni vetites tablabol ha kell
                          }).ToList();
 
-            ictrFilmCard.ItemsSource = query;
+            ictrCurrentShowTimes.ItemsSource = query;
+        }
+
+        private void btnFilmCard_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Open next uct");
         }
     }
+
 }

@@ -6,17 +6,37 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:NeumannMozi_WPF"
         mc:Ignorable="d"
-        Title="Neumann Mozi" Height="450" Width="800" MinHeight="450" MinWidth="800"
+        Title="Neumann Mozi" MinHeight="400" MinWidth="800" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        WindowState="Normal"
+        WindowState="Maximized"
         ResizeMode="CanResize"
         StateChanged="Window_StateChanged">
-
+    
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="35"/>
     </WindowChrome.WindowChrome>
-    <Grid>
+    
+    <!-- Add to avoid border disappearing when window is maximised -->
+    <Border>
+        <Border.Style>
+            <Style TargetType="{x:Type Border}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                 Value="Maximized">
+                        <Setter Property="Margin" Value="5"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                 Value="Normal">
+                        <Setter Property="Margin" Value="0"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        
+        <!-- Grid -->
+        <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="80"/>
@@ -26,7 +46,7 @@
         <Grid.Background>
             <SolidColorBrush Color="White"/>
         </Grid.Background>
-
+        
 
         <!-- Window Chrome -->
         <Border Grid.Row="0" Height="35" Width="{Binding}" Background="#E4E4E4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -47,7 +67,10 @@
                 <Button x:Name="btnShowTimes" Content="Műsor" Height="40" Width="40" Click="btnShowTimes_Click"/>
             </StackPanel>
         </Border>
-
-        <WrapPanel Name="wpCurrentContent" Grid.Row="2" />
+            <ScrollViewer Grid.Row="2">
+                <WrapPanel Name="wpCurrentContent" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+            </ScrollViewer>
     </Grid>
+    </Border>
+
 </Window>

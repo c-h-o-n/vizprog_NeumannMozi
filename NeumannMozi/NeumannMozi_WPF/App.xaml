@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:NeumannMozi_WPF"
-             StartupUri="winLogin.xaml">
+             StartupUri="winMain.xaml">
     <Application.Resources>
         <!-- Add fonts to project -->
         <Style x:Key="QuicksandRegular">
@@ -19,7 +19,7 @@
                     Value="/content_src/fonts/#Quicksand"/>
         </Style>
 
-        <Style x:Key="RobotoFont">
+        <Style x:Key="Roboto">
             <Setter Property="TextElement.FontFamily"
                     Value="./content_src/fonts/#Roboto"/>
         </Style>
