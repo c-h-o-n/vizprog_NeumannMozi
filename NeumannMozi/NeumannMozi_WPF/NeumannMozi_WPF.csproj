@@ -90,8 +90,8 @@
     <Compile Include="uctAdmin.xaml.cs">
       <DependentUpon>uctAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="uctShowTimes.xaml.cs">
-      <DependentUpon>uctShowTimes.xaml</DependentUpon>
+    <Compile Include="uctShowtimes.xaml.cs">
+      <DependentUpon>uctShowtimes.xaml</DependentUpon>
     </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>
@@ -108,7 +108,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="uctShowTimes.xaml">
+    <Page Include="uctShowtimes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,7 +183,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="content_src\pictures\posters\" />
+    <Resource Include="content_src\pictures\buttons\iconMyTickets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconShowtimes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconAboutTheatre.png" />
+    <Resource Include="content_src\pictures\buttons\iconSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconInfo_HoverOFF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconRemove_HoverOFF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconStatistics.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

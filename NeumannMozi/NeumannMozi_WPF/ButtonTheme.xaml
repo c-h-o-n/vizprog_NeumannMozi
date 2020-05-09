@@ -32,7 +32,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Restore down / Maximize Button theme -->
+    <!-- Restore down / Maximize Button Theme -->
     <Style x:Key="ChangeWindowState" TargetType="Button" BasedOn="{StaticResource WindowTheme}">
         <Setter Property="Content" Value="{iconPacks:Material Kind=WindowRestore, Height=15, Width=15}"/>
         <Style.Triggers>
@@ -71,7 +71,7 @@
         </Style.Triggers>
     </Style>
     
-    <!-- Red text Button Theme -->
+    <!-- Red Text Button Theme -->
     <Style  x:Key="RedTextButtonTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource GenericTheme}">
         <Setter Property="Foreground" Value="#bd1222"/>
         <Setter Property="FontSize" Value="15"/>
@@ -84,7 +84,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <!-- Add button theme -->
+    
+    <!-- Add Film theme -->
     <Style  x:Key="AddButtonTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource GenericTheme}">
         <Setter Property="Foreground" Value="#B8B8B8"/>
 
@@ -95,5 +96,37 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <!-- Nav button theme -->
+    <Style  x:Key="NavButtonTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource GenericTheme}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="0, 0, 50, 0"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!-- Film Card theme-->
+    <Style  x:Key="FilmCardTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource GenericTheme}">
+        <Setter Property="Height" Value="350"/>
+        <Setter Property="Width" Value="580"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Margin" Value="20, 0, 0, 50"/>
+        <Setter Property="Padding" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!-- Add screening date theme-->
+    <!-- More info theme -->
+
+
 
 </ResourceDictionary>

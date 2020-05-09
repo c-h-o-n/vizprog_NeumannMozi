@@ -18,8 +18,6 @@ namespace NeumannMozi_WPF {
     /// </summary>
     public partial class winMain : Window {
         public winMain() {
-
-
             /*
              * ADMIN LOGIN:
              * winLogin.loginAdmin = true;
@@ -27,12 +25,14 @@ namespace NeumannMozi_WPF {
              * USER LOGIN:
              * winLogin.loginAdmin = false;
              */
+            winLogin.loginAdmin = true;
             winLogin.SetDataDirectory();
             InitializeComponent();
+            SetNavButtons(winLogin.loginAdmin);
             if (!winLogin.loginAdmin) {
                 // Open showtimes on startup
-                uctShowTimes = new uctShowTimes();
-                wpCurrentContent.Children.Add(uctShowTimes);
+                uctShowtimes = new uctShowtimes();
+                wpCurrentContent.Children.Add(uctShowtimes);
             } else {
                 uctAdmin = new uctAdmin();
                 wpCurrentContent.Children.Add(uctAdmin);
@@ -41,7 +41,7 @@ namespace NeumannMozi_WPF {
 
 
         #region CORE_VARIABLES
-        private uctShowTimes uctShowTimes;
+        private uctShowtimes uctShowtimes;
         private uctAdmin uctAdmin;
         #endregion
         #region BUTTON_CLICK_EVENTS
@@ -65,11 +65,15 @@ namespace NeumannMozi_WPF {
             #region NAV_MENU
             private void btnShowTimes_Click(object sender, RoutedEventArgs e) {
             // TODO: && !winLogin.loginAdmin protection should define in xaml
-            if (!wpCurrentContent.Children.Contains(uctShowTimes) && !winLogin.loginAdmin) {
-                    wpCurrentContent.Children.Clear();
-                    uctShowTimes = new uctShowTimes();
-                    wpCurrentContent.Children.Add(uctShowTimes);
-                }
+            if (!wpCurrentContent.Children.Contains(uctShowtimes) && !winLogin.loginAdmin) {
+                wpCurrentContent.Children.Clear();
+                uctShowtimes = new uctShowtimes();
+                wpCurrentContent.Children.Add(uctShowtimes);
+            } else {
+                wpCurrentContent.Children.Clear();
+                uctAdmin = new uctAdmin();
+                wpCurrentContent.Children.Add(uctAdmin);
+            }
             }
             #endregion
 
@@ -81,8 +85,31 @@ namespace NeumannMozi_WPF {
             WindowStyle = WindowStyle.SingleBorderWindow;
             WindowStyle = WindowStyle.None;
         }
+
         #endregion
 
+        private void btnMyTickets_Click(object sender, RoutedEventArgs e) {
 
+        }
+
+        private void btnAboutTheatre_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void SetNavButtons(bool isAdmin) {
+            if (isAdmin) {
+                spUserNavButtons.Children.Clear();
+            } else {
+                spAdminNavButtons.Children.Clear();
+            }
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

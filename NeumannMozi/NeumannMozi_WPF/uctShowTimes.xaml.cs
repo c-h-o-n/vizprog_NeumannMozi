@@ -18,9 +18,9 @@ namespace NeumannMozi_WPF {
     /// <summary>
     /// Interaction logic for uctShowTimes.xaml
     /// </summary>
-    public partial class uctShowTimes : UserControl {
+    public partial class uctShowtimes : UserControl {
         private edmNeumannMoziContainer edmNeumannMoziContainer;
-        public uctShowTimes() {
+        public uctShowtimes() {
             // Create edm(database) object
             edmNeumannMoziContainer = new edmNeumannMoziContainer();
             InitializeComponent();
