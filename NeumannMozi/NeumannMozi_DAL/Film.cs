@@ -14,6 +14,8 @@ namespace NeumannMozi_DAL
     
     public partial class Film
     {
+        public int id;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Film()
         {

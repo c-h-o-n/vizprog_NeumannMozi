@@ -19,7 +19,7 @@ namespace NeumannMozi_WPF {
     /// Interaction logic for uctShowTimes.xaml
     /// </summary>
     public partial class uctShowTimes : UserControl {
-        private edmNeumannMoziContainer edmNeumannMoziContainer;
+        public edmNeumannMoziContainer edmNeumannMoziContainer;
         public uctShowTimes() {
             // Create edm(database) object
             edmNeumannMoziContainer = new edmNeumannMoziContainer();
@@ -28,29 +28,39 @@ namespace NeumannMozi_WPF {
             GetCurrentShowTimes();
         }
 
+        private string vetitIdok(int filmId) {
+            var vetitString = "";
+            var currentDateTime = DateTime.Now;
+            foreach (var x in edmNeumannMoziContainer.VetitesSet) {
+                if (x.FilmId == filmId) {
+                    if (x.Kezdete > currentDateTime) {
+                        vetitString += x.Kezdete.ToString() + "\n";
+                    }
+                }
+            }
+            return vetitString;
+        }
+
         private void GetCurrentShowTimes() {
 
-            var currentDateTime = DateTime.Now; //jelenlegi datumot lekeri
-
-            var query = (from x in edmNeumannMoziContainer.FilmSet
-                         join vetit in edmNeumannMoziContainer.VetitesSet on x.Id equals vetit.FilmId
-                         where vetit.Kezdete > currentDateTime
-                         orderby vetit.Kezdete
-                         select new {
-                             id = x.Id,
-                             PosterImage = x.Poszter,
-                             Title = x.Cim,
-                             Director = x.Rendezo,
-                             Cast = x.Szereplok,
-                             Description = x.Leiras.Substring(0, 300) + "...", //TODO: temporary
-                             AgeRating = x.Korhatar,
-                             Length = x.Hossz,
-                             Category = x.Kategoria,
-                             ScreeningDates = vetit.Kezdete,
-                             TeremId = vetit.TeremId //többit igy hozza lehet adni vetites tablabol ha kell
-                         }).ToList();
-
-            ictrCurrentShowTimes.ItemsSource = query;
+            var filmLista = new List<FilmData>();
+            foreach (var x in edmNeumannMoziContainer.FilmSet) {
+                if (vetitIdok(x.Id).Length > 0) {
+                    filmLista.Add(new FilmData() {
+                        Id = x.Id,
+                        PosterImage = x.Poszter,
+                        Title = x.Cim,
+                        Director = x.Rendezo,
+                        Cast = x.Szereplok,
+                        Description = "Leírás ",//x.Leiras.Substring(0, 10) + "...", //TODO: temporary
+                        AgeRating = x.Korhatar,
+                        Length = x.Hossz,
+                        Category = x.Kategoria,
+                        ScreeningDates = vetitIdok(x.Id),
+                    });
+                }
+            }
+            ictrCurrentShowTimes.ItemsSource = filmLista;
         }
 
         private void btnFilmCard_Click(object sender, RoutedEventArgs e) {

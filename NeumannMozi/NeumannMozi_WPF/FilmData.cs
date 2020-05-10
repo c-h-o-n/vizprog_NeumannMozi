@@ -15,7 +15,8 @@ namespace NeumannMozi_WPF {
         public int AgeRating { get; set; }
         public string TrailerLink { get; set; }
         public string ImdbLink { get; set; }
-        public string PosterLink { get; set; }
+        public byte[] PosterImage { get; set; }
         public string Category { get; set; }
+        public string ScreeningDates { get; set; }
     }
 }
