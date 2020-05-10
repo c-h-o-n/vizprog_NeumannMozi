@@ -31,14 +31,16 @@ namespace NeumannMozi_WPF {
 
         private List<string> ScreeningDateData(int filmId) {
             List<string> vetitString = new List<string>();
+            int dateCounter = 0;
             var currentDateTime = DateTime.Now;
             foreach (var x in edmNeumannMoziContainer.VetitesSet) {
                 if (x.FilmId == filmId) {
                     if (x.Kezdete > currentDateTime) {
-                        for (int i = 0; i < 2; i++) {
-                            vetitString.Add(x.Kezdete.ToString());
+                        if (++dateCounter > 2) {
+                            vetitString.Add("További időpontok");
+                            return vetitString;
                         }
-                        return vetitString;
+                        vetitString.Add(x.Kezdete.ToString());
                     }
                 }
             }

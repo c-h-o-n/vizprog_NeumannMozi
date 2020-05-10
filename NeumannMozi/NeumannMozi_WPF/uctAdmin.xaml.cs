@@ -50,7 +50,7 @@ namespace NeumannMozi_WPF {
         }
         private void btnRemoveFilm_Click(object sender, RoutedEventArgs e) {
             var getFilm = ((Button)sender).Tag as FilmData;
-            var msgBox = MessageBox.Show("Biztos törlöd a(z) "+getFilm.Title.ToString() + " filmet az adatbázisból?","Film törlése", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var msgBox = MessageBox.Show("Biztos törlöd a(z) "+ getFilm.Title.ToString() + " filmet az adatbázisból?","Film törlése", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (msgBox == MessageBoxResult.Yes) {
                 var deleteRow = (from x in edmNeumannMoziContainer.FilmSet
                                  where x.Id.Equals(getFilm.Id)
@@ -66,6 +66,7 @@ namespace NeumannMozi_WPF {
                 edmNeumannMoziContainer.FilmSet.Remove(deleteRow);
                 edmNeumannMoziContainer.SaveChanges();// itt a hiba :(
                 MessageBox.Show("Sikeresen törölve.");
+                ReloadScreen();
             }
             else {
                 MessageBox.Show("Nemre ment");
@@ -117,9 +118,16 @@ namespace NeumannMozi_WPF {
         #endregion
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var getFilm = ((ComboBox)sender).Tag as FilmData;
+            Console.WriteLine(getFilm.Title);
             ComboBox cb = new ComboBox();
-            cb = sender as ComboBox;
             ictrAdmin.ItemsSource = filmLista;
+        }
+
+
+        private void ReloadScreen() {
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
         }
     }
 }

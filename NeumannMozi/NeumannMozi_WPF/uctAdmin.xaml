@@ -9,7 +9,7 @@
                 d:DesignHeight="450" d:DesignWidth="800"
                 Background="White">
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="0, 0, 0, 15">
+        <StackPanel Orientation="Vertical" Margin="0, 0, 0, 15" Name="spPanel">
             <ItemsControl Name="ictrAdmin" ItemsSource="{Binding}" FontSize="14" Style="{StaticResource Roboto}" Margin="0, 15, 0, 0">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -28,11 +28,11 @@
                                     <TextBlock Text="{Binding Title}" TextAlignment="Center" FontSize="18" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold" Width="300" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <!-- Screening date picker -->
-                                <ComboBox SelectedIndex="0" ItemsSource="{Binding ScreeningDates}" Height="25" Width="320" VerticalAlignment="Center" Margin="50, 0, 10, 0" SelectionChanged="ComboBox_SelectionChanged"/>
+                                <ComboBox SelectedIndex="0" Tag="{Binding}" ItemsSource="{Binding ScreeningDates}" Height="25" Width="320" VerticalAlignment="Center" Margin="50, 0, 10, 0" SelectionChanged="ComboBox_SelectionChanged"/>
                                 <!-- Add new screening date -->
                                 <Button x:Name="btnAddScreeningDate" Tag="{Binding}" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Content="{iconPacks:Material Kind=PlusBox, Height=25, Width=25}" Height="25" Width="25" Click="btnAddScreeningDate_Click"/>
                                 <!-- reserved / Number of seats MIGHT DELETE LATER!-->
-                                <TextBlock Text="{Binding NumberOfSeats}" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50, 0, 13, 0"/>
+                                <TextBlock Text="{Binding NumberOfSeats}" Tag="{Binding}" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50, 0, 13, 0"/>
                                 
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                     <!-- More info button -->

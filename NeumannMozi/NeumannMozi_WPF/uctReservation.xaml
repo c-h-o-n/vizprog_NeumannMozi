@@ -45,7 +45,6 @@
                                 <TextBlock Text=" perc | "/>
                                 <TextBlock Text="{Binding Category}"/>
                             </StackPanel>
-                            <TextBlock Text="{Binding ScreeningDates}"/>
                         </StackPanel>
                     </StackPanel>
                 </Button>

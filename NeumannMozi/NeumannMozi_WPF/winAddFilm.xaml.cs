@@ -59,7 +59,12 @@ namespace NeumannMozi_WPF {
             };
             MoziC.FilmSet.Add(filmInsert);
             MoziC.SaveChanges();
-            MessageBox.Show("Sikeresen hozzáadtad a filmet");
+
+            // Close film adding window
+            this.Close();
+            // Reload wrappanel's content in winMain
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
         }
     }
 }

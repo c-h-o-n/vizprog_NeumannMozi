@@ -19,10 +19,6 @@ namespace NeumannMozi_WPF {
     /// 
 
     public partial class winMain : Window {
-        public WrapPanel PnlContainer {
-            get { return wpCurrentContent; }
-            set { wpCurrentContent = value; }
-        }
         public winMain() {
             /*
              * ADMIN LOGIN:

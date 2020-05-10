@@ -29,7 +29,6 @@ namespace NeumannMozi_WPF {
         private void btnConfirmScreeningDate_Click(object sender, RoutedEventArgs e) {
             try {
                 var newDate = DateTime.Parse(txtNewScreeningDate.Text);
-                //MessageBox.Show("Jó a dátum");
                 //MessageBox.Show(passedFilm.Id.ToString());
                 var vetitInsert = new Vetites {
                     Kezdete = newDate,
@@ -39,7 +38,8 @@ namespace NeumannMozi_WPF {
                 MoziC.VetitesSet.Add(vetitInsert);
                 MoziC.SaveChanges();
                 this.Close();
-                MessageBox.Show("Sikeresen hozzáadtad a vetitési időpontot!");
+                ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
+                ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
             }
             catch (Exception) {
                 MessageBox.Show("Nem jó dátumot adtál meg.");
