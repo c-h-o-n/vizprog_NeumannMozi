@@ -18,9 +18,10 @@ namespace NeumannMozi_WPF {
     /// <summary>
     /// Interaction logic for uctShowTimes.xaml
     /// </summary>
-    public partial class uctShowTimes : UserControl {
+    public partial class uctShowtimes : UserControl {
         public edmNeumannMoziContainer edmNeumannMoziContainer;
-        public uctShowTimes() {
+        private uctReservation nextScreen;
+        public uctShowtimes() {
             // Create edm(database) object
             edmNeumannMoziContainer = new edmNeumannMoziContainer();
             InitializeComponent();
@@ -28,43 +29,69 @@ namespace NeumannMozi_WPF {
             GetCurrentShowTimes();
         }
 
-        private string vetitIdok(int filmId) {
-            var vetitString = "";
+        private List<string> ScreeningDateData(int filmId) {
+            List<string> vetitString = new List<string>();
             var currentDateTime = DateTime.Now;
             foreach (var x in edmNeumannMoziContainer.VetitesSet) {
                 if (x.FilmId == filmId) {
                     if (x.Kezdete > currentDateTime) {
-                        vetitString += x.Kezdete.ToString() + "\n";
+                        for (int i = 0; i < 2; i++) {
+                            vetitString.Add(x.Kezdete.ToString());
+                        }
+                        return vetitString;
                     }
                 }
             }
             return vetitString;
         }
 
+        private string GetRoomName(int teremId) {
+            foreach (var x in edmNeumannMoziContainer.TeremSet) {
+                if (x.Id == teremId) {
+                    return x.Nev;
+                }
+            }
+            return null;
+        }
+
         private void GetCurrentShowTimes() {
 
             var filmLista = new List<FilmData>();
             foreach (var x in edmNeumannMoziContainer.FilmSet) {
-                if (vetitIdok(x.Id).Length > 0) {
+                if (ScreeningDateData(x.Id).Count > 0) {
                     filmLista.Add(new FilmData() {
                         Id = x.Id,
                         PosterImage = x.Poszter,
                         Title = x.Cim,
                         Director = x.Rendezo,
                         Cast = x.Szereplok,
-                        Description = "Leírás ",//x.Leiras.Substring(0, 10) + "...", //TODO: temporary
+                        Description = x.Leiras,
                         AgeRating = x.Korhatar,
                         Length = x.Hossz,
                         Category = x.Kategoria,
-                        ScreeningDates = vetitIdok(x.Id),
+                        ScreeningDates = ScreeningDateData(x.Id),
                     });
                 }
             }
-            ictrCurrentShowTimes.ItemsSource = filmLista;
+
+            foreach (var filmData in filmLista) {
+                if (filmData.Description.Length > 300) {
+                    filmData.Description = filmData.Description.Substring(0, 300) + "...";
+                }
+                 
+            }
+            ictrCurrentShowtimes.ItemsSource = filmLista;
+            
         }
 
         private void btnFilmCard_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("Open next uct");
+            Button b = sender as Button;
+
+            // Open ticket reservation screen
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
+            nextScreen = new uctReservation(b);
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(nextScreen);
+
         }
     }
 

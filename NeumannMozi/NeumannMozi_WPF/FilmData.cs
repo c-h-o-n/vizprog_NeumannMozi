@@ -18,6 +18,7 @@ namespace NeumannMozi_WPF {
         public string ImdbLink { get; set; }
         public byte[] PosterImage { get; set; }
         public string Category { get; set; }
-        public string ScreeningDates { get; set; }
+        public List<string> ScreeningDates { get; set; }
+        public int NumberOfSeats { get; set; }
     }
 }

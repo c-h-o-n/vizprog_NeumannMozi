@@ -34,7 +34,6 @@ namespace NeumannMozi_WPF {
         }
 
         private void GetCurrentShowTimes() {
-
             var currentDateTime = DateTime.Now; //jelenlegi datumot lekeri
 
             var query = (from x in edmNeumannMoziContainer.FilmSet
@@ -47,7 +46,7 @@ namespace NeumannMozi_WPF {
                              Title = x.Cim,
                              Director = x.Rendezo,
                              Cast = x.Szereplok,
-                             Description = x.Leiras.Substring(0, 300) + "...", //TODO: temporary
+                             Description = x.Leiras,
                              AgeRating = x.Korhatar,
                              Length = x.Hossz,
                              Category = x.Kategoria,

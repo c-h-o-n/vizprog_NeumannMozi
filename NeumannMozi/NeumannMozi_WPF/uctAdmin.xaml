@@ -21,30 +21,38 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                <!-- Poster -->
                                 <Image  x:Name="imgPoster" Source="{Binding PosterImage}" Height="80" Width="56" VerticalAlignment="Center" Margin="25, 0, 50, 0"/>
+                               <!-- Title -->
                                 <StackPanel Orientation="Horizontal"  Width="300">
                                     <TextBlock Text="{Binding Title}" TextAlignment="Center" FontSize="18" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontWeight="Bold" Width="300" VerticalAlignment="Center" />
                                 </StackPanel>
-                                <ComboBox Name="cbScreeningDates" Height="25" Width="320" VerticalAlignment="Center" Margin="50, 0, 10, 0"/>
+                                <!-- Screening date picker -->
+                                <ComboBox SelectedIndex="0" ItemsSource="{Binding ScreeningDates}" Height="25" Width="320" VerticalAlignment="Center" Margin="50, 0, 10, 0" SelectionChanged="ComboBox_SelectionChanged"/>
+                                <!-- Add new screening date -->
                                 <Button x:Name="btnAddScreeningDate" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Content="{iconPacks:Material Kind=PlusBox, Height=25, Width=25}" Height="25" Width="25" Click="btnAddScreeningDate_Click"/>
-                                <TextBlock Text="{Binding Seats}" FontSize="13" Margin="50, 0, 13, 0"/>
+                                <!-- reserved / Number of seats MIGHT DELETE LATER!-->
+                                <TextBlock Text="{Binding NumberOfSeats}" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50, 0, 13, 0"/>
+                                
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <!-- More info button -->
                                     <Button x:Name="btnMoreInfo" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Height="25" Width="25" Margin="0, 0, 0, 7" Click="btnMoreInfo_Click">
                                         <Image Source="./content_src/pictures/buttons/iconInfo_HoverOFF.png"/>
                                     </Button>
+                                    <!-- Remove film button -->
                                     <Button x:Name="btnRemoveFilm" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Height="25" Width="25" Click="btnRemoveFilm_Click">
                                         <Image Source="./content_src/pictures/buttons/iconRemove_HoverOFF.png"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
-                            
+                            <!-- Gray line -->
                             <Line Stroke="Black" StrokeThickness="2" X1="0" Y1="0" X2="920" Y2="0" StrokeStartLineCap="Round" StrokeEndLineCap="Round"  Opacity="0.2" Margin="0, 25, 0, 25"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
 
             </ItemsControl>
-
+            <!-- Add new movie button -->
             <Button x:Name="btnAddMovie" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Content="{iconPacks:Material Kind=PlusBox, Height=50, Width=50}" Height="50" Width="50" Click="btnAddMovie_Click"/>
         </StackPanel>
         

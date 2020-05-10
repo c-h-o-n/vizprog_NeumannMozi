@@ -140,7 +140,7 @@ namespace NeumannMozi_WPF {
         #endregion
 
         #region DATABASE
-        // Set DataDirectory path to Project Solution path (....\NeumannMozi\)
+        // Set DataDirectory path to Project Solution path (..\..\NeumannMozi\)
         public static void SetDataDirectory() {
             var projectDir = Directory.GetParent(Directory.GetCurrentDirectory());
             projectDir = Directory.GetParent(projectDir.ToString());

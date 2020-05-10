@@ -50,30 +50,52 @@ namespace NeumannMozi_WPF {
         #endregion
 
         #region DATABASE
-        private void GetCurrentShowTimes() {
-            var query = (from x in edmNeumannMoziContainer.FilmSet
-                         join vetit in edmNeumannMoziContainer.VetitesSet on x.Id equals vetit.FilmId
-                         orderby vetit.Kezdete
-                         select new {
-                             id = x.Id,
-                             PosterImage = x.Poszter,
-                             Title = x.Cim,
-                             Director = x.Rendezo,
-                             Cast = x.Szereplok,
-                             Description = x.Leiras.Substring(0, 300) + "...", //TODO: temporary
-                             AgeRating = x.Korhatar,
-                             Length = x.Hossz,
-                             Category = x.Kategoria,
-                             ScreeningDates = vetit.Kezdete,
-                             TeremId = vetit.TeremId //többit igy hozza lehet adni vetites tablabol ha kell
-                         }).ToList();
 
-            ictrAdmin.ItemsSource = query;
+        private List<string> ScreeningDateData(int filmId) {
+            List<string> vetitString = new List<string>();
+            var currentDateTime = DateTime.Now;
+            foreach (var x in edmNeumannMoziContainer.VetitesSet) {
+                if (x.FilmId == filmId) {
+                    if (x.Kezdete > currentDateTime) {
+                        vetitString.Add(x.Kezdete.ToString());
+                    }
+                }
+            }
+            return vetitString;
         }
+        List<FilmData> filmLista = new List<FilmData>();
+        private void GetCurrentShowTimes() {
+            foreach (var x in edmNeumannMoziContainer.FilmSet) {
+                    filmLista.Add(new FilmData() {
+                        Id = x.Id,
+                        PosterImage = x.Poszter,
+                        Title = x.Cim,
+                        Director = x.Rendezo,
+                        Cast = x.Szereplok,
+                        Description = x.Leiras,
+                        AgeRating = x.Korhatar,
+                        Length = x.Hossz,
+                        Category = x.Kategoria,
+                        NumberOfSeats = 0,
+                        ScreeningDates = ScreeningDateData(x.Id),
+                    });
+            }
+
+            foreach (var filmData in filmLista) {
+                if (filmData.Description.Length > 300) {
+                    filmData.Description = filmData.Description.Substring(0, 300) + "...";
+                }
+            }
+            ictrAdmin.ItemsSource = filmLista;
+        }
+
 
         #endregion
 
-
-
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            ComboBox cb = new ComboBox();
+            cb = sender as ComboBox;
+            ictrAdmin.ItemsSource = filmLista;
+        }
     }
 }

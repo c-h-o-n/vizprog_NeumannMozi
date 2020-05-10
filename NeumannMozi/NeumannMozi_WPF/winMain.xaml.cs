@@ -31,21 +31,21 @@ namespace NeumannMozi_WPF {
              * USER LOGIN:
              * winLogin.loginAdmin = false;
              */
-            
+            winLogin.loginAdmin = true;
             winLogin.SetDataDirectory();
             InitializeComponent();
             SetNavButtons(winLogin.loginAdmin);
             SetWindow(winLogin.loginAdmin);
 
 
-            /*if (!winLogin.loginAdmin) {
+            if (!winLogin.loginAdmin) {
                 // Open showtimes on startup
                 uctShowtimes = new uctShowtimes();
                 wpCurrentContent.Children.Add(uctShowtimes);
             } else {
                 uctAdmin = new uctAdmin();
                 wpCurrentContent.Children.Add(uctAdmin);
-            }*/
+            }
 
         }
 

@@ -6,9 +6,19 @@
                 xmlns:local="clr-namespace:NeumannMozi_WPF"
                 mc:Ignorable="d"
                 d:DesignHeight="1080" d:DesignWidth="1920">
+
+    <UserControl.Resources>
+        <Style x:Key="TextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="Margin" Value="0, 0, 0, 10"/>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <!-- Current Show Times -->
-        <ItemsControl Name="ictrCurrentShowTimes" ItemsSource="{Binding}" FontSize="14" Style="{StaticResource Roboto}" Margin="0, 65, 0, 0">
+        <ItemsControl Name="ictrCurrentShowtimes" ItemsSource="{Binding}" FontSize="14" Style="{StaticResource Roboto}" Margin="0, 65, 0, 0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Orientation="Horizontal"/>
@@ -22,34 +32,39 @@
                             <DropShadowBitmapEffect Color="Black" Softness="15" ShadowDepth="0" Opacity="0.2" RenderOptions.BitmapScalingMode="Fant"/>
                         </Button.BitmapEffect>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                             <Image  x:Name="imgPoster" Source="{Binding PosterImage}" Height="330" Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Vertical" Width="280" HorizontalAlignment="Left" Margin="45, 10, 0, 0">
-                                <TextBlock Text="{Binding Title}" FontSize="26" FontWeight="Bold" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" TextAlignment="Left"/>
+                            <StackPanel Orientation="Vertical" Width="290" HorizontalAlignment="Left" Margin="25, 10, 0, 0">
+                                <!-- Title -->
+                                <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Title}" FontSize="26" FontWeight="Bold"/>
+                                <!-- Director -->
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Rendező: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Director}"/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="Rendező: " FontWeight="Bold" Margin="0"/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Director}" Margin="0"/>
                                 </StackPanel>
+                                <!-- Cast -->
                                 <WrapPanel Orientation="Horizontal">
-                                    <TextBlock Text="Szereplők: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Cast}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"  />
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="Szereplők: " FontWeight="Bold" Margin="0"/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Cast}"/>
                                 </WrapPanel>
-                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
+                                <!-- Description -->
+                                <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Description}"/>
+                                <!-- Age Rating-->
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding AgeRating}"/>
-                                    <TextBlock Text="+ | "/>
-                                    <TextBlock Text="{Binding Length}"/>
-                                    <TextBlock Text=" perc | "/>
-                                    <TextBlock Text="{Binding Category}"/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="{Binding AgeRating}"/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="+ | "/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Length}"/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text=" perc | "/>
+                                    <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Category}"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding ScreeningDates}"/>
+                                <!-- Screening Dates -->
+                                <!--<TextBlock Style="{StaticResource TextBlock}" Text="{Binding ScreeningDates,Converter={StaticResource ListToStringConverter}}" FontWeight="Bold"/>-->
                             </StackPanel>
                         </StackPanel>
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
     </Grid>
 
 </UserControl>
