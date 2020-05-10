@@ -102,6 +102,9 @@
     <Compile Include="uctShowtimes.xaml.cs">
       <DependentUpon>uctShowtimes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="winAddScreeningDate.xaml.cs">
+      <DependentUpon>winAddScreeningDate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="uctShowtimes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winAddScreeningDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

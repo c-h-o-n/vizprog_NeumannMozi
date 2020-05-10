@@ -30,17 +30,17 @@
                                 <!-- Screening date picker -->
                                 <ComboBox SelectedIndex="0" ItemsSource="{Binding ScreeningDates}" Height="25" Width="320" VerticalAlignment="Center" Margin="50, 0, 10, 0" SelectionChanged="ComboBox_SelectionChanged"/>
                                 <!-- Add new screening date -->
-                                <Button x:Name="btnAddScreeningDate" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Content="{iconPacks:Material Kind=PlusBox, Height=25, Width=25}" Height="25" Width="25" Click="btnAddScreeningDate_Click"/>
+                                <Button x:Name="btnAddScreeningDate" Tag="{Binding}" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Content="{iconPacks:Material Kind=PlusBox, Height=25, Width=25}" Height="25" Width="25" Click="btnAddScreeningDate_Click"/>
                                 <!-- reserved / Number of seats MIGHT DELETE LATER!-->
                                 <TextBlock Text="{Binding NumberOfSeats}" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50, 0, 13, 0"/>
                                 
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                     <!-- More info button -->
-                                    <Button x:Name="btnMoreInfo" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Height="25" Width="25" Margin="0, 0, 0, 7" Click="btnMoreInfo_Click">
+                                    <Button x:Name="btnMoreInfo" Tag="{Binding}" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Height="25" Width="25" Margin="0, 0, 0, 7" Click="btnMoreInfo_Click">
                                         <Image Source="./content_src/pictures/buttons/iconInfo_HoverOFF.png"/>
                                     </Button>
                                     <!-- Remove film button -->
-                                    <Button x:Name="btnRemoveFilm" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Height="25" Width="25" Click="btnRemoveFilm_Click">
+                                    <Button x:Name="btnRemoveFilm" Tag="{Binding}" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Height="25" Width="25" Click="btnRemoveFilm_Click">
                                         <Image Source="./content_src/pictures/buttons/iconRemove_HoverOFF.png"/>
                                     </Button>
                                 </StackPanel>

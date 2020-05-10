@@ -39,13 +39,29 @@ namespace NeumannMozi_WPF {
         }
 
         private void btnAddScreeningDate_Click(object sender, RoutedEventArgs e) {
-
+            //MessageBox.Show();
+            var getFilm = ((Button)sender).Tag as FilmData;
+            //MessageBox.Show(getFilm.Id.ToString());
+            winAddScreeningDate winAddScreeningDate = new winAddScreeningDate(getFilm);
+            winAddScreeningDate.Show();
         }
         private void btnMoreInfo_Click(object sender, RoutedEventArgs e) {
 
         }
         private void btnRemoveFilm_Click(object sender, RoutedEventArgs e) {
-
+            var getFilm = ((Button)sender).Tag as FilmData;
+            var msgBox = MessageBox.Show("Biztos törlöd a(z) "+getFilm.Title.ToString() + " filmet az adatbázisból?","Film törlése", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (msgBox == MessageBoxResult.Yes) {
+                var deleteRow = (from x in edmNeumannMoziContainer.FilmSet
+                                 where x.Id.Equals(getFilm.Id)
+                                 select x).FirstOrDefault();
+                edmNeumannMoziContainer.FilmSet.Remove(deleteRow);
+                edmNeumannMoziContainer.SaveChanges();// itt a hiba :(
+                MessageBox.Show("Sikeresen törölve.");
+            }
+            else {
+                MessageBox.Show("Nemre ment");
+            }
         }
         #endregion
 
