@@ -55,6 +55,14 @@ namespace NeumannMozi_WPF {
                 var deleteRow = (from x in edmNeumannMoziContainer.FilmSet
                                  where x.Id.Equals(getFilm.Id)
                                  select x).FirstOrDefault();
+
+                var deleteAllScreeningDates = (from x in edmNeumannMoziContainer.VetitesSet
+                                               where x.FilmId.Equals(getFilm.Id)
+                                               select x).ToList();
+
+                foreach (var screeningDate in deleteAllScreeningDates) {
+                    edmNeumannMoziContainer.VetitesSet.Remove(screeningDate);
+                }
                 edmNeumannMoziContainer.FilmSet.Remove(deleteRow);
                 edmNeumannMoziContainer.SaveChanges();// itt a hiba :(
                 MessageBox.Show("Sikeresen törölve.");
