@@ -113,6 +113,7 @@
             <!-- Content -->
             <ScrollViewer Grid.Row="2">
                 <WrapPanel Name="wpCurrentContent" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
             </ScrollViewer>
         </Grid>
     </Border>

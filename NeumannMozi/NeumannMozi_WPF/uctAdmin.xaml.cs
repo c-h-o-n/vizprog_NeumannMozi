@@ -68,7 +68,7 @@ namespace NeumannMozi_WPF {
                              TeremId = vetit.TeremId //többit igy hozza lehet adni vetites tablabol ha kell
                          }).ToList();
 
-            ictrCurrentShowTimes.ItemsSource = query;
+            ictrAdmin.ItemsSource = query;
         }
 
         #endregion

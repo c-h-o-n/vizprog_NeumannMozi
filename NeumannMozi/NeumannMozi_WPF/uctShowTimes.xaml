@@ -9,20 +9,19 @@
     <Grid>
         <!-- Current Show Times -->
         <ItemsControl Name="ictrCurrentShowTimes" ItemsSource="{Binding}" FontSize="14" Style="{StaticResource Roboto}" Margin="0, 65, 0, 0">
-            
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource FilmCardTheme}" x:Name="btnFilmCard" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="btnFilmCard_Click">
+                    <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource FilmCardTheme}" x:Name="btnFilmCard" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="btnFilmCard_Click">
                         <Button.BitmapEffect>
                             <DropShadowBitmapEffect Color="Black" Softness="15" ShadowDepth="0" Opacity="0.2" RenderOptions.BitmapScalingMode="Fant"/>
                         </Button.BitmapEffect>
-                        
+
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Image  x:Name="imgPoster" Source="{Binding PosterImage}" Height="330" Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <StackPanel Orientation="Vertical" Width="280" HorizontalAlignment="Left" Margin="45, 10, 0, 0">
@@ -49,7 +48,6 @@
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-
         </ItemsControl>
 
     </Grid>

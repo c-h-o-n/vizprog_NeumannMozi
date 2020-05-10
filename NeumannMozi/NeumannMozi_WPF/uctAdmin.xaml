@@ -10,7 +10,7 @@
                 Background="White">
     <Grid>
         <StackPanel Orientation="Vertical" Margin="0, 0, 0, 15">
-            <ItemsControl Name="ictrCurrentShowTimes" ItemsSource="{Binding}" FontSize="14" Style="{StaticResource Roboto}" Margin="0, 15, 0, 0">
+            <ItemsControl Name="ictrAdmin" ItemsSource="{Binding}" FontSize="14" Style="{StaticResource Roboto}" Margin="0, 15, 0, 0">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>

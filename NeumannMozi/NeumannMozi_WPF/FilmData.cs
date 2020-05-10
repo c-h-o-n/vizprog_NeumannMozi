@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NeumannMozi_WPF {
-    class FilmData {
+    public class FilmData {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Director { get; set; }
@@ -15,7 +16,7 @@ namespace NeumannMozi_WPF {
         public int AgeRating { get; set; }
         public string TrailerLink { get; set; }
         public string ImdbLink { get; set; }
-        public string PosterLink { get; set; }
+        public byte[] PosterImage { get; set; }
         public string Category { get; set; }
     }
 }
