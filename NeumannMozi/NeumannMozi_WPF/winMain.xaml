@@ -6,10 +6,10 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:NeumannMozi_WPF"
         mc:Ignorable="d"
-        Title="Neumann Mozi" MinHeight="400" MinWidth="800" 
+        Title="Neumann Mozi" MinHeight="560" MinWidth="400" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        WindowState="Maximized"
+        WindowState="Normal"
         ResizeMode="CanResize"
         StateChanged="Window_StateChanged">
     
@@ -23,11 +23,11 @@
             <Style TargetType="{x:Type Border}">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" 
-                                 Value="Maximized">
+                                    Value="Maximized">
                         <Setter Property="Margin" Value="5"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" 
-                                 Value="Normal">
+                                    Value="Normal">
                         <Setter Property="Margin" Value="0"/>
                     </DataTrigger>
                 </Style.Triggers>
@@ -37,40 +37,85 @@
         <!-- Grid -->
         <Grid>
         
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <Grid.Background>
-            <SolidColorBrush Color="White"/>
-        </Grid.Background>
+            <Grid.Background>
+                <SolidColorBrush Color="White"/>
+            </Grid.Background>
         
 
-        <!-- Window Chrome -->
-        <Border Grid.Row="0" Height="35" Width="{Binding}" Background="#E4E4E4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize"  Margin="0, 4, 5, 0" Click="btnMinimize_Click">
-                    <iconPacks:PackIconMaterial Kind="WindowMinimize" Width="15" Height="15"/>
-                </Button>
-                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource ChangeWindowState}" x:Name="btnSizeState" Margin="0, 4, 5, 0" Click="btnSizeState_Click"/>
-                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}"  x:Name="btnExit" Margin="0, 4, 10, 0" Click="btnExit_Click">
-                    <iconPacks:PackIconMaterial Kind="WindowClose" Width="15" Height="15"/>
-                </Button>
-            </StackPanel>
-        </Border>
+            <!-- Window Chrome -->
+            <Border Grid.Row="0" Height="35" Width="{Binding}" Background="#E4E4E4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize"  Margin="0, 4, 5, 0" Click="btnMinimize_Click">
+                        <iconPacks:PackIconMaterial Kind="WindowMinimize" Width="15" Height="15"/>
+                    </Button>
+                    <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource ChangeWindowState}" x:Name="btnSizeState" Margin="0, 4, 5, 0" Click="btnSizeState_Click"/>
+                    <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}"  x:Name="btnExit" Margin="0, 4, 10, 0" Click="btnExit_Click">
+                        <iconPacks:PackIconMaterial Kind="WindowClose" Width="15" Height="15"/>
+                    </Button>
+                </StackPanel>
+            </Border>
         
-        <!-- Nav menu -->
-        <Border Grid.Row="1" Background="#bd1222">
-            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Button x:Name="btnShowTimes" Content="Műsor" Height="40" Width="40" Click="btnShowTimes_Click"/>
-            </StackPanel>
-        </Border>
+                <!-- Nav menu -->
+                <Border Grid.Row="1" Background="#bd1222">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <!-- Logo -->
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnLogo" Height="50" Width="50" Background="#830C0C" BorderThickness="0" Margin="20, 0, 25, 0">
+                            <Button.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Softness="15" ShadowDepth="0" Opacity="0.7" />
+                            </Button.BitmapEffect>
+
+                            <Image Source="./content_src/pictures/logo.png">
+                                <Image.Effect>
+                                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0" Opacity="0.2"/>
+                                </Image.Effect>
+                            </Image>
+                        </Button>
+                        <!-- Line -->
+                    <Line Stroke="Black" StrokeThickness="2" X1="0" Y1="0" X2="0" Y2="60" StrokeStartLineCap="Round" StrokeEndLineCap="Round"  Opacity="0.2" Margin="0, 0, 25, 0"/>
+                    
+                        
+                    <!-- Current Showtimes-->
+                    <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnShowTimes" Click="btnShowTimes_Click">
+                        <Image Source="./content_src/pictures/buttons/iconShowtimes.png"/>
+                    </Button>
+                    <!-- User Nav Buttons-->
+                    <StackPanel x:Name="spUserNavButtons" Orientation="Horizontal">
+                        <!-- My Tickets -->
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnMyTickets" Click="btnMyTickets_Click">
+                            <Image Source="./content_src/pictures/buttons/iconMyTickets.png"/>
+                        </Button>
+                        <!-- About Theatre -->
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnAboutTheatre" Click="btnAboutTheatre_Click">
+                            <Image Source="./content_src/pictures/buttons/iconAboutTheatre.png"/>
+                        </Button>
+                        <!-- Settings -->
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnSettings" Click="btnSettings_Click">
+                            <Image Source="./content_src/pictures/buttons/iconSettings.png"/>
+                        </Button>
+                    </StackPanel>
+                        
+                    <!-- Admin Nav Buttons -->
+                    <StackPanel x:Name="spAdminNavButtons" Orientation="Horizontal">
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnStatistics" Click="btnStatistics_Click">
+                            <Image Source="./content_src/pictures/buttons/iconStatistics.png"/>
+                        </Button>
+                    </StackPanel>
+                        
+                </StackPanel>
+                </Border>
+
+            <!-- Content -->
             <ScrollViewer Grid.Row="2">
-                <WrapPanel Name="wpCurrentContent" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                <WrapPanel Name="wpCurrentContent" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
             </ScrollViewer>
-    </Grid>
+        </Grid>
     </Border>
 
 </Window>

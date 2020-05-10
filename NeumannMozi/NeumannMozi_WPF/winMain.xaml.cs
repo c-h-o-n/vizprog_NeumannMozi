@@ -16,10 +16,14 @@ namespace NeumannMozi_WPF {
     /// <summary>
     /// Interaction logic for winMain.xaml
     /// </summary>
+    /// 
+
     public partial class winMain : Window {
+        public WrapPanel PnlContainer {
+            get { return wpCurrentContent; }
+            set { wpCurrentContent = value; }
+        }
         public winMain() {
-
-
             /*
              * ADMIN LOGIN:
              * winLogin.loginAdmin = true;
@@ -27,52 +31,62 @@ namespace NeumannMozi_WPF {
              * USER LOGIN:
              * winLogin.loginAdmin = false;
              */
+            
             winLogin.SetDataDirectory();
             InitializeComponent();
-            if (!winLogin.loginAdmin) {
+            SetNavButtons(winLogin.loginAdmin);
+            SetWindow(winLogin.loginAdmin);
+
+
+            /*if (!winLogin.loginAdmin) {
                 // Open showtimes on startup
-                uctShowTimes = new uctShowTimes();
-                wpCurrentContent.Children.Add(uctShowTimes);
+                uctShowtimes = new uctShowtimes();
+                wpCurrentContent.Children.Add(uctShowtimes);
             } else {
                 uctAdmin = new uctAdmin();
                 wpCurrentContent.Children.Add(uctAdmin);
-            }
+            }*/
+
         }
 
 
         #region CORE_VARIABLES
-        private uctShowTimes uctShowTimes;
+        private uctShowtimes uctShowtimes;
         private uctAdmin uctAdmin;
         #endregion
         #region BUTTON_CLICK_EVENTS
 
-            #region WINDOW
-            private void btnExit_Click(object sender, RoutedEventArgs e) {
-                App.Current.Shutdown();
+        #region WINDOW
+        private void btnExit_Click(object sender, RoutedEventArgs e) {
+            App.Current.Shutdown();
+        }
+        private void btnSizeState_Click(object sender, RoutedEventArgs e) {
+            if (this.WindowState == WindowState.Normal) {
+                this.WindowState = WindowState.Maximized;
+            } else {
+                this.WindowState = WindowState.Normal;
             }
-            private void btnSizeState_Click(object sender, RoutedEventArgs e) {
-                if (this.WindowState == WindowState.Normal) {
-                    this.WindowState = WindowState.Maximized;
-                } else {
-                    this.WindowState = WindowState.Normal;
-                }
-            }
-            private void btnMinimize_Click(object sender, RoutedEventArgs e) {
-                WindowState = WindowState.Minimized;
-            }
-            #endregion
+        }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Minimized;
+        }
+        #endregion
 
-            #region NAV_MENU
-            private void btnShowTimes_Click(object sender, RoutedEventArgs e) {
+        #region NAV_MENU
+        private void btnShowTimes_Click(object sender, RoutedEventArgs e) {
             // TODO: && !winLogin.loginAdmin protection should define in xaml
-            if (!wpCurrentContent.Children.Contains(uctShowTimes) && !winLogin.loginAdmin) {
-                    wpCurrentContent.Children.Clear();
-                    uctShowTimes = new uctShowTimes();
-                    wpCurrentContent.Children.Add(uctShowTimes);
-                }
-            }
-            #endregion
 
+            if (!wpCurrentContent.Children.Contains(uctShowtimes) && !winLogin.loginAdmin) {
+                wpCurrentContent.Children.Clear();
+                uctShowtimes = new uctShowtimes();
+                wpCurrentContent.Children.Add(uctShowtimes);
+            } else if (!wpCurrentContent.Children.Contains(uctAdmin) && winLogin.loginAdmin) {
+                wpCurrentContent.Children.Clear();
+                uctAdmin = new uctAdmin();
+                wpCurrentContent.Children.Add(uctAdmin);
+            }
+        }
+        #endregion
         #endregion
 
         #region BUG_FIXING
@@ -81,7 +95,41 @@ namespace NeumannMozi_WPF {
             WindowStyle = WindowStyle.SingleBorderWindow;
             WindowStyle = WindowStyle.None;
         }
+
         #endregion
+
+        private void btnMyTickets_Click(object sender, RoutedEventArgs e) {
+            wpCurrentContent.Children.Clear();
+        }
+
+        private void btnAboutTheatre_Click(object sender, RoutedEventArgs e) {
+            wpCurrentContent.Children.Clear();
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e) {
+            wpCurrentContent.Children.Clear();
+        }
+        private void btnStatistics_Click(object sender, RoutedEventArgs e) {
+            wpCurrentContent.Children.Clear();
+        }
+
+        private void SetNavButtons(bool isAdmin) {
+            if (isAdmin) {
+                spUserNavButtons.Children.Clear();
+            } else {
+                spAdminNavButtons.Children.Clear();
+            }
+        }
+
+        private void SetWindow(bool isAdmin) {
+            if (isAdmin) {
+                this.Height = 700;
+                this.Width = 100;
+                this.MinHeight = 700;
+                this.MinWidth = 1000;
+            }
+            
+        }
 
 
     }

@@ -23,6 +23,9 @@
             <Setter Property="TextElement.FontFamily"
                     Value="./content_src/fonts/#Roboto"/>
         </Style>
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant"/>
+        </Style>
         <!-- Add button theme resources -->
         <ResourceDictionary x:Key="ButtonTheme">
             <ResourceDictionary.MergedDictionaries>

@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -65,6 +68,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -83,6 +89,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="uctReservation.xaml.cs">
+      <DependentUpon>uctReservation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="winAddFilm.xaml.cs">
       <DependentUpon>winAddFilm.xaml</DependentUpon>
     </Compile>
@@ -90,12 +99,16 @@
     <Compile Include="uctAdmin.xaml.cs">
       <DependentUpon>uctAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="uctShowTimes.xaml.cs">
-      <DependentUpon>uctShowTimes.xaml</DependentUpon>
+    <Compile Include="uctShowtimes.xaml.cs">
+      <DependentUpon>uctShowtimes.xaml</DependentUpon>
     </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>
     </Compile>
+    <Page Include="uctReservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="winAddFilm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,7 +121,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="uctShowTimes.xaml">
+    <Page Include="uctShowtimes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,7 +196,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="content_src\pictures\posters\" />
+    <Resource Include="content_src\pictures\buttons\iconMyTickets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconShowtimes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconAboutTheatre.png" />
+    <Resource Include="content_src\pictures\buttons\iconSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconInfo_HoverOFF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconRemove_HoverOFF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\buttons\iconStatistics.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

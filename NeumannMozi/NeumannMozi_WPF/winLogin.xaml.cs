@@ -31,6 +31,7 @@ namespace NeumannMozi_WPF {
         // Databse object
         private edmNeumannMoziContainer edmNeumannMoziContainer;
         // Login data
+        
         public static string loginUserName;
         public static bool loginAdmin;
         #endregion

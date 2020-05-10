@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NeumannMozi_WPF {
-    class FilmData {
+    public class FilmData {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Director { get; set; }
