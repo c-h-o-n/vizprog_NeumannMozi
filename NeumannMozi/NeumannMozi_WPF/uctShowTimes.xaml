@@ -27,6 +27,7 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
+                    <!-- Film Card -->
                     <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource FilmCardTheme}" x:Name="btnFilmCard" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="btnFilmCard_Click">
                         <Button.BitmapEffect>
                             <DropShadowBitmapEffect Color="Black" Softness="15" ShadowDepth="0" Opacity="0.2" RenderOptions.BitmapScalingMode="Fant"/>

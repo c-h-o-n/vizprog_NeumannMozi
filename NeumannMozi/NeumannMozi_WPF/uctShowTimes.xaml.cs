@@ -19,16 +19,30 @@ namespace NeumannMozi_WPF {
     /// Interaction logic for uctShowTimes.xaml
     /// </summary>
     public partial class uctShowtimes : UserControl {
-        public edmNeumannMoziContainer edmNeumannMoziContainer;
-        private uctReservation nextScreen;
         public uctShowtimes() {
             // Create edm(database) object
             edmNeumannMoziContainer = new edmNeumannMoziContainer();
             InitializeComponent();
-
             GetCurrentShowTimes();
         }
 
+        #region CORE_VARIABLES
+        private edmNeumannMoziContainer edmNeumannMoziContainer;
+        #endregion
+
+        #region BUTTON_CLICK_EVENTS
+        private void btnFilmCard_Click(object sender, RoutedEventArgs e) {
+            Button b = sender as Button;
+
+            // Open ticket reservation screen
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctReservation(b));
+            ((winMain)Application.Current.MainWindow).svContent.ScrollToTop();
+
+        }
+        #endregion
+
+        #region DATABASE
         private List<string> ScreeningDateData(int filmId) {
             List<string> vetitString = new List<string>();
             int dateCounter = 0;
@@ -46,16 +60,6 @@ namespace NeumannMozi_WPF {
             }
             return vetitString;
         }
-
-        private string GetRoomName(int teremId) {
-            foreach (var x in edmNeumannMoziContainer.TeremSet) {
-                if (x.Id == teremId) {
-                    return x.Nev;
-                }
-            }
-            return null;
-        }
-
         private void GetCurrentShowTimes() {
 
             var filmLista = new List<FilmData>();
@@ -85,16 +89,9 @@ namespace NeumannMozi_WPF {
             ictrCurrentShowtimes.ItemsSource = filmLista;
             
         }
+        #endregion
 
-        private void btnFilmCard_Click(object sender, RoutedEventArgs e) {
-            Button b = sender as Button;
 
-            // Open ticket reservation screen
-            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
-            nextScreen = new uctReservation(b);
-            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(nextScreen);
-
-        }
     }
 
 }

@@ -21,30 +21,46 @@ namespace NeumannMozi_WPF {
             InitializeComponent();
         }
 
+        #region CORE_VARIABLES
+        edmNeumannMoziContainer MoziC = new edmNeumannMoziContainer();
+        #endregion
+
+        #region BUTTON_CLICK_EVENTS
+        // Choose poster image
         private void btnAddImage_Click(object sender, RoutedEventArgs e) {
             // Get image from file dialog
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = " Képek |*.jpg;*.png|Minden|*.*";
             Nullable<bool> result = dialog.ShowDialog();
             if (result == true) {
-                //var img = File.ReadAllBytes(dialog.FileName);
                 txtPosterImagePath.Text = dialog.FileName.ToString();
             }
-            //TODO: insert data to Filmset
+            
         }
-
-        edmNeumannMoziContainer MoziC = new edmNeumannMoziContainer();
+        // Insert new film into DB
         private void btnSend_Click(object sender, RoutedEventArgs e) {
+            InsertFilmIntoDB();
 
+            // Close film adding window
+            this.Close();
+            // Reload wrappanel's content in winMain
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
+            ((winMain)Application.Current.MainWindow).svContent.ScrollToBottom();
+        }
+        #endregion
+
+        #region DATABASE
+        private void InsertFilmIntoDB() {
             byte[] bytes = null;
             try {
                 int n = Int32.Parse(txtLength.Text);
                 bytes = File.ReadAllBytes(txtPosterImagePath.Text);
-            }
-            catch (Exception) {// ha nem számot ír a hosszhoz // nem lehet a fájlt feldolgozni
+            } catch (Exception) {// ha nem számot ír a hosszhoz // nem lehet a fájlt feldolgozni
                 MessageBox.Show("Hibás adatok!");
                 return;
             }
+
             var filmInsert = new Film {
                 Cim = txtTitle.Text,
                 Rendezo = txtDirector.Text,
@@ -59,12 +75,7 @@ namespace NeumannMozi_WPF {
             };
             MoziC.FilmSet.Add(filmInsert);
             MoziC.SaveChanges();
-
-            // Close film adding window
-            this.Close();
-            // Reload wrappanel's content in winMain
-            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
-            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
         }
+        #endregion
     }
 }

@@ -21,11 +21,15 @@ namespace NeumannMozi_WPF {
         public winAddScreeningDate(FilmData value) {
             InitializeComponent();
             this.passedFilm = value;
-            lblTitle.Content = "Vetítés hozzáadása: "+passedFilm.Title;
+            tbTitle.Text = "Vetítés hozzáadása\n" + passedFilm.Title;
         }
-        public FilmData passedFilm { get; set; }
 
-        edmNeumannMoziContainer MoziC = new edmNeumannMoziContainer();
+        #region CORE_VARIABLES
+        public FilmData passedFilm { get; set; }
+        private edmNeumannMoziContainer MoziC = new edmNeumannMoziContainer();
+        #endregion
+
+        #region BUTTON_CLICK_EVENTS
         private void btnConfirmScreeningDate_Click(object sender, RoutedEventArgs e) {
             try {
                 var newDate = DateTime.Parse(txtNewScreeningDate.Text);
@@ -46,5 +50,6 @@ namespace NeumannMozi_WPF {
                 return;
             }
         }
+        #endregion
     }
 }

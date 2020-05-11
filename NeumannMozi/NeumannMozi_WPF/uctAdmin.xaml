@@ -52,7 +52,8 @@
                 </ItemsControl.ItemTemplate>
 
             </ItemsControl>
-            <!-- Add new movie button -->
+            
+            <!-- Add new film button -->
             <Button x:Name="btnAddMovie" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource AddButtonTheme}" Content="{iconPacks:Material Kind=PlusBox, Height=50, Width=50}" Height="50" Width="50" Click="btnAddMovie_Click"/>
         </StackPanel>
         

@@ -30,7 +30,6 @@ namespace NeumannMozi_WPF {
             private edmNeumannMoziContainer edmNeumannMoziContainer;
         #endregion
 
-
         #region BUTTON_CLICK_EVENTS
         private void btnAddMovie_Click(object sender, RoutedEventArgs e) {
             btnAddMovie.IsEnabled = false;
@@ -43,7 +42,9 @@ namespace NeumannMozi_WPF {
             var getFilm = ((Button)sender).Tag as FilmData;
             //MessageBox.Show(getFilm.Id.ToString());
             winAddScreeningDate winAddScreeningDate = new winAddScreeningDate(getFilm);
+            winAddScreeningDate.Owner = Window.GetWindow(this);
             winAddScreeningDate.Show();
+            
         }
         private void btnMoreInfo_Click(object sender, RoutedEventArgs e) {
 
@@ -117,17 +118,16 @@ namespace NeumannMozi_WPF {
 
         #endregion
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var getFilm = ((ComboBox)sender).Tag as FilmData;
-            Console.WriteLine(getFilm.Title);
-            ComboBox cb = new ComboBox();
-            ictrAdmin.ItemsSource = filmLista;
-        }
-
-
+        #region MISC
         private void ReloadScreen() {
             ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
             ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
         }
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var getFilm = ((ComboBox)sender).Tag as FilmData;
+            ComboBox cb = new ComboBox();
+            ictrAdmin.ItemsSource = filmLista;
+        }
+        #endregion
     }
 }

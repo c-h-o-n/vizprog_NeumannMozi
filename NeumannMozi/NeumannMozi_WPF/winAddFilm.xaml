@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NeumannMozi_WPF"
         mc:Ignorable="d"
-        Title="AddFilm" Height="450" Width="450"
-        WindowStartupLocation="CenterScreen"
+        Title="Új film felvétele" Height="450" Width="450"
+        WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
 
     <Window.Resources>
@@ -81,8 +81,9 @@
                 <TextBox x:Name="txtPosterImagePath"/>
                 <Button x:Name="btnAddImage" Content=".." Margin="10, 0, 0, 0" Width="25" Height="25" Click="btnAddImage_Click"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="btnSend" Content="Film hozzáadása" Margin="10, 0, 0, 0" Width="200" Height="25" Click="btnSend_Click"/>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 25, 0, 0">
+                <Button x:Name="btnSend" Content="Film felvétele" Margin="10, 0, 0, 0" Width="200" Height="25" Click="btnSend_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

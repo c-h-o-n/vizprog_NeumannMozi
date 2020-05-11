@@ -6,7 +6,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:NeumannMozi_WPF"
         mc:Ignorable="d"
-        Title="Neumann Mozi" MinHeight="560" MinWidth="400" 
+        Title="Neumann Mozi" MinHeight="560" MinWidth="800" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         WindowState="Normal"
@@ -111,7 +111,7 @@
                 </Border>
 
             <!-- Content -->
-            <ScrollViewer Grid.Row="2">
+            <ScrollViewer x:Name="svContent" Grid.Row="2">
                 <WrapPanel Name="wpCurrentContent" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
             </ScrollViewer>

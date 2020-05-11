@@ -24,7 +24,6 @@ namespace NeumannMozi_WPF {
 
             SetDataDirectory();
             InitializeComponent();
-            
         }
 
         #region CORE_VARIABLES
@@ -150,8 +149,8 @@ namespace NeumannMozi_WPF {
         }
         #endregion
 
-
-        // Password encryption(md5hash)
+        #region MISC
+        // Password encryption(/w md5hash)
         private static string GetMd5Hash(MD5 md5Hash, string input) {
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
             StringBuilder sBuilder = new StringBuilder();
@@ -160,5 +159,6 @@ namespace NeumannMozi_WPF {
             }
             return sBuilder.ToString();
         }
+        #endregion
     }
 }
