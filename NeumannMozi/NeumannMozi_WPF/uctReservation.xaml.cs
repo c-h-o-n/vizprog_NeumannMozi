@@ -139,7 +139,11 @@ namespace NeumannMozi_WPF {
                     seatCounter++;
                     Button addSeat = new Button();
                     addSeat.Content = seatCounter.ToString();
-                    addSeat.Style = Resources["SeatButtonTheme"] as Style;
+                    ResourceDictionary myResourceDictionary = new ResourceDictionary();
+                    myResourceDictionary.Source = new Uri("ButtonTheme.xaml", UriKind.Relative);
+                    Application.Current.Resources.MergedDictionaries.Add(myResourceDictionary);
+                    addSeat.Resources = myResourceDictionary;
+                    addSeat.Style = (Style)FindResource("SeatButtonTheme");
                     addSeat.Name = "btnSeat" + seatCounter.ToString();
                     addSeat.Click += AddSeat_Click;
                     wpSeats.Children.Add(addSeat);
