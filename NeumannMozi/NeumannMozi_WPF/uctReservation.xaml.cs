@@ -145,7 +145,7 @@ namespace NeumannMozi_WPF {
         #region MISC
         private void GetRoomFromXml() {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(@"C:\Users\Soma\Desktop\vizGit\NeumannMozi\NeumannMozi_WPF\mozi_termek.xml");
+            xmlDoc.Load("./../../mozi_termek.xml");
             foreach (XmlNode node in xmlDoc.DocumentElement) {
                 roomDatas.Add(new RoomData {
                     Id = int.Parse(node["terem_id"].InnerText),
@@ -238,6 +238,7 @@ namespace NeumannMozi_WPF {
                     GenerateSeats(x.Rows, x.Columns);
                 }
             }
+            
         }
 
         #endregion

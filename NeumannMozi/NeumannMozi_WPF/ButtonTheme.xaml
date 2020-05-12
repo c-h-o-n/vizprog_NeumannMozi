@@ -148,6 +148,26 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <!-- Send reservation button -->
+    <Style  x:Key="SendReservationTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource RoundedRedButtonTheme}">
+        <Setter Property="Height" Value="75"/>
+        <Setter Property="Width" Value="305"/>
+        <Setter Property="FontSize" Value="33"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="0, 50, 0, 50"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="40">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!-- Add screening date theme-->
     <!-- More info theme -->
     
