@@ -68,7 +68,7 @@
                 <UniformGrid Rows="{Binding}" Columns="{Binding}" Name="wpSeats" HorizontalAlignment="Stretch">
                     
                 </UniformGrid>
-                <Button x:Name="btnSendReservation" Content="Jegyfoglalás"/>
+                <Button x:Name="btnSendReservation" Content="Jegyfoglalás" Click="btnSendReservation_Click"/>
             </WrapPanel>
         </WrapPanel>
         </ItemsControl>

@@ -89,6 +89,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ReservationSet.cs" />
     <Compile Include="RoomData.cs" />
     <Compile Include="Seat.cs" />
     <Compile Include="uctReservation.xaml.cs">
