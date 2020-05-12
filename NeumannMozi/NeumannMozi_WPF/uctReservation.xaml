@@ -1,4 +1,4 @@
-﻿    <UserControl x:Class="NeumannMozi_WPF.uctReservation"
+﻿<UserControl x:Class="NeumannMozi_WPF.uctReservation"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,60 +16,64 @@
         </Style>
 
     </UserControl.Resources>
-        
-    <ItemsControl>
-            <WrapPanel Orientation="Horizontal">
-                <!-- Film Card 01-->
-                <WrapPanel Name="wpFilmCard1" Margin="70, 70, 0, 0"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
 
-                        <Image  x:Name="imgPoster" Source="{Binding PosterImage}" Height="660" Width="460" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <StackPanel Orientation="Vertical" Width="520" HorizontalAlignment="Left" Margin="25, 10, 0, 0">
-                            <!-- Title -->
-                            <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Title}" FontSize="46" FontWeight="Bold"/>
-                            <!-- Director -->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource TextBlock}" Text="Rendező: " FontWeight="Bold" Margin="0"/>
-                                <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Director}" Margin="0"/>
-                            </StackPanel>
-                            <!-- Cast -->
-                            <WrapPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource TextBlock}" Text="Szereplők: " FontWeight="Bold" Margin="0"/>
-                                <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Cast}"/>
-                            </WrapPanel>
-                            <!-- Description -->
-                            <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Description}"/>
-                            <!-- Age Rating-->
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource TextBlock}" Text="{Binding AgeRating}"/>
-                                <TextBlock Style="{StaticResource TextBlock}" Text="+ | "/>
-                                <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Length}"/>
-                                <TextBlock Style="{StaticResource TextBlock}" Text=" perc | "/>
-                                <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Category}"/>
-                            </StackPanel>
-                        </StackPanel>
+    <WrapPanel HorizontalAlignment="Center">
+        <!-- Film Card 01-->
+        <StackPanel Background="Orange" Name="wpFilmCard1" Margin="70, 70, 0, 0"  HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+
+                <Image  x:Name="imgPoster" Source="{Binding PosterImage}" Height="660" Width="460" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Vertical" Width="520" HorizontalAlignment="Left" Margin="25, 10, 0, 0">
+                    <!-- Title -->
+                    <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Title}" FontSize="46" FontWeight="Bold"/>
+                    <!-- Director -->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextBlock}" Text="Rendező: " FontWeight="Bold" Margin="0"/>
+                        <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Director}" Margin="0"/>
                     </StackPanel>
-                </WrapPanel>
-                
-                    <!-- Film Card 02-->
-            <WrapPanel Name="wpFilmCard2" Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Stretch"  Margin="20, 20, 0, 0">
-                        <Image x:Name="videoPlaceholder" Source="./content_src/pictures/video_placholder.png" Height="450" Width="800"/>
-                        <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource GenericTheme}" x:Name="btnImdb" Height="50" Width="100" HorizontalAlignment="Left" Margin="0, 40, 0, 45">
-                            <Image Source="./content_src/pictures/imdb_logo.png"/>
-                        </Button>
-                <ComboBox Name="cbScreeningDates" ItemsSource="{Binding ComboBoxSource}" SelectedIndex="0" FontSize="26" Padding="15, 0, 0, 0" VerticalContentAlignment="Center" Height="50" Width="550" HorizontalAlignment="Left" Margin="0, 50, 0, 0" SelectionChanged="cbScreeningDates_SelectionChanged"/>
+                    <!-- Cast -->
+                    <WrapPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextBlock}" Text="Szereplők: " FontWeight="Bold" Margin="0"/>
+                        <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Cast}"/>
                     </WrapPanel>
+                    <!-- Description -->
+                    <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Description}"/>
+                    <!-- Age Rating-->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextBlock}" Text="{Binding AgeRating}"/>
+                        <TextBlock Style="{StaticResource TextBlock}" Text="+ | "/>
+                        <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Length}"/>
+                        <TextBlock Style="{StaticResource TextBlock}" Text=" perc | "/>
+                        <TextBlock Style="{StaticResource TextBlock}" Text="{Binding Category}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
 
+        <!-- Film Card 02-->
+        <StackPanel Background="Blue" Name="wpFilmCard2" Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Stretch"  Margin="20, 20, 0, 0">
+            <Image x:Name="videoPlaceholder" Source="./content_src/pictures/video_placholder.png" Height="450" Width="800"/>
+            <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource GenericTheme}" x:Name="btnImdb" Height="50" Width="100" HorizontalAlignment="Left" Margin="0, 40, 0, 45">
+                <Image Source="./content_src/pictures/imdb_logo.png"/>
+            </Button>
+            <ComboBox Name="cbScreeningDates" ItemsSource="{Binding ComboBoxSource}" SelectedIndex="0" FontSize="26" Padding="15, 0, 0, 0" VerticalContentAlignment="Center" Height="50" Width="550" HorizontalAlignment="Left" Margin="0, 50, 0, 0" SelectionChanged="cbScreeningDates_SelectionChanged"/>
+        </StackPanel>
+        <Grid Background="Purple" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Background="Lime" HorizontalAlignment="Center" Orientation="Vertical">
+                <UniformGrid Rows="{Binding}" Columns="{Binding}" x:Name="wpSeats" HorizontalAlignment="Center"/>
+                <Line X1="0" Y1="0" X2="715" Y2="0" Stroke="#707070" StrokeThickness="3" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" Opacity="0.3" Margin="0, 47, 0, 0" />
+                <Button x:Name="btnSendReservation" Content="Rendben" HorizontalAlignment="Center" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource SendReservationTheme}"/>
+            </StackPanel>
 
+        </Grid>
 
+        <!-- Reservation Panel-->
 
-                    <!-- Reservation Panel-->
-            <WrapPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="15, 15, 0, 0">
-                <UniformGrid Rows="{Binding}" Columns="{Binding}" Name="wpSeats" HorizontalAlignment="Stretch">
-                    
-                </UniformGrid>
-                <Button x:Name="btnSendReservation" Content="Jegyfoglalás"/>
-            </WrapPanel>
-        </WrapPanel>
-        </ItemsControl>
-    </UserControl>
+    </WrapPanel>
+</UserControl>

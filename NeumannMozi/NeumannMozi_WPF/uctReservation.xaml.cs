@@ -167,6 +167,7 @@ namespace NeumannMozi_WPF {
                     GenerateSeats(x.Rows, x.Columns);
                 }
             }
+            
         }
         #endregion
 
