@@ -124,6 +124,7 @@ namespace NeumannMozi_WPF {
                                 Name = node.Attributes[0].Value,
                                 Rows = int.Parse(node["sor"].InnerText),
                                 Columns = int.Parse(node["oszlop"].InnerText)
+                                
                  });
             }
         }
