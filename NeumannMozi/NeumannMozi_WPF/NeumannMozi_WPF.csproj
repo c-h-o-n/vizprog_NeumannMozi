@@ -89,6 +89,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RoomData.cs" />
+    <Compile Include="Seat.cs" />
     <Compile Include="uctReservation.xaml.cs">
       <DependentUpon>uctReservation.xaml</DependentUpon>
     </Compile>
@@ -220,6 +222,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="content_src\pictures\buttons\iconStatistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\video_placholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content_src\pictures\imdb_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="mozi_termek.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

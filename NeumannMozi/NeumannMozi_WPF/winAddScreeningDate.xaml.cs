@@ -19,14 +19,16 @@ namespace NeumannMozi_WPF {
     /// </summary>
     public partial class winAddScreeningDate : Window {
         public winAddScreeningDate(FilmData value) {
+            edmNeumannMoziContainer = new edmNeumannMoziContainer();
             InitializeComponent();
+            GetRoomName();
             this.passedFilm = value;
             tbTitle.Text = "Vetítés hozzáadása\n" + passedFilm.Title;
         }
 
         #region CORE_VARIABLES
         public FilmData passedFilm { get; set; }
-        private edmNeumannMoziContainer MoziC = new edmNeumannMoziContainer();
+        private edmNeumannMoziContainer edmNeumannMoziContainer;
         #endregion
 
         #region BUTTON_CLICK_EVENTS
@@ -36,11 +38,11 @@ namespace NeumannMozi_WPF {
                 //MessageBox.Show(passedFilm.Id.ToString());
                 var vetitInsert = new Vetites {
                     Kezdete = newDate,
-                    TeremId = 1,
+                    TeremId = GetSelectedRoomId(),
                     FilmId = passedFilm.Id
                 };
-                MoziC.VetitesSet.Add(vetitInsert);
-                MoziC.SaveChanges();
+                edmNeumannMoziContainer.VetitesSet.Add(vetitInsert);
+                edmNeumannMoziContainer.SaveChanges();
                 this.Close();
                 ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
                 ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
@@ -51,5 +53,28 @@ namespace NeumannMozi_WPF {
             }
         }
         #endregion
+
+        #region DATABASE
+        private void GetRoomName() {
+            var query = (from x in edmNeumannMoziContainer.TeremSet
+                         select x.Nev).ToList();
+            cbRoomName.ItemsSource = query;
+        }
+        #endregion
+
+        private void cbRoomName_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            Console.WriteLine();
+            ComboBox cb = sender as ComboBox;
+            RoomData room = new RoomData();
+            Console.WriteLine(cb.SelectedValue);
+        }
+        private int GetSelectedRoomId() {
+            foreach (var x in edmNeumannMoziContainer.TeremSet) {
+                if (x.Nev == cbRoomName.SelectedItem.ToString()) {
+                    return x.Id;
+                }
+            }
+            return -1;
+        }
     }
 }

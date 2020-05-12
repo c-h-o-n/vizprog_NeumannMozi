@@ -32,18 +32,18 @@ namespace NeumannMozi_WPF {
 
         #region BUTTON_CLICK_EVENTS
         private void btnFilmCard_Click(object sender, RoutedEventArgs e) {
-            Button b = sender as Button;
-
+            FilmData ClickedFilm = ((Button)sender).Tag as FilmData;
             // Open ticket reservation screen
             ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
-            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctReservation(b));
+            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctReservation(ClickedFilm));
             ((winMain)Application.Current.MainWindow).svContent.ScrollToTop();
 
         }
         #endregion
 
         #region DATABASE
-        private List<string> ScreeningDateData(int filmId) {
+
+        private List<string> GetScreeningDates(int filmId) {
             List<string> vetitString = new List<string>();
             int dateCounter = 0;
             var currentDateTime = DateTime.Now;
@@ -60,11 +60,37 @@ namespace NeumannMozi_WPF {
             }
             return vetitString;
         }
+        // Return screening dates and rooms in string list
+        private List<string> GetComboboxSource(int filmId) {
+            List<string> vetitString = new List<string>();
+            var currentDateTime = DateTime.Now;
+            foreach (var x in edmNeumannMoziContainer.VetitesSet) {
+                if (x.FilmId == filmId) {
+                    if (x.Kezdete > currentDateTime) {
+                        vetitString.Add(x.Kezdete.ToString() + " - " + x.Terem.Nev);
+                    }
+                }
+            }
+            return vetitString;
+        }
+        private List<string> GetRoomName(int filmId) {
+            List<string> roomName = new List<string>();
+            var currentDateTime = DateTime.Now;
+            foreach (var x in edmNeumannMoziContainer.VetitesSet) {
+                if (x.FilmId == filmId) {
+                    if (x.Kezdete > currentDateTime) {
+                        roomName.Add(x.Terem.Nev);
+                    }
+                }
+            }
+            return roomName;
+        }
+
         private void GetCurrentShowTimes() {
 
             var filmLista = new List<FilmData>();
             foreach (var x in edmNeumannMoziContainer.FilmSet) {
-                if (ScreeningDateData(x.Id).Count > 0) {
+                if (GetScreeningDates(x.Id).Count > 0) {
                     filmLista.Add(new FilmData() {
                         Id = x.Id,
                         PosterImage = x.Poszter,
@@ -75,7 +101,9 @@ namespace NeumannMozi_WPF {
                         AgeRating = x.Korhatar,
                         Length = x.Hossz,
                         Category = x.Kategoria,
-                        ScreeningDates = ScreeningDateData(x.Id),
+                        RoomNameForDates = GetRoomName(x.Id),
+                        ScreeningDates = GetScreeningDates(x.Id),
+                        ComboBoxSource = GetComboboxSource(x.Id)
                     });
                 }
             }
@@ -87,7 +115,6 @@ namespace NeumannMozi_WPF {
                  
             }
             ictrCurrentShowtimes.ItemsSource = filmLista;
-            
         }
         #endregion
 

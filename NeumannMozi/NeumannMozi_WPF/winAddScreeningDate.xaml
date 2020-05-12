@@ -12,7 +12,8 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <TextBlock x:Name="tbTitle" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" FontSize="12" FontWeight="Bold"/>
             <TextBox x:Name="txtNewScreeningDate" Height="23" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="180" Margin="0, 25, 0, 0"/>
-            <Button x:Name="btnConfirmScreeningDate" Content="Hozzáad" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"  Click="btnConfirmScreeningDate_Click" Margin="0, 25, 0, 0"/>
+            <ComboBox x:Name="cbRoomName" ItemsSource="{Binding}" Height="23" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Margin="0, 25, 0, 0" SelectedIndex="0" SelectionChanged="cbRoomName_SelectionChanged"/>
+             <Button x:Name="btnConfirmScreeningDate" Content="Hozzáad" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"  Click="btnConfirmScreeningDate_Click" Margin="0, 25, 0, 0"/>
         </StackPanel>
 
     </Grid>

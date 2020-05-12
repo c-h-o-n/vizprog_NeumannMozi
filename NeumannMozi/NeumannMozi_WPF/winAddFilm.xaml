@@ -78,7 +78,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Poszter:"/>
-                <TextBox x:Name="txtPosterImagePath"/>
+                <TextBox x:Name="txtPosterImagePath" IsReadOnly="True"/>
                 <Button x:Name="btnAddImage" Content=".." Margin="10, 0, 0, 0" Width="25" Height="25" Click="btnAddImage_Click"/>
             </StackPanel>
             

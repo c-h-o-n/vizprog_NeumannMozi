@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace NeumannMozi_WPF {
         }
 
         #region CORE_VARIABLES
-            private edmNeumannMoziContainer edmNeumannMoziContainer;
+        private edmNeumannMoziContainer edmNeumannMoziContainer;
         #endregion
 
         #region BUTTON_CLICK_EVENTS
@@ -44,14 +45,14 @@ namespace NeumannMozi_WPF {
             winAddScreeningDate winAddScreeningDate = new winAddScreeningDate(getFilm);
             winAddScreeningDate.Owner = Window.GetWindow(this);
             winAddScreeningDate.Show();
-            
+
         }
         private void btnMoreInfo_Click(object sender, RoutedEventArgs e) {
 
         }
         private void btnRemoveFilm_Click(object sender, RoutedEventArgs e) {
             var getFilm = ((Button)sender).Tag as FilmData;
-            var msgBox = MessageBox.Show("Biztos törlöd a(z) "+ getFilm.Title.ToString() + " filmet az adatbázisból?","Film törlése", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var msgBox = MessageBox.Show("Biztos törlöd a(z) " + getFilm.Title.ToString() + " filmet az adatbázisból?", "Film törlése", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (msgBox == MessageBoxResult.Yes) {
                 var deleteRow = (from x in edmNeumannMoziContainer.FilmSet
                                  where x.Id.Equals(getFilm.Id)
@@ -68,8 +69,7 @@ namespace NeumannMozi_WPF {
                 edmNeumannMoziContainer.SaveChanges();// itt a hiba :(
                 MessageBox.Show("Sikeresen törölve.");
                 ReloadScreen();
-            }
-            else {
+            } else {
                 MessageBox.Show("Nemre ment");
             }
         }
@@ -77,7 +77,7 @@ namespace NeumannMozi_WPF {
 
         #region DATABASE
 
-        private List<string> ScreeningDateData(int filmId) {
+        private List<string> GetScreeningDates(int filmId) {
             List<string> vetitString = new List<string>();
             var currentDateTime = DateTime.Now;
             foreach (var x in edmNeumannMoziContainer.VetitesSet) {
@@ -89,28 +89,51 @@ namespace NeumannMozi_WPF {
             }
             return vetitString;
         }
+        // Return screening dates and rooms in string list
+        private List<string> GetComboboxSource(int filmId) {
+            List<string> vetitString = new List<string>();
+            var currentDateTime = DateTime.Now;
+            foreach (var x in edmNeumannMoziContainer.VetitesSet) {
+                if (x.FilmId == filmId) {
+                    if (x.Kezdete > currentDateTime) {
+                        vetitString.Add(x.Kezdete.ToString() + " - " + x.Terem.Nev);
+                    }
+                }
+            }
+            return vetitString;
+        }
+
+        private List<string> GetRoomName(int filmId) {
+            List<string> roomName = new List<string>();
+            var currentDateTime = DateTime.Now;
+            foreach (var x in edmNeumannMoziContainer.VetitesSet) {
+                if (x.FilmId == filmId) {
+                    if (x.Kezdete > currentDateTime) {
+                        roomName.Add(x.Terem.Nev);
+                    }
+                }
+            }
+            return roomName;
+        }
+
+
         List<FilmData> filmLista = new List<FilmData>();
         private void GetCurrentShowTimes() {
             foreach (var x in edmNeumannMoziContainer.FilmSet) {
-                    filmLista.Add(new FilmData() {
-                        Id = x.Id,
-                        PosterImage = x.Poszter,
-                        Title = x.Cim,
-                        Director = x.Rendezo,
-                        Cast = x.Szereplok,
-                        Description = x.Leiras,
-                        AgeRating = x.Korhatar,
-                        Length = x.Hossz,
-                        Category = x.Kategoria,
-                        NumberOfSeats = 0,
-                        ScreeningDates = ScreeningDateData(x.Id),
-                    });
-            }
-
-            foreach (var filmData in filmLista) {
-                if (filmData.Description.Length > 300) {
-                    filmData.Description = filmData.Description.Substring(0, 300) + "...";
-                }
+                filmLista.Add(new FilmData() {
+                    Id = x.Id,
+                    PosterImage = x.Poszter,
+                    Title = x.Cim,
+                    Director = x.Rendezo,
+                    Cast = x.Szereplok,
+                    Description = x.Leiras,
+                    AgeRating = x.Korhatar,
+                    Length = x.Hossz,
+                    Category = x.Kategoria,
+                    RoomNameForDates = GetRoomName(x.Id),
+                    ScreeningDates = GetScreeningDates(x.Id),
+                    ComboBoxSource = GetComboboxSource(x.Id)
+                }) ;
             }
             ictrAdmin.ItemsSource = filmLista;
         }
@@ -125,8 +148,12 @@ namespace NeumannMozi_WPF {
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var getFilm = ((ComboBox)sender).Tag as FilmData;
-            ComboBox cb = new ComboBox();
-            ictrAdmin.ItemsSource = filmLista;
+            ComboBox cb = sender as ComboBox;
+
+            for (int i = 0; i < getFilm.ComboBoxSource.Count; i++) {
+                Console.WriteLine(getFilm.ComboBoxSource[i] + " + " + getFilm.ScreeningDates[i] + " + " + getFilm.RoomNameForDates[i]);
+            }            
+            
         }
         #endregion
     }

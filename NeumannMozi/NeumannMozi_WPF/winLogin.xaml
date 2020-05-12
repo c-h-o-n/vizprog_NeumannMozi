@@ -14,6 +14,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32"/>
     </WindowChrome.WindowChrome>
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -30,7 +31,7 @@
                 <!-- Window Chrome -->
                 <Border Background="#E4E4E4" CornerRadius="4, 4, 0, 0" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.RowSpan="1" Height="32" Width="318" Padding="0" Margin="0">
                     <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button   Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnMinimize_Click">
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}" x:Name="btnMinimize" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 5, 0" Click="btnMinimize_Click">
                             <iconPacks:PackIconMaterial Kind="WindowMinimize" Width="15" Height="15"/>
                         </Button>
                         <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource WindowTheme}"  x:Name="btnExit" Height="25" Width="25" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0, 4, 10, 0" Click="btnExitApp_Click">

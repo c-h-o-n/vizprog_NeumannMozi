@@ -19,6 +19,7 @@ namespace NeumannMozi_WPF {
         public byte[] PosterImage { get; set; }
         public string Category { get; set; }
         public List<string> ScreeningDates { get; set; }
-        public int NumberOfSeats { get; set; }
+        public List<string> RoomNameForDates { get; set; }
+        public List<string> ComboBoxSource { get; set; }
     }
 }

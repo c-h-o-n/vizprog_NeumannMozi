@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <Terem name="Kis terem">
+    <terem_id>1</terem_id>
+    <sor>8</sor>
+    <oszlop>12</oszlop>
+  </Terem>
+  <Terem name="Nagy terem">
+    <terem_id>2</terem_id>
+    <sor>12</sor>
+    <oszlop>11</oszlop>
+  </Terem>
+</root> 

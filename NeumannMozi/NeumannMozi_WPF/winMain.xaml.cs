@@ -30,7 +30,7 @@ namespace NeumannMozi_WPF {
             
             // Delete me in final
             winLogin.SetDataDirectory();
-            winLogin.loginAdmin = true;
+            winLogin.loginAdmin = false;
             //
             
             InitializeComponent();
@@ -71,12 +71,10 @@ namespace NeumannMozi_WPF {
 
                 if (!wpCurrentContent.Children.Contains(uctShowtimes) && !winLogin.loginAdmin) {
                     wpCurrentContent.Children.Clear();
-                    uctShowtimes = new uctShowtimes();
-                    wpCurrentContent.Children.Add(uctShowtimes);
+                    wpCurrentContent.Children.Add(new uctShowtimes());
                 } else if (!wpCurrentContent.Children.Contains(uctAdmin) && winLogin.loginAdmin) {
                     wpCurrentContent.Children.Clear();
-                    uctAdmin = new uctAdmin();
-                    wpCurrentContent.Children.Add(uctAdmin);
+                    wpCurrentContent.Children.Add(new uctAdmin());
                 }
             }
             private void btnMyTickets_Click(object sender, RoutedEventArgs e) {
@@ -125,11 +123,9 @@ namespace NeumannMozi_WPF {
         private void LoadMainUct(bool isAdmin) {
             if (!isAdmin) {
                 // Open showtimes on startup
-                uctShowtimes = new uctShowtimes();
-                wpCurrentContent.Children.Add(uctShowtimes);
+                wpCurrentContent.Children.Add(new uctShowtimes());
             } else {
-                uctAdmin = new uctAdmin();
-                wpCurrentContent.Children.Add(uctAdmin);
+                wpCurrentContent.Children.Add(new uctAdmin());
             }
         }
         #endregion
