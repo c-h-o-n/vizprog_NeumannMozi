@@ -7,16 +7,18 @@
             mc:Ignorable="d"
             d:DesignHeight="1080" d:DesignWidth="1920">
 
-<UserControl.Resources>
-    <Style x:Key="TextBlock" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="13"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="TextTrimming" Value="WordEllipsis"/>
-        <Setter Property="Margin" Value="0, 0, 0, 10"/>
-    </Style>
-</UserControl.Resources>
+
+    <UserControl.Resources>
+        <Style x:Key="TextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter     Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="Margin" Value="0, 0, 0, 10"/>
+        </Style>
+    </UserControl.Resources>
     
     <!-- Current Show Times -->
+
     <ItemsControl Name="ictrCurrentShowtimes" ItemsSource="{Binding}" FontSize="14" Style="{StaticResource Roboto}" Margin="0, 65, 0, 0">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -75,9 +77,14 @@
                             </ListBox>
                         </StackPanel>
                     </StackPanel>
+                    
                 </Button>
+                
+                
             </DataTemplate>
         </ItemsControl.ItemTemplate>
+        
+        
     </ItemsControl>
 
 

@@ -49,7 +49,7 @@
                 </StackPanel>
             </StackPanel>
             
-            <StackPanel>
+            <StackPanel Margin="0, 25, 0, 0">
                 <!-- Trailer video -->
                 <Image x:Name="videoPlaceholder" Source="./content_src/pictures/video_placholder.png" Height="450" Width="800"/>
                 <!-- Imdb button(link)-->

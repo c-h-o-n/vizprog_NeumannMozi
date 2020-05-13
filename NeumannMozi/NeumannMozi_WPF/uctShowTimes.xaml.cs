@@ -115,9 +115,8 @@ namespace NeumannMozi_WPF {
             }
             ictrCurrentShowtimes.ItemsSource = filmLista;
         }
+
         #endregion
-
-
     }
 
 }

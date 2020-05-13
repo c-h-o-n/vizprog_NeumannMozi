@@ -89,6 +89,9 @@ namespace NeumannMozi_WPF {
                     winImportXmlToDB winImportXmlToDB = new winImportXmlToDB();
                     winImportXmlToDB.Show();
                 }
+                if (!winLogin.loginAdmin) {
+                    CreatePDF createPDF = new CreatePDF();
+                }
             }
         #endregion
 

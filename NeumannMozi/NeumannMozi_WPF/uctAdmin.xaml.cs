@@ -59,10 +59,13 @@ namespace NeumannMozi_WPF {
                 var deleteAllScreeningDates = (from x in edmNeumannMoziContainer.VetitesSet
                                                where x.FilmId.Equals(getFilm.Id)
                                                select x).ToList();
+                //TODO: delete all reservation
+                //var deletAllReservation = ();
 
                 foreach (var screeningDate in deleteAllScreeningDates) {
                     edmNeumannMoziContainer.VetitesSet.Remove(screeningDate);
                 }
+                
                 edmNeumannMoziContainer.FilmSet.Remove(deleteRow);
                 edmNeumannMoziContainer.SaveChanges();// itt a hiba :(
                 MessageBox.Show("Sikeresen törölve.");
@@ -139,6 +142,7 @@ namespace NeumannMozi_WPF {
 
         #region MISC
         private void ReloadScreen() {
+            GetCurrentShowTimes();
             ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
             ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctAdmin());
         }
