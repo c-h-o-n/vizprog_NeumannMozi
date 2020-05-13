@@ -1,2 +1,104 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NeumannMozi_WPF.CreatePDF">
+    <Position X="0.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAABAAIAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>CreatePDF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NeumannMozi_WPF.FilmData">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAFAAAQAgAEAAAAhAAABgAAAAAAAAAAAAAQEACAA=</HashCode>
+      <FileName>FilmData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NeumannMozi_WPF.RoomData">
+    <Position X="6.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>RoomData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NeumannMozi_WPF.Seat">
+    <Position X="8.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAABAAABAABAAAgAAAIAAAAAAAAA=</HashCode>
+      <FileName>Seat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NeumannMozi_WPF.uctAdmin">
+    <Position X="11" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAAAAAAABAABAAIACBAAAABAAAACQAAEAABAAAAA=</HashCode>
+      <FileName>uctAdmin.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.uctReservation">
+    <Position X="11.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAQAAAAAAIFABRAAAgAAgIICAAXAAAAAAEAABAAACA=</HashCode>
+      <FileName>uctReservation.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.uctShowtimes">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAABAAIAAAAAAAAAAAAAAAAEAABAEAAA=</HashCode>
+      <FileName>uctShowtimes.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.uctStat">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAABAAIAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>uctStat.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.winAddFilm">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAQAAAAAAAAAAEAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>winAddFilm.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.winAddScreeningDate">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAEAAAAAAAASAAAAAAABAAAAQ=</HashCode>
+      <FileName>winAddScreeningDate.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.winImportXmlToDB">
+    <Position X="9" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIBAAAAEAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>winImportXmlToDB.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.winLogin">
+    <Position X="10.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAABAAABQAAAAAAQAAEACCAAAAEAAABiAAA=</HashCode>
+      <FileName>winLogin.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NeumannMozi_WPF.winMain">
+    <Position X="12.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkggAAQEAACAAAAABAAAAARAAAAAAAAAAAAEAmAgAA=</HashCode>
+      <FileName>winMain.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

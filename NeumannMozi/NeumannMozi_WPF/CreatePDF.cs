@@ -21,46 +21,50 @@ namespace NeumannMozi_WPF {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "(*.pdf)|*.pdf";
             saveFileDialog.ShowDialog();
+           
+            try {
+                using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create)) {
+                    Document pdfDoc = new Document(iTextSharp.text.PageSize.A4, 10, 10, 42, 35);
 
-            using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create)) {
-                Document pdfDoc = new Document(iTextSharp.text.PageSize.A4, 10, 10, 42, 35);
-                
-                PdfWriter.GetInstance(pdfDoc, stream);
+                    PdfWriter.GetInstance(pdfDoc, stream);
 
-                pdfDoc.Open();
-                PdfPTable table = new PdfPTable(3);
+                    pdfDoc.Open();
+                    PdfPTable table = new PdfPTable(3);
 
-                PdfPCell cell = new PdfPCell(new Phrase("Filmek"));
-                cell.BorderColor = BaseColor.WHITE;
+                    PdfPCell cell = new PdfPCell(new Phrase("Filmek"));
+                    cell.BorderColor = BaseColor.WHITE;
 
-                cell.Colspan = 3;
+                    cell.Colspan = 3;
 
-                cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+                    cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
 
-                table.AddCell(cell);
+                    table.AddCell(cell);
 
 
-                List<FilmData> filmDatas = GetCurrentShowTimes();
-                foreach (var film in filmDatas) {
-                    byte[] byt = (byte[])film.PosterImage;
-                    Image img = Image.GetInstance(byt);
-                    img.ScaleAbsolute(115, 165);
-                    table.AddCell(img);
-                    //pdfDoc.Add(img);
-                    Paragraph title = new Paragraph(film.Title);
-                    table.AddCell(title);
+                    List<FilmData> filmDatas = GetCurrentShowTimes();
+                    foreach (var film in filmDatas) {
+                        byte[] byt = (byte[])film.PosterImage;
+                        Image img = Image.GetInstance(byt);
+                        img.ScaleAbsolute(115, 165);
+                        table.AddCell(img);
+                        //pdfDoc.Add(img);
+                        Paragraph title = new Paragraph(film.Title);
+                        table.AddCell(title);
 
-                    //pdfDoc.Add(new Paragraph(film.Title));
-                    string dates = "";
-                    foreach (var date in film.ScreeningDates) {
-                        dates += date + "\n";
-                        //pdfDoc.Add(new Paragraph(date));
+                        //pdfDoc.Add(new Paragraph(film.Title));
+                        string dates = "";
+                        foreach (var date in film.ScreeningDates) {
+                            dates += date + "\n";
+                            //pdfDoc.Add(new Paragraph(date));
+                        }
+                        table.AddCell(new Paragraph(dates));
                     }
-                    table.AddCell(new Paragraph(dates));
+                    pdfDoc.Add(table);
+                    pdfDoc.Close();
+                    stream.Close();
                 }
-                pdfDoc.Add(table);
-                pdfDoc.Close();
-                stream.Close();
+            } catch (Exception) {
+
             }
         }
 
