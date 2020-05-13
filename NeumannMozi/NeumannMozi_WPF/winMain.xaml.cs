@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using iTextSharp;
 
 namespace NeumannMozi_WPF {
     /// <summary>
@@ -31,6 +32,7 @@ namespace NeumannMozi_WPF {
         #region CORE_VARIABLES
         private uctShowtimes uctShowtimes;
         private uctAdmin uctAdmin;
+        private uctStat uctStat;
         #endregion
 
         #region BUTTON_CLICK_EVENTS
@@ -76,6 +78,11 @@ namespace NeumannMozi_WPF {
             }
             private void btnStatistics_Click(object sender, RoutedEventArgs e) {
                 wpCurrentContent.Children.Clear();
+                uctStat = new uctStat();
+                if (!wpCurrentContent.Children.Contains(uctStat) && winLogin.loginAdmin) {
+                    wpCurrentContent.Children.Clear();
+                    wpCurrentContent.Children.Add(uctStat);
+                }
             }
             private void btnLogo_Click(object sender, RoutedEventArgs e) {
                 if (winLogin.loginAdmin) {

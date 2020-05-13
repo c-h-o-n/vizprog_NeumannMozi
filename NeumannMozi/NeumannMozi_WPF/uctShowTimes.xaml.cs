@@ -87,7 +87,6 @@ namespace NeumannMozi_WPF {
         }
 
         private void GetCurrentShowTimes() {
-
             var filmLista = new List<FilmData>();
             foreach (var x in edmNeumannMoziContainer.FilmSet) {
                 if (GetScreeningDates(x.Id).Count > 0) {

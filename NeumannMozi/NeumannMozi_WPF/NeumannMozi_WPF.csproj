@@ -59,6 +59,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro.IconPacks.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.Material.4.0.0\lib\net46\MahApps.Metro.IconPacks.Core.dll</HintPath>
     </Reference>
@@ -89,10 +92,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CreatePDF.cs" />
     <Compile Include="RoomData.cs" />
     <Compile Include="Seat.cs" />
     <Compile Include="uctReservation.xaml.cs">
       <DependentUpon>uctReservation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uctStat.xaml.cs">
+      <DependentUpon>uctStat.xaml</DependentUpon>
     </Compile>
     <Compile Include="uctValidReservation.xaml.cs">
       <DependentUpon>uctValidReservation.xaml</DependentUpon>
@@ -117,6 +124,10 @@
       <DependentUpon>winMain.xaml</DependentUpon>
     </Compile>
     <Page Include="uctReservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uctStat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
