@@ -46,7 +46,16 @@ namespace NeumannMozi_WPF {
             foreach (var x in edmNeumannMoziContainer.VetitesSet) {
                 if (x.FilmId == filmId) {
                     if (x.Kezdete > currentDateTime) {
-                        vetitString.Add(x.Kezdete.ToString());
+                        var foglalasCount = (from foglalas in edmNeumannMoziContainer.Ules_foglalasSet
+                                             where foglalas.VetitesId == x.Id
+                                             select foglalas
+                         ).Count();
+                        var seatCount = (from seat in edmNeumannMoziContainer.TeremSet
+                                         where seat.Id == x.TeremId
+                                         select new { seat.UlesekSzama }
+                         ).FirstOrDefault();
+                        var precent = Math.Round(((double)foglalasCount / seatCount.UlesekSzama) * 100,0);
+                        vetitString.Add(x.Kezdete.ToString()+"\n\tTerem kihasználtság: "+precent+"%\n\tFoglalt székek: "+ foglalasCount + "/"+seatCount.UlesekSzama);
                     }
                 }
             }
