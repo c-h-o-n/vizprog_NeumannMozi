@@ -55,14 +55,12 @@ namespace NeumannMozi_WPF {
 
             #region NAV_MENU
             private void btnShowTimes_Click(object sender, RoutedEventArgs e) {
-                // TODO: && !winLogin.loginAdmin protection should define in xaml
-
                 if (!wpCurrentContent.Children.Contains(uctShowtimes) && !winLogin.loginAdmin) {
                     wpCurrentContent.Children.Clear();
-                    wpCurrentContent.Children.Add(uctShowtimes);
+                    wpCurrentContent.Children.Add(uctShowtimes = new uctShowtimes());
                 } else if (!wpCurrentContent.Children.Contains(uctAdmin) && winLogin.loginAdmin) {
                     wpCurrentContent.Children.Clear();
-                    wpCurrentContent.Children.Add(uctAdmin);
+                    wpCurrentContent.Children.Add(uctAdmin = new uctAdmin());
                 }
             }
             private void btnMyTickets_Click(object sender, RoutedEventArgs e) {

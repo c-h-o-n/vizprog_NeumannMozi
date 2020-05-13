@@ -71,9 +71,10 @@ namespace NeumannMozi_WPF {
         }
         // Insert choosed seats to the db
         private void btnSendReservation_Click(object sender, RoutedEventArgs e) {
-            InsertReservation();
-            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
-            ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctValidReservation());
+            if (InsertReservation()) {
+                ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Clear();
+                ((winMain)Application.Current.MainWindow).wpCurrentContent.Children.Add(new uctValidReservation());
+            }
         }
 
 
@@ -179,7 +180,8 @@ namespace NeumannMozi_WPF {
             #endregion
 
             #region INSERT_DATA_INTO_DB
-            private void InsertReservation() {
+            private bool InsertReservation() {
+                bool isValid = false;
                 var reservationInsert = new Foglalas {
                     FelhasznaloId = winLogin.loginId,
                     Datum = DateTime.Now,
@@ -196,10 +198,12 @@ namespace NeumannMozi_WPF {
                             Foglalas = reservationInsert
                         };
                         edmNeumannMoziContainer.Ules_foglalasSet.Add(seatReservationInsert);
+                        isValid = true;
                     }
                 }
                 edmNeumannMoziContainer.FoglalasSet.Add(reservationInsert);
                 edmNeumannMoziContainer.SaveChanges();
+                return isValid;
             }
             #endregion
 

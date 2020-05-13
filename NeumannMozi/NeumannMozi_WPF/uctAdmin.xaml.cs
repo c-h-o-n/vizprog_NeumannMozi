@@ -24,7 +24,6 @@ namespace NeumannMozi_WPF {
             edmNeumannMoziContainer = new edmNeumannMoziContainer();
             InitializeComponent();
             GetCurrentShowTimes();
-
         }
 
         #region CORE_VARIABLES
@@ -33,7 +32,6 @@ namespace NeumannMozi_WPF {
 
         #region BUTTON_CLICK_EVENTS
         private void btnAddMovie_Click(object sender, RoutedEventArgs e) {
-            btnAddMovie.IsEnabled = false;
             winAddFilm winAddFilm = new winAddFilm();
             winAddFilm.Show();
         }
@@ -59,12 +57,20 @@ namespace NeumannMozi_WPF {
                 var deleteAllScreeningDates = (from x in edmNeumannMoziContainer.VetitesSet
                                                where x.FilmId.Equals(getFilm.Id)
                                                select x).ToList();
-                //TODO: delete all reservation
-                //var deletAllReservation = ();
 
                 foreach (var screeningDate in deleteAllScreeningDates) {
                     edmNeumannMoziContainer.VetitesSet.Remove(screeningDate);
                 }
+
+                foreach (var date in deleteAllScreeningDates) {
+                    var deleteAllSeatRes = (from x in edmNeumannMoziContainer.Ules_foglalasSet
+                                          where x.VetitesId == date.Id
+                                          select x).ToList();
+                    foreach (var res in deleteAllSeatRes) {
+                        edmNeumannMoziContainer.Ules_foglalasSet.Remove(res);
+                    }
+                }
+                
                 
                 edmNeumannMoziContainer.FilmSet.Remove(deleteRow);
                 edmNeumannMoziContainer.SaveChanges();// itt a hiba :(
