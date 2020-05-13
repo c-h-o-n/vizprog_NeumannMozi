@@ -65,7 +65,7 @@
                 <Border Grid.Row="1" Background="#bd1222">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <!-- Logo -->
-                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnLogo" Height="50" Width="50" Background="#830C0C" BorderThickness="0" Margin="20, 0, 25, 0">
+                        <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource NavButtonTheme}" x:Name="btnLogo" Height="50" Width="50" Background="#830C0C" BorderThickness="0" Margin="20, 0, 25, 0" Click="btnLogo_Click">
                             <Button.BitmapEffect>
                                 <DropShadowBitmapEffect Color="Black" Softness="15" ShadowDepth="0" Opacity="0.7" />
                             </Button.BitmapEffect>

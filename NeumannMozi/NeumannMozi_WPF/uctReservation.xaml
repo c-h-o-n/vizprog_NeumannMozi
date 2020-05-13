@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="NeumannMozi_WPF.uctReservation"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                 xmlns:local="clr-namespace:NeumannMozi_WPF"
-                 mc:Ignorable="d" 
-                 d:DesignHeight="1080" d:DesignWidth="1920">
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:local="clr-namespace:NeumannMozi_WPF"
+                    mc:Ignorable="d" 
+                    d:DesignHeight="1080" d:DesignWidth="1920">
 
     <UserControl.Resources>
         <Style x:Key="TextBlock" TargetType="TextBlock">
@@ -17,11 +17,11 @@
 
     </UserControl.Resources>
 
-    <WrapPanel HorizontalAlignment="Center">
+    <WrapPanel Orientation="Vertical" HorizontalAlignment="Center">
         <!-- Film Card 01-->
-        <StackPanel Background="Orange" Name="wpFilmCard1" Margin="70, 70, 0, 0"  HorizontalAlignment="Center" VerticalAlignment="Top">
+        <WrapPanel  Orientation="Horizontal" Name="wpFilmCard" Margin="70, 70, 0, 0"  HorizontalAlignment="Center" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-
+                <!-- Poster -->
                 <Image  x:Name="imgPoster" Source="{Binding PosterImage}" Height="660" Width="460" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <StackPanel Orientation="Vertical" Width="520" HorizontalAlignment="Left" Margin="25, 10, 0, 0">
                     <!-- Title -->
@@ -48,32 +48,41 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
-
-        <!-- Film Card 02-->
-        <StackPanel Background="Blue" Name="wpFilmCard2" Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Stretch"  Margin="20, 20, 0, 0">
-            <Image x:Name="videoPlaceholder" Source="./content_src/pictures/video_placholder.png" Height="450" Width="800"/>
-            <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource GenericTheme}" x:Name="btnImdb" Height="50" Width="100" HorizontalAlignment="Left" Margin="0, 40, 0, 45">
-                <Image Source="./content_src/pictures/imdb_logo.png"/>
-            </Button>
-            <ComboBox Name="cbScreeningDates" ItemsSource="{Binding ComboBoxSource}" SelectedIndex="0" FontSize="26" Padding="15, 0, 0, 0" VerticalContentAlignment="Center" Height="50" Width="550" HorizontalAlignment="Left" Margin="0, 50, 0, 0" SelectionChanged="cbScreeningDates_SelectionChanged"/>
-        </StackPanel>
-        <Grid Background="Purple" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Background="Lime" HorizontalAlignment="Center" Orientation="Vertical">
-                <UniformGrid Rows="{Binding}" Columns="{Binding}" x:Name="wpSeats" HorizontalAlignment="Center"/>
-                <Line X1="0" Y1="0" X2="715" Y2="0" Stroke="#707070" StrokeThickness="3" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" Opacity="0.3" Margin="0, 47, 0, 0" />
-                <Button x:Name="btnSendReservation" Content="Rendben" HorizontalAlignment="Center" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource SendReservationTheme}"/>
+            
+            <StackPanel>
+                <!-- Trailer video -->
+                <Image x:Name="videoPlaceholder" Source="./content_src/pictures/video_placholder.png" Height="450" Width="800"/>
+                <!-- Imdb button(link)-->
+                <Button  Resources="{StaticResource ButtonTheme}" Style="{DynamicResource GenericTheme}" x:Name="btnImdb" Height="50" Width="100" HorizontalAlignment="Left" Margin="0, 40, 0, 45" Click="btnImdb_Click">
+                    <Image Source="./content_src/pictures/imdb_logo.png"/>
+                </Button>
+                <!-- Screening date picker -->
+                    <ComboBox Name="cbScreeningDates" ItemsSource="{Binding ComboBoxSource}" SelectedIndex="0" FontSize="26" Padding="15, 0, 0, 0" VerticalContentAlignment="Center" Height="50" Width="550" HorizontalAlignment="Left" Margin="0, 50, 0, 0" PreviewMouseWheel="cbScreeningDates_PreviewMouseWheel" SelectionChanged="cbScreeningDates_SelectionChanged"/>
             </StackPanel>
+            
+        </WrapPanel>
+        <!-- Reservation panel -->
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+            <!-- Info -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 40, 0, 0">
+                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource SeatButtonTheme}"/>
+                <Label Content="elérhető" FontSize="26" VerticalAlignment="Center"/>
+                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource SeatButtonTheme}" Background="#707070" Margin="131, 0, 0, 0"/>
+                <Label Content="foglalt" FontSize="26" VerticalAlignment="Center"/>
+                <Button Resources="{StaticResource ButtonTheme}" Style="{DynamicResource SeatButtonTheme}" Background="#BD1222" Margin="151, 0, 0, 0"/>
+                <Label Content="kiválasztott" FontSize="26" VerticalAlignment="Center"/>
+            </StackPanel>
+            <!-- Film canvas -->
+            <Path HorizontalAlignment="Center" MinWidth="50" Stroke="#BD1222" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeThickness="4" Data="M0, 0 Q400, -50 800, 0" Margin="0, 50, 0, 100">
+                <Path.Effect>
+                    <DropShadowEffect Color="#bd1222" ShadowDepth="0" BlurRadius="40"/>
+                </Path.Effect>
+            </Path>
 
-        </Grid>
 
-        <!-- Reservation Panel-->
-
+            <UniformGrid Rows="{Binding}" Columns="{Binding}" x:Name="wpSeats" HorizontalAlignment="Center"/>
+            <Line X1="0" Y1="0" X2="715" Y2="0" Stroke="#707070" StrokeThickness="3" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" Opacity="0.3" Margin="0, 47, 0, 0" />
+            <Button x:Name="btnSendReservation" Content="Rendben" HorizontalAlignment="Center" Resources="{StaticResource ButtonTheme}" Style="{DynamicResource SendReservationTheme}" Click="btnSendReservation_Click"/>
+        </StackPanel>
     </WrapPanel>
 </UserControl>

@@ -89,11 +89,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ReservationSet.cs" />
     <Compile Include="RoomData.cs" />
     <Compile Include="Seat.cs" />
     <Compile Include="uctReservation.xaml.cs">
       <DependentUpon>uctReservation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uctValidReservation.xaml.cs">
+      <DependentUpon>uctValidReservation.xaml</DependentUpon>
     </Compile>
     <Compile Include="winAddFilm.xaml.cs">
       <DependentUpon>winAddFilm.xaml</DependentUpon>
@@ -108,10 +110,17 @@
     <Compile Include="winAddScreeningDate.xaml.cs">
       <DependentUpon>winAddScreeningDate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="winImportXmlToDB.xaml.cs">
+      <DependentUpon>winImportXmlToDB.xaml</DependentUpon>
+    </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>
     </Compile>
     <Page Include="uctReservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uctValidReservation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="winAddScreeningDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winImportXmlToDB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

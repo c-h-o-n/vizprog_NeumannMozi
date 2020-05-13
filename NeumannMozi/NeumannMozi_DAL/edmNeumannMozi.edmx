@@ -85,7 +85,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Nev" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UlesekSzama" Type="int" Nullable="false" />
     <Property Name="TakaritaniKell" Type="bit" Nullable="false" />
@@ -291,7 +291,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Nev" Type="String" Nullable="false" />
           <Property Name="UlesekSzama" Type="Int32" Nullable="false" />
           <Property Name="TakaritaniKell" Type="Boolean" Nullable="false" />

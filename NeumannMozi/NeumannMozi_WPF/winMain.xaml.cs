@@ -20,25 +20,11 @@ namespace NeumannMozi_WPF {
 
     public partial class winMain : Window {
         public winMain() {
-            /*
-             * ADMIN LOGIN:
-             * winLogin.loginAdmin = true;
-             * ================================
-             * USER LOGIN:
-             * winLogin.loginAdmin = false;
-             */
-            
-            // Delete me in final
-            winLogin.SetDataDirectory();
-            winLogin.loginAdmin = false;
-            //
-            
+            Application.Current.MainWindow = this; // for later reference
             InitializeComponent();
             SetNavButtons(winLogin.loginAdmin);
             SetWindow(winLogin.loginAdmin);
             LoadMainUct(winLogin.loginAdmin);
-
-
         }
 
 
@@ -71,10 +57,10 @@ namespace NeumannMozi_WPF {
 
                 if (!wpCurrentContent.Children.Contains(uctShowtimes) && !winLogin.loginAdmin) {
                     wpCurrentContent.Children.Clear();
-                    wpCurrentContent.Children.Add(new uctShowtimes());
+                    wpCurrentContent.Children.Add(uctShowtimes);
                 } else if (!wpCurrentContent.Children.Contains(uctAdmin) && winLogin.loginAdmin) {
                     wpCurrentContent.Children.Clear();
-                    wpCurrentContent.Children.Add(new uctAdmin());
+                    wpCurrentContent.Children.Add(uctAdmin);
                 }
             }
             private void btnMyTickets_Click(object sender, RoutedEventArgs e) {
@@ -91,7 +77,13 @@ namespace NeumannMozi_WPF {
             private void btnStatistics_Click(object sender, RoutedEventArgs e) {
                 wpCurrentContent.Children.Clear();
             }
-            #endregion
+            private void btnLogo_Click(object sender, RoutedEventArgs e) {
+                if (winLogin.loginAdmin) {
+                    winImportXmlToDB winImportXmlToDB = new winImportXmlToDB();
+                    winImportXmlToDB.Show();
+                }
+            }
+        #endregion
 
         #endregion
 
@@ -123,13 +115,16 @@ namespace NeumannMozi_WPF {
         private void LoadMainUct(bool isAdmin) {
             if (!isAdmin) {
                 // Open showtimes on startup
-                wpCurrentContent.Children.Add(new uctShowtimes());
+                uctShowtimes = new uctShowtimes();
+                wpCurrentContent.Children.Add(uctShowtimes);
             } else {
-                wpCurrentContent.Children.Add(new uctAdmin());
+                uctAdmin = new uctAdmin();
+                wpCurrentContent.Children.Add(uctAdmin);
             }
         }
+
         #endregion
 
-
+       
     }
 }

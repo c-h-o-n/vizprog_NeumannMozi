@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/06/2020 20:24:37
--- Generated from EDMX file: C:\Users\Chon\Desktop\Neumann Mozi\Git Repo\NeumannMozi\NeumannMozi_DAL\edmNeumannMozi.edmx
+-- Date Created: 05/13/2020 11:22:04
+-- Generated from EDMX file: D:\_temp delete me later\Neumann Mozi\Git Repo\NeumannMozi\NeumannMozi_DAL\edmNeumannMozi.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [C:\USERS\CHON\DESKTOP\NEUMANN MOZI\GIT REPO\NEUMANNMOZI\DATABASE\DATABASE_NEUMANNMOZI.MDF];
+USE [D:\_TEMP DELETE ME LATER\NEUMANN MOZI\GIT REPO\NEUMANNMOZI\DATABASE\DATABASE_NEUMANNMOZI.MDF];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -110,7 +110,7 @@ GO
 
 -- Creating table 'TeremSet'
 CREATE TABLE [dbo].[TeremSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] int  NOT NULL,
     [Nev] nvarchar(max)  NOT NULL,
     [UlesekSzama] int  NOT NULL,
     [TakaritaniKell] bit  NOT NULL

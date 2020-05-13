@@ -33,7 +33,7 @@ namespace NeumannMozi_WPF {
         
         public static string loginUserName;
         public static bool loginAdmin;
-        public static int userId;
+        public static int loginId;
         #endregion
 
         #region BUTTON_CLICK_EVENTS
@@ -71,7 +71,7 @@ namespace NeumannMozi_WPF {
                 if (u != null && String.Equals(u.Nev, txtUsername.Text)) {
                     loginUserName = u.Nev;
                     loginAdmin = u.Admin;
-                    userId = u.Id;
+                    loginId = u.Id;
                     winMain winMain = new winMain();
                     winMain.Show();
                     this.Close();

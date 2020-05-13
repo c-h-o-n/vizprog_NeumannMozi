@@ -39,9 +39,7 @@ namespace NeumannMozi_WPF {
         }
 
         private void btnAddScreeningDate_Click(object sender, RoutedEventArgs e) {
-            //MessageBox.Show();
             var getFilm = ((Button)sender).Tag as FilmData;
-            //MessageBox.Show(getFilm.Id.ToString());
             winAddScreeningDate winAddScreeningDate = new winAddScreeningDate(getFilm);
             winAddScreeningDate.Owner = Window.GetWindow(this);
             winAddScreeningDate.Show();
@@ -69,8 +67,6 @@ namespace NeumannMozi_WPF {
                 edmNeumannMoziContainer.SaveChanges();// itt a hiba :(
                 MessageBox.Show("Sikeresen törölve.");
                 ReloadScreen();
-            } else {
-                MessageBox.Show("Nemre ment");
             }
         }
         #endregion
@@ -148,12 +144,7 @@ namespace NeumannMozi_WPF {
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var getFilm = ((ComboBox)sender).Tag as FilmData;
-            ComboBox cb = sender as ComboBox;
-
-            for (int i = 0; i < getFilm.ComboBoxSource.Count; i++) {
-                Console.WriteLine(getFilm.ComboBoxSource[i] + " + " + getFilm.ScreeningDates[i] + " + " + getFilm.RoomNameForDates[i]);
-            }            
-            
+            ComboBox cb = sender as ComboBox;       
         }
         #endregion
     }

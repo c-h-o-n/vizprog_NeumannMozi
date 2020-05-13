@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:NeumannMozi_WPF"
-             StartupUri="winMain.xaml">
+             StartupUri="winLogin.xaml">
     <Application.Resources>
         <!-- Add fonts to project -->
         <Style x:Key="QuicksandRegular">
